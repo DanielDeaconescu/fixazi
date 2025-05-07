@@ -123,14 +123,21 @@ document
         const result = await response.json();
 
         if (response.ok) {
-          alert(result.message); // success message from server
+          window.location.href = "submitted.html";
           this.reset(); // reset form if successful
         } else {
-          alert("A apărut o eroare la trimiterea cererii.");
+          // Bootstrap 5 toast display
+          const errorToast = new bootstrap.Toast(
+            document.getElementById("errorToast")
+          );
+          errorToast.show();
         }
       } catch (error) {
         console.error(error);
-        alert("A apărut o eroare de rețea sau de server.");
+        const errorToast = new bootstrap.Toast(
+          document.getElementById("errorToast")
+        );
+        errorToast.show();
       }
     }
   });
