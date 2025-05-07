@@ -194,3 +194,6 @@ input[type=file] {
     margin-bottom: 20px;
   }
 }
+.call-to-action-section {
+  border-bottom: 2px solid white;
+}

@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/font-awesome.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/styles.css" />
+    <!-- Lightbox CSS -->
+    <link rel="stylesheet" href="css/lightbox.min.css" />
     <link rel="icon" href="images/favicon.png" />
     <title>FIXAZI - Reparații Telefoane</title>
   </head>
@@ -888,7 +890,8 @@
       </div>
     </section>
 
-    <section class="bg-dark text-white text-center py-5">
+    <!-- Call To Action -->
+    <section class="bg-dark text-white call-to-action-section text-center py-5">
       <div class="container">
         <h2 class="mb-3">Ai o problemă cu dispozitivul tău?</h2>
         <p class="lead mb-4">
@@ -943,11 +946,13 @@
             <div class="card shadow-sm">
               <div class="card-body text-center">
                 <h5 class="card-title text-dark">Înainte</h5>
-                <img
-                  src="./images/details-1.jpg"
-                  class="img-fluid rounded"
-                  alt="Înainte reparație"
-                />
+                <a href="./images/details-1.jpg" data-lightbox="image-1">
+                  <img
+                    src="./images/details-1.jpg"
+                    class="img-fluid rounded"
+                    alt="Înainte reparație"
+                  />
+                </a>
               </div>
             </div>
           </div>
@@ -955,11 +960,13 @@
             <div class="card shadow-sm">
               <div class="card-body text-center">
                 <h5 class="card-title text-dark">După</h5>
-                <img
-                  src="./images/details-2.jpg"
-                  class="img-fluid rounded"
-                  alt="După reparație"
-                />
+                <a href="./images/details-2.jpg" data-lightbox="image-1">
+                  <img
+                    src="./images/details-2.jpg"
+                    class="img-fluid rounded"
+                    alt="După reparație"
+                  />
+                </a>
               </div>
             </div>
           </div>
@@ -969,11 +976,13 @@
             <div class="card shadow-sm">
               <div class="card-body text-center">
                 <h5 class="card-title text-dark">Înainte</h5>
-                <img
-                  src="./images/solution-1.jpg"
-                  class="img-fluid rounded"
-                  alt="Înainte reparație"
-                />
+                <a href="./images/solution-1.jpg" data-lightbox="image-2">
+                  <img
+                    src="./images/solution-1.jpg"
+                    class="img-fluid rounded"
+                    alt="Înainte reparație"
+                  />
+                </a>
               </div>
             </div>
           </div>
@@ -981,11 +990,13 @@
             <div class="card shadow-sm">
               <div class="card-body text-center">
                 <h5 class="card-title text-dark">După</h5>
-                <img
-                  src="./images/solution-2.jpg"
-                  class="img-fluid rounded"
-                  alt="După reparație"
-                />
+                <a href="./images/solution-2.jpg" data-lightbox="image-2">
+                  <img
+                    src="./images/solution-2.jpg"
+                    class="img-fluid rounded"
+                    alt="După reparație"
+                  />
+                </a>
               </div>
             </div>
           </div>
@@ -996,11 +1007,13 @@
             <div class="card shadow-sm">
               <div class="card-body text-center">
                 <h5 class="card-title text-dark">Înainte</h5>
-                <img
-                  src="./images/photo-gallery-1.jpg"
-                  class="img-fluid rounded"
-                  alt="Înainte reparație"
-                />
+                <a href="./images/photo-gallery-1.jpg" data-lightbox="image-3">
+                  <img
+                    src="./images/photo-gallery-1.jpg"
+                    class="img-fluid rounded"
+                    alt="Înainte reparație"
+                  />
+                </a>
               </div>
             </div>
           </div>
@@ -1008,11 +1021,13 @@
             <div class="card shadow-sm">
               <div class="card-body text-center">
                 <h5 class="card-title text-dark">După</h5>
-                <img
-                  src="./images/photo-gallery-2.jpg"
-                  class="img-fluid rounded"
-                  alt="După reparație"
-                />
+                <a href="./images/photo-gallery-2.jpg" data-lightbox="image-3">
+                  <img
+                    src="./images/photo-gallery-2.jpg"
+                    class="img-fluid rounded"
+                    alt="După reparație"
+                  />
+                </a>
               </div>
             </div>
           </div>
@@ -1305,43 +1320,6 @@
       </div>
     </div>
 
-    <!-- Newsletter -->
-    <section id="newsletter" class="newsletter my-6">
-      <div class="container">
-        <div class="row mb-4">
-          <div
-            class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center"
-          >
-            <h2 class="fw-bold">Subscribe And Follow</h2>
-            <p>
-              Stay updated with our latest news and announcements. Subscribe to
-              our newsletter and follow us on social media for valuable insights
-              and exciting updates.
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div
-            class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center"
-          >
-            <div class="input-group mb-3">
-              <input
-                type="email"
-                class="form-control"
-                placeholder="Enter Email Address"
-              />
-              <button
-                class="btn btn-primary text-white rounded-0"
-                type="button"
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer bg-secondary py-6">
       <div class="container">
@@ -1400,6 +1378,9 @@
         </div>
       </div>
     </footer>
+
+    <!-- Lightbox JS -->
+    <script src="js/lightbox-plus-jquery.min.js" defer></script>
 
     <script src="js/replaceme.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
