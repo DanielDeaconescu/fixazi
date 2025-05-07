@@ -12,6 +12,7 @@ export default async function handler(req, res) {
     brandModel,
     problemDescription,
     file,
+    acceptContact,
   } = req.body;
 
   // Create transporter using environment variables
@@ -37,6 +38,9 @@ export default async function handler(req, res) {
       <p><strong>Marcă/Model:</strong> ${brandModel}</p>
       <p><strong>Descriere problemă:</strong> ${problemDescription}</p>
       <p><strong>Fișier atașat:</strong> ${file || "Niciun fișier selectat"}</p>
+      <p><strong>Acceptă să fie contactat(ă):</strong> ${
+        acceptContact ? "Da" : "Nu"
+      }</p>
     `,
   };
 
