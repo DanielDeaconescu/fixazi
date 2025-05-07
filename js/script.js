@@ -107,7 +107,7 @@ document
         deviceType: document.getElementById("deviceType").value,
         brandModel: document.getElementById("brandModel").value,
         problemDescription: document.getElementById("problemDescription").value,
-        file: document.getElementById("fileUpload").value, // just the filename string, not file content
+        file: document.getElementById("file-upload").value, // just the filename string, not file content
       };
 
       try {
