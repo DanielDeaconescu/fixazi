@@ -1,4 +1,3 @@
-// /api/sendRepairRequest.js
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
@@ -15,35 +14,37 @@ export default async function handler(req, res) {
     file,
   } = req.body;
 
-  // Create a transporter (use your real email and app password)
+  // Create transporter using environment variables
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: process.env.EMAIL_HOST,
+    port: Number(process.env.EMAIL_PORT),
+    secure: true, // true for port 465
     auth: {
-      user: "daniel.deaconescu98@gmail.com",
-      pass: process.env.EMAIL_PASSWORD, // store this securely in Vercel environment variables
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   const mailOptions = {
-    from: "daniel.deaconescu98@gmail.com",
-    to: "daniel.deaconescu98@gmail.com",
-    subject: "Cerere de reparație nouă - FIXAZI",
+    from: `"FIXAZI Form" <${process.env.EMAIL_USER}>`,
+    to: process.env.EMAIL_TO,
+    subject: "Cerere nouă de reparație de la FIXAZI",
     html: `
-      <h3>Detalii cerere de reparație</h3>
+      <h2>Detalii client</h2>
       <p><strong>Nume complet:</strong> ${fullName}</p>
       <p><strong>Număr de telefon:</strong> ${phoneNumber}</p>
       <p><strong>Tip dispozitiv:</strong> ${deviceType}</p>
-      <p><strong>Marcă și model:</strong> ${brandModel}</p>
+      <p><strong>Marcă/Model:</strong> ${brandModel}</p>
       <p><strong>Descriere problemă:</strong> ${problemDescription}</p>
+      <p><strong>Fișier atașat:</strong> ${file || "Niciun fișier selectat"}</p>
     `,
-    // You could handle the file if needed, but Vercel functions don't support large file uploads directly
   };
 
   try {
     await transporter.sendMail(mailOptions);
     res.status(200).json({ message: "Email trimis cu succes!" });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Eroare la trimiterea emailului." });
+    console.error("Eroare la trimiterea emailului:", error);
+    res.status(500).json({ message: "Trimiterea emailului a eșuat." });
   }
 }
