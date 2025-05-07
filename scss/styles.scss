@@ -219,9 +219,18 @@ input[type="file"] {
   }
 }
 
+// Our Values Styling start
+
+.our-values-p {
+  text-align: justify;
+}
+
+// Our Values Styling end
+
 // Call To Action Styling start
 
 .call-to-action-section {
+  border-top: 2px solid white;
   border-bottom: 2px solid white;
 }
 

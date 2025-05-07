@@ -209,7 +209,12 @@ input[type=file] {
     margin-bottom: 20px;
   }
 }
+.our-values-p {
+  text-align: justify;
+}
+
 .call-to-action-section {
+  border-top: 2px solid white;
   border-bottom: 2px solid white;
 }
 
