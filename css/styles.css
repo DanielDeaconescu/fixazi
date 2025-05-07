@@ -3,9 +3,69 @@
 }
 
 .header {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url("../images/header-background.jpg") left center no-repeat;
-  background-size: cover;
   height: 600px;
+}
+
+.video-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -1;
+}
+
+.video-background .content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+}
+
+.header-list-custom {
+  align-items: flex-start;
+}
+
+input[type=checkbox] {
+  appearance: auto !important;
+  -webkit-appearance: auto !important;
+  accent-color: #0d6efd !important;
+  background-color: #fff !important;
+  border: 1px solid #000 !important;
+}
+
+input,
+textarea,
+select {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.custom-file-upload {
+  position: relative;
+  display: inline-block;
+}
+
+input[type=file] {
+  display: none;
+}
+
+.custom-file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }
 
 .vertical-decoration {
@@ -25,10 +85,6 @@
 
 .navbar {
   transition: all 0.5s ease-in-out;
-}
-
-.navbar-sticky {
-  opacity: 0.8;
 }
 
 .details .vertical-decoration {

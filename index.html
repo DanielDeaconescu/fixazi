@@ -20,7 +20,7 @@
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <img src="images/logo.svg" alt="" width="100" />
+          <img src="images/fixazi_logo_nobg.png" alt="" width="250" />
         </a>
         <button
           class="navbar-toggler"
@@ -36,22 +36,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
+              <a class="nav-link" aria-current="page" href="#">Acasă</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#solutions">Solutions</a>
+              <a class="nav-link" href="#solutions">Servicii</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#details">Details</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#expertise">Expertise</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#pricing">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">Projects</a>
+              <a class="nav-link" href="#details">Contact</a>
             </li>
           </ul>
           <span class="nav-item">
@@ -62,9 +53,9 @@
               </a>
             </span>
             <span class="fa-stack">
-              <a href="https://twitter.com" target="_blank">
+              <a href="https://www.tiktok.com" target="_blank">
                 <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fab fa-twitter fa-stack-1x text-white"></i>
+                <i class="fab fa-tiktok fa-stack-1x text-white"></i>
               </a>
             </span>
           </span>
@@ -73,30 +64,118 @@
     </nav>
 
     <!-- Header -->
-    <header class="header position-relative">
-      <img
-        src="images/vertical-decoration-left.svg"
-        alt=""
-        class="vertical-decoration position-absolute d-none d-md-block"
-      />
+    <header class="header position-relative video-background">
       <div class="container">
-        <div class="row">
-          <div class="col-md-6 pt-5">
-            <h1 class="xl-text mt-5">
-              Software Solutions For
-              <span class="text-primary fw-bold replace-me"
-                >Small Business, Startups, Enterprise</span
-              >
-            </h1>
-            <p class="lead">
-              Boost your business with cutting-edge software solutions tailored
-              to the needs of modern enterprises.
-            </p>
-            <a href="#" class="btn btn-primary text-white">Lear More</a>
+        <video autoplay muted loop playsinline>
+          <source src="video_header_background.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <div class="content">
+          <div class="row">
+            <div class="col-md-6 pt-5 d-flex flex-column justify-content-left align-items-center">
+              <h1 class="mt-5 d-flex flex-column">
+                Servicii de reparații
+                <span class="text-primary fw-bold"
+                  >rapide și calitative</span>
+              </h1>
+              <p class="lead">
+                Servicii de reparații
+              </p>
+              <ul class="d-flex flex-column list-unstyled p-0 header-list-custom">
+                <li>
+                  <i class="fa-solid fa-square-check me-2"></i>
+                  Telefoane
+                </li>
+                <li>
+                  <i class="fa-solid fa-square-check me-2"></i>
+                  Tablete
+                </li>
+                <li>
+                  <i class="fa-solid fa-square-check me-2"></i>
+                  Laptop-uri
+                </li>
+              </ul>
+              <a href="#" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#formModal">
+                <i class="fa-regular fa-message"></i>
+                Contact
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </header>
+
+    <!-- Form Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <img src="./images/fixazi_logo.jpg" width="200" alt="logo fixazi reparatii telefoane">
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="repairForm" novalidate>
+          <h4>Cerere de reparație</h4>
+          <div class="mb-3">
+            <label for="fullName" class="form-label">Nume complet</label>
+            <input type="text" class="form-control" id="fullName" placeholder="Ex: Andrei Popescu" >
+            <div class="text-danger small mt-1" id="fullNameError"></div>
+          </div>
+        
+          <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Număr de telefon</label>
+            <input type="tel" class="form-control" id="phoneNumber" placeholder="Ex: 07xxxxxxxx" >
+            <div class="text-danger small mt-1" id="phoneError"></div>
+          </div>
+        
+          <div class="mb-3">
+            <label for="emailAddress" class="form-label">Adresă de email</label>
+            <input type="email" class="form-control" id="emailAddress" placeholder="Ex: exemplu@email.com" >
+          </div>
+        
+          <div class="mb-3">
+            <label for="deviceType" class="form-label">Tip dispozitiv</label>
+            <select class="form-select" id="deviceType" >
+              <option selected disabled>Alege un dispozitiv</option>
+              <option value="telefon">Telefon</option>
+              <option value="tableta">Tabletă</option>
+              <option value="laptop">Laptop</option>
+              <option value="gps">GPS</option>
+            </select>
+          </div>
+        
+          <div class="mb-3">
+            <label for="brandModel" class="form-label">Marcă și model</label>
+            <input type="text" class="form-control" id="brandModel" placeholder="Ex: Samsung Galaxy S21" >
+          </div>
+        
+          <div class="custom-file-upload mb-3">
+            <label for="file-upload" class="custom-file-label">Atașează o imagine (opțional)</label>
+            <input id="file-upload" type="file" />
+          </div>
+
+          <div class="mb-3">
+            <label for="problemDescription" class="form-label">Descrierea problemei</label>
+            <textarea class="form-control" id="problemDescription" rows="3" placeholder="Scrie aici ce problemă are dispozitivul..." ></textarea>
+          </div>
+        
+        
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="" id="agreement" >
+            <label class="form-check-label" for="agreement">
+              Sunt de acord cu prelucrarea datelor mele personale în scopul analizării cererii de reparație.
+            </label>
+          </div>
+        
+          <button type="submit" class="btn btn-primary w-100">Trimite cererea</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Partners -->
     <section class="partners py-4 overflow-hidden">

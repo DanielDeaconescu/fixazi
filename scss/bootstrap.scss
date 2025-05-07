@@ -1,12 +1,12 @@
 // Font
-$font-family-sans-serif: 'Poppins', sans-serif;
+$font-family-sans-serif: "Poppins", sans-serif;
 
 // Colors
-$primary: #fe6b2a;
+$primary: hsl(195, 76%, 60%);
 $secondary: #35353a;
 $dark: #000;
 $body-bg: #0c0c0e;
-$body-color: #fff;
+// $body-color: #fff;
 
 // Spacing
 $spacer: 1rem !default;
@@ -55,4 +55,4 @@ $input-border-radius-sm: $input-radius;
 $input-border-radius-lg: $input-radius;
 $input-border-color: #666;
 
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import "../node_modules/bootstrap/scss/bootstrap";
