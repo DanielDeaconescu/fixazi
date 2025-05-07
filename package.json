@@ -15,6 +15,7 @@
     "sass": "^1.62.0"
   },
   "dependencies": {
+    "lightbox2": "^2.11.5",
     "nodemailer": "^7.0.2"
   }
 }
