@@ -13,6 +13,7 @@ export default async function handler(req, res) {
     problemDescription,
     file,
     acceptContact,
+    preferredContact,
   } = req.body;
 
   // Create transporter using environment variables
@@ -32,15 +33,16 @@ export default async function handler(req, res) {
     subject: "Cerere nouă de reparație de la FIXAZI",
     html: `
       <h2>Detalii client</h2>
-      <p><strong>Nume complet:</strong> ${fullName}</p>
-      <p><strong>Număr de telefon:</strong> ${phoneNumber}</p>
-      <p><strong>Tip dispozitiv:</strong> ${deviceType}</p>
-      <p><strong>Marcă/Model:</strong> ${brandModel}</p>
-      <p><strong>Descriere problemă:</strong> ${problemDescription}</p>
-      <p><strong>Fișier atașat:</strong> ${file || "Niciun fișier selectat"}</p>
-      <p><strong>Acceptă să fie contactat(ă):</strong> ${
-        acceptContact ? "Da" : "Nu"
-      }</p>
+    <p><strong>Nume complet:</strong> ${fullName}</p>
+    <p><strong>Număr de telefon:</strong> ${phoneNumber}</p>
+    <p><strong>Tip dispozitiv:</strong> ${deviceType}</p>
+    <p><strong>Marcă/Model:</strong> ${brandModel}</p>
+    <p><strong>Descriere problemă:</strong> ${problemDescription}</p>
+    <p><strong>Fișier atașat:</strong> ${file || "Niciun fișier selectat"}</p>
+    <p><strong>Acceptă să fie contactat(ă):</strong> ${
+      acceptContact ? "Da" : "Nu"
+    }</p>
+    <p><strong>Metodă preferată de contact:</strong> ${preferredContact}</p>
     `,
   };
 

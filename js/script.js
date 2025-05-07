@@ -109,6 +109,7 @@ document
         problemDescription: document.getElementById("problemDescription").value,
         file: document.getElementById("file-upload").value, // just the filename string, not file content
         acceptContact: document.getElementById("acceptContact").checked,
+        preferredContact: document.getElementById("preferredContact").value,
       };
 
       try {
