@@ -1,3 +1,18 @@
+:root {
+  --blue-clr-logo: hsl(195, 77%, 60%);
+  --whatsapp-clr-logo: hsl(173, 86%, 20%);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
 .xl-text {
   font-size: 65px;
 }
@@ -196,4 +211,26 @@ input[type=file] {
 }
 .call-to-action-section {
   border-bottom: 2px solid white;
+}
+
+.about-section-footer {
+  text-align: justify;
+}
+
+.side-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 35%;
+  right: 20px;
+}
+
+.icon-form-custom {
+  color: var(--blue-clr-logo);
+}
+
+.icon-whatsapp-custom {
+  color: var(--whatsapp-clr-logo);
 }
