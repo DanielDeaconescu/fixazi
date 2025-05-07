@@ -72,8 +72,6 @@ repairModal.addEventListener("hidden.bs.modal", function () {
 });
 
 // form validation
-const acceptContact = document.getElementById("acceptContact").checked;
-
 // form validation and submission
 document
   .getElementById("repairForm")
@@ -110,7 +108,7 @@ document
         brandModel: document.getElementById("brandModel").value,
         problemDescription: document.getElementById("problemDescription").value,
         file: document.getElementById("file-upload").value, // just the filename string, not file content
-        acceptContact,
+        acceptContact: document.getElementById("acceptContact").checked,
       };
 
       try {
