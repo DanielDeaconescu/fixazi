@@ -142,3 +142,24 @@ document
       }
     }
   });
+
+// Side buttons functionality
+
+const formButtonContainer = document.querySelector(".form-button-container");
+const whatsappButtonContainer = document.querySelector(
+  ".whatsapp-button-container"
+);
+
+formButtonContainer.addEventListener("mouseenter", function () {
+  document.querySelector(".side-buttons-form").classList.remove("d-none");
+});
+
+formButtonContainer.addEventListener("mouseleave", function () {
+  document.querySelector(".side-buttons-form").classList.add("d-none");
+});
+
+formButtonContainer.addEventListener("mouseenter", function () {
+  // document.querySelector(".side-buttons-whatsapp").classList.remove("d-none");
+});
+
+whatsappButtonContainer.addEventListener("hover", function () {});

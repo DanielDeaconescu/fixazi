@@ -246,11 +246,17 @@ input[type="file"] {
 
 // Styling the side buttons start
 
+.side-buttons-form {
+}
+
+.side-buttons-whatsapp {
+}
+
 .side-buttons-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   position: fixed;
   bottom: 35%;
   right: 20px;
@@ -262,6 +268,14 @@ input[type="file"] {
 
 .icon-whatsapp-custom {
   color: var(--whatsapp-clr-logo);
+}
+
+.form-button-container {
+  cursor: pointer;
+}
+
+.whatsapp-button-container {
+  cursor: pointer;
 }
 
 // Styling the side buttons end
