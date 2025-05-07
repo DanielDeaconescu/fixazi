@@ -185,7 +185,6 @@ input[type=file] {
   }
   .header {
     text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)), url("../images/header-background.jpg") center center no-repeat;
   }
   .video-points {
     padding: 0 !important;

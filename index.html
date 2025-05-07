@@ -73,16 +73,17 @@
 
         <div class="content">
           <div class="row">
-            <div class="col-md-6 pt-5 d-flex flex-column justify-content-left align-items-center">
+            <div
+              class="col-md-6 pt-5 d-flex flex-column justify-content-left align-items-center"
+            >
               <h1 class="mt-5 d-flex flex-column">
                 Servicii de reparații
-                <span class="text-primary fw-bold"
-                  >rapide și calitative</span>
+                <span class="text-primary fw-bold">rapide și calitative</span>
               </h1>
-              <p class="lead">
-                Servicii de reparații
-              </p>
-              <ul class="d-flex flex-column list-unstyled p-0 header-list-custom">
+              <p class="lead">Servicii de reparații</p>
+              <ul
+                class="d-flex flex-column list-unstyled p-0 header-list-custom"
+              >
                 <li>
                   <i class="fa-solid fa-square-check me-2"></i>
                   Telefoane
@@ -96,7 +97,12 @@
                   Laptop-uri
                 </li>
               </ul>
-              <a href="#" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#formModal">
+              <a
+                href="#"
+                class="btn btn-primary text-white"
+                data-bs-toggle="modal"
+                data-bs-target="#formModal"
+              >
                 <i class="fa-regular fa-message"></i>
                 Contact
               </a>
@@ -107,288 +113,668 @@
     </header>
 
     <!-- Form Modal -->
-<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          <img src="./images/fixazi_logo.jpg" width="200" alt="logo fixazi reparatii telefoane">
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="repairForm"
-        action="/api/sendRepairRequest"
-        method="POST"
-        novalidate>
-          <h4>Cerere de reparație</h4>
-          <div class="mb-3">
-            <label for="fullName" class="form-label">Nume complet</label>
-            <input type="text" class="form-control" id="fullName" placeholder="Ex: Andrei Popescu" >
-            <div class="text-danger small mt-1" id="fullNameError"></div>
+    <div
+      class="modal fade"
+      id="formModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <img
+                src="./images/fixazi_logo.jpg"
+                width="200"
+                alt="logo fixazi reparatii telefoane"
+              />
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
-        
-          <div class="mb-3">
-            <label for="phoneNumber" class="form-label">Număr de telefon</label>
-            <input type="tel" class="form-control" id="phoneNumber" placeholder="Ex: 07xxxxxxxx" >
-            <div class="text-danger small mt-1" id="phoneError"></div>
-          </div>
-        
-          <div class="mb-3">
-            <label for="emailAddress" class="form-label">Adresă de email</label>
-            <input type="email" class="form-control" id="emailAddress" placeholder="Ex: exemplu@email.com" >
-          </div>
-        
-          <div class="mb-3">
-            <label for="deviceType" class="form-label">Tip dispozitiv</label>
-            <select class="form-select" id="deviceType" >
-              <option selected disabled>Alege un dispozitiv</option>
-              <option value="telefon">Telefon</option>
-              <option value="tableta">Tabletă</option>
-              <option value="laptop">Laptop</option>
-              <option value="gps">GPS</option>
-            </select>
-          </div>
-        
-          <div class="mb-3">
-            <label for="brandModel" class="form-label">Marcă și model</label>
-            <input type="text" class="form-control" id="brandModel" placeholder="Ex: Samsung Galaxy S21" >
-          </div>
-        
-          <div class="custom-file-upload mb-3">
-            <label for="file-upload" class="custom-file-label">Atașează o imagine (opțional)</label>
-            <input id="file-upload" type="file" />
-          </div>
-
-          <div class="mb-3">
-            <label for="problemDescription" class="form-label">Descrierea problemei</label>
-            <textarea class="form-control" id="problemDescription" rows="3" placeholder="Scrie aici ce problemă are dispozitivul..." ></textarea>
-          </div>
-        
-        
-          <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" id="acceptContact" name="acceptContact">
-            <label class="form-check-label" for="acceptContact">
-              Sunt de acord să fiu contactat(ă) cu privire la această cerere.
-            </label>
-          </div>
-
-          <div class="mb-3">
-            <label for="preferredContact" class="form-label">Cum preferi să fii contactat(ă)?</label>
-            <select class="form-select" id="preferredContact" name="preferredContact">
-              <option value="Telefon">Telefon</option>
-              <option value="WhatsApp">WhatsApp</option>
-              <option value="Email">Email</option>
-              <option value="SMS">SMS</option>
-            </select>
-          </div>
-          
-        
-          <button type="submit" class="btn btn-primary w-100">Trimite cererea</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="position-fixed top-0 w-100 d-flex justify-content-center p-3" style="z-index: 1055">
-  <div id="errorToast" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="4000">
-    <div class="d-flex">
-      <div class="toast-body">
-        A apărut o problemă la trimiterea cererii. Vă rugăm să încercați din nou mai târziu.
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Închide"></button>
-    </div>
-  </div>
-</div>
-
-
-
-    <!-- Partners -->
-    <section class="partners py-4 overflow-hidden">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-10 offset-lg-1">
-            <h6 class="text-center mb-4 text-uppercase">Our Partners</h6>
-            <div
-              class="d-flex justify-content-center align-items-center text-center"
+          <div class="modal-body">
+            <form
+              id="repairForm"
+              action="/api/sendRepairRequest"
+              method="POST"
+              novalidate
             >
-              <div>
-                <img src="images/partner-logo-1.png" alt="" class="mx-4" />
+              <h4>Cerere de reparație</h4>
+              <div class="mb-3">
+                <label for="fullName" class="form-label">Nume complet</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fullName"
+                  placeholder="Ex: Andrei Popescu"
+                />
+                <div class="text-danger small mt-1" id="fullNameError"></div>
               </div>
-              <div class="d-none d-sm-block">
-                <img src="images/partner-logo-2.png" alt="" class="mx-4" />
-              </div>
-              <div class="d-none d-md-block">
-                <img src="images/partner-logo-3.png" alt="" class="mx-4" />
-              </div>
-              <div class="d-none d-lg-block">
-                <img src="images/partner-logo-4.png" alt="" class="mx-4" />
-              </div>
-              <div class="d-none d-lg-block"></div>
-                <img src="images/partner-logo-5.png" alt="" class="mx-4" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Form Area -->
-    <section id="contact" class="contact my-7">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <h2 class="fw-bold">Get More Information</h2>
-            <hr class="hr-heading" />
-            <p class="lead">
-              We provide innovative software solutions that empower businesses to
-              thrive in the digital era.
-            </p>
-            <ul class="list-unstyled lh-lg">
-              <li class="d-flex align-items-center">
-                <i class="fas fa-check text-primary mx-3"></i>
-                <div>
-                  <strong>Customized Solutions: </strong> Our solutions are designed
-                  to meet your specific business needs, ensuring maximum efficiency
-                  and productivity.
-                </div>
-              </li>
-              <li class="d-flex align-items-center">
-                <i class="fas fa-check text-primary mx-3"></i>
-                <div>
-                  <strong>Seamless Integration:</strong> We seamlessly integrate our
-                  software with your existing systems, minimizing disruptions and
-                  optimizing workflows.
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-5 offset-md-1">
-            <form>
-              <div class="mb-4">
-                <input type="text" class="form-control bg-secondary" placeholder="Enter name">
+              <div class="mb-3">
+                <label for="phoneNumber" class="form-label"
+                  >Număr de telefon</label
+                >
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phoneNumber"
+                  placeholder="Ex: 07xxxxxxxx"
+                />
+                <div class="text-danger small mt-1" id="phoneError"></div>
               </div>
-              <div class="mb-4">
-                <input type="email" class="form-control bg-secondary" placeholder="Enter email">
+
+              <div class="mb-3">
+                <label for="emailAddress" class="form-label"
+                  >Adresă de email</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="emailAddress"
+                  placeholder="Ex: exemplu@email.com"
+                />
               </div>
-              <div class="mb-4">
-                <input type="text" class="form-control bg-secondary" placeholder="Enter phone">
-              </div>
-              <div class="mb-4">
-                <select name="interested" id="interested" class="form-control bg-secondary">
-                  <option>Interested In...</option>
-                  <option value="erp">ERP Solution</option>
-                  <option value="crm">CRM Solution</option>
-                  <option value="cms">CMS Solution</option>
-                  <option value="sfa">SFA Solution</option>
+
+              <div class="mb-3">
+                <label for="deviceType" class="form-label"
+                  >Tip dispozitiv</label
+                >
+                <select class="form-select" id="deviceType">
+                  <option selected disabled>Alege un dispozitiv</option>
+                  <option value="telefon">Telefon</option>
+                  <option value="tableta">Tabletă</option>
+                  <option value="laptop">Laptop</option>
+                  <option value="gps">GPS</option>
                 </select>
               </div>
-              <div class="mb-4 form-check">
-                <input type="checkbox" id="agree-check" />
-                <label for="agree-check" class="form-check-label">
-                  I agree to the <a href="privacy.html">Privacy Policy</a>
+
+              <div class="mb-3">
+                <label for="brandModel" class="form-label"
+                  >Marcă și model</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="brandModel"
+                  placeholder="Ex: Samsung Galaxy S21"
+                />
+              </div>
+
+              <div class="custom-file-upload mb-3">
+                <label for="file-upload" class="custom-file-label"
+                  >Atașează o imagine (opțional)</label
+                >
+                <input id="file-upload" type="file" />
+              </div>
+
+              <div class="mb-3">
+                <label for="problemDescription" class="form-label"
+                  >Descrierea problemei</label
+                >
+                <textarea
+                  class="form-control"
+                  id="problemDescription"
+                  rows="3"
+                  placeholder="Scrie aici ce problemă are dispozitivul..."
+                ></textarea>
+              </div>
+
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="acceptContact"
+                  name="acceptContact"
+                />
+                <label class="form-check-label" for="acceptContact">
+                  Sunt de acord să fiu contactat(ă) cu privire la această
+                  cerere.
                 </label>
               </div>
-              <div class="d-grid gap-2">
-                <input type="submit" value="Submit" class="btn btn-primary text-white" />
+
+              <div class="mb-3">
+                <label for="preferredContact" class="form-label"
+                  >Cum preferi să fii contactat(ă)?</label
+                >
+                <select
+                  class="form-select"
+                  id="preferredContact"
+                  name="preferredContact"
+                >
+                  <option value="Telefon">Telefon</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Email">Email</option>
+                  <option value="SMS">SMS</option>
+                </select>
               </div>
+
+              <button type="submit" class="btn btn-primary w-100">
+                Trimite cererea
+              </button>
             </form>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Solutions -->
-    <section id="solutions" class="solutions my-5">
-      <div class="container">
-        <div class="row mb-4">
-          <div class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center">
-            <h5><span class="badge bg-primary rounded-0 text-uppercase">
-              Solutions
-            </span></h5>
-            <h2 class="fw-bold">
-              Vera Provides Software Solutions For Business Acceleration
-            </h2>
+    <div
+      class="position-fixed top-0 w-100 d-flex justify-content-center p-3"
+      style="z-index: 1055"
+    >
+      <div
+        id="errorToast"
+        class="toast align-items-center text-white bg-danger border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-delay="4000"
+      >
+        <div class="d-flex">
+          <div class="toast-body">
+            A apărut o problemă la trimiterea cererii. Vă rugăm să încercați din
+            nou mai târziu.
+          </div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Închide"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tiktok option 1 -->
+    <section class="container py-5 text-white">
+      <h2 class="text-center mb-4">Clipuri TikTok - optiunea 1</h2>
+      <div class="row mb-4">
+        <div class="col-md-4 mb-4">
+          <!-- TikTok Video 1 -->
+          <div class="ratio ratio-9x16 p-3 rounded-2">
+            <!-- Replace this with your actual TikTok embed -->
+            <blockquote
+              class="tiktok-embed"
+              cite="https://www.tiktok.com/@servicetelefoanegsm/video/7501537021031157024"
+              data-video-id="7501537021031157024"
+              style="max-width: 605px; min-width: 325px"
+            >
+              <section>
+                <a
+                  target="_blank"
+                  title="@servicetelefoanegsm"
+                  href="https://www.tiktok.com/@servicetelefoanegsm?refer=embed"
+                  >@servicetelefoanegsm</a
+                >
+                iPhone 15 Pro: Despachetarea Scumpă și Luciosă! Vă arătăm noul
+                iPhone 15 Pro, un telefon scump, lucios și vedetă pe Instagram.
+                Costă cât o chirie sau o garsonieră în Vaslui!
+                <a
+                  title="iphone15pro"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/iphone15pro?refer=embed"
+                  >#iPhone15Pro</a
+                >
+                <a
+                  title="despachetareiphone"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/despachetareiphone?refer=embed"
+                  >#DespachetareiPhone</a
+                >
+                <a
+                  title="telefonnou"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/telefonnou?refer=embed"
+                  >#TelefonNou</a
+                >
+                <a
+                  title="techromania"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/techromania?refer=embed"
+                  >#TechRomania</a
+                >
+                <a
+                  title="instagramvedeta"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/instagramvedeta?refer=embed"
+                  >#InstagramVedeta</a
+                >
+                <a
+                  title="gadgetscump"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/gadgetscump?refer=embed"
+                  >#GadgetScump</a
+                >
+                <a
+                  title="reviewiphone"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/reviewiphone?refer=embed"
+                  >#ReviewiPhone</a
+                >
+                <a
+                  title="vaslui"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/vaslui?refer=embed"
+                  >#Vaslui</a
+                >
+                <a
+                  title="chiriebucuresti"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/chiriebucuresti?refer=embed"
+                  >#ChirieBucuresti</a
+                >
+                <a
+                  title="tehnologie"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/tehnologie?refer=embed"
+                  >#Tehnologie</a
+                >
+                <a
+                  target="_blank"
+                  title="♬ sunet original - ServiceTelefoane.ro"
+                  href="https://www.tiktok.com/music/sunet-original-7501537084616739617?refer=embed"
+                  >♬ sunet original - ServiceTelefoane.ro</a
+                >
+              </section>
+            </blockquote>
+            <script async src="https://www.tiktok.com/embed.js"></script>
           </div>
         </div>
-        <!-- Solutions Row 1 -->
-        <div class="row">
-          <div class="col-md-6 mb-4">
-            <div class="card bg-secondary">
-              <img src="images/solution-1.jpg" alt="" class="card-img-top">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">ERP Software Solutions</h5>
-                <p class="card-text">
-                  Our ERP software solution streamlines your business processes and
-                  enhances operational efficiency. With integrated modules for
-                  finance, human resources, and more, you can make data-driven
-                  decisions.
-                </p>
-                <div class="badge bg-primary p-2 text-uppercase">
-                  Management
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-4">
-            <div class="card bg-secondary">
-              <img src="images/solution-2.jpg" alt="" class="card-img-top">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">CRM Software Solutions</h5>
-                <p class="card-text">
-                  Our CRM software solution helps you build stronger customer
-                  relationships and drive sales growth. Manage leads, track
-                  interactions, and deliver personalized experiences to maximize
-                  customer satisfaction and loyalty.
-                </p>
-                <div class="badge bg-dark p-2 text-uppercase">
-                  Marketing
-                </div>
-              </div>
-            </div>
+        <div class="col-md-4 mb-4">
+          <!-- TikTok Video 2 -->
+          <div class="ratio ratio-9x16 p-3 rounded-2">
+            <blockquote
+              class="tiktok-embed"
+              cite="https://www.tiktok.com/@servicetelefoanegsm/video/7489349761754074400"
+              data-video-id="7489349761754074400"
+              style="max-width: 605px; min-width: 325px"
+            >
+              <section>
+                <a
+                  target="_blank"
+                  title="@servicetelefoanegsm"
+                  href="https://www.tiktok.com/@servicetelefoanegsm?refer=embed"
+                  >@servicetelefoanegsm</a
+                >
+                Schimbarea Bateriei Samsung Note 10 Plus: Tutorial Ușor În acest
+                video, ne ocupăm de schimbarea bateriei la Samsung Note X Plus,
+                folosind o baterie originală. Facem acest lucru simplu și
+                accesibil, arătând cum acest telefon venerabil rămâne în
+                continuare un adevărat lider!
+                <a
+                  title="samsungnotexplus"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/samsungnotexplus?refer=embed"
+                  >#SamsungNoteXPlus</a
+                >
+                <a
+                  title="schimbarebaterie"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/schimbarebaterie?refer=embed"
+                  >#SchimbareBaterie</a
+                >
+                <a
+                  title="tutorialtehnologic"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/tutorialtehnologic?refer=embed"
+                  >#TutorialTehnologic</a
+                >
+                <a
+                  title="gadgeturi"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/gadgeturi?refer=embed"
+                  >#Gadgeturi</a
+                >
+                <a
+                  title="smartphone"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/smartphone?refer=embed"
+                  >#Smartphone</a
+                >
+                <a
+                  title="baterieoriginala"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/baterieoriginala?refer=embed"
+                  >#BaterieOriginala</a
+                >
+                <a
+                  title="tehnologie"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/tehnologie?refer=embed"
+                  >#Tehnologie</a
+                >
+                <a
+                  title="diy"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/diy?refer=embed"
+                  >#DIY</a
+                >
+                <a
+                  title="revitalizaretelefon"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/revitalizaretelefon?refer=embed"
+                  >#RevitalizareTelefon</a
+                >
+                <a
+                  title="inovatie"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/inovatie?refer=embed"
+                  >#Inovatie</a
+                >
+                <a
+                  target="_blank"
+                  title="♬ sunet original - ServiceTelefoane.ro"
+                  href="https://www.tiktok.com/music/sunet-original-7489350812926315296?refer=embed"
+                  >♬ sunet original - ServiceTelefoane.ro</a
+                >
+              </section>
+            </blockquote>
+            <script async src="https://www.tiktok.com/embed.js"></script>
           </div>
         </div>
-
-         <!-- Solutions Row 2 -->
-         <div class="row">
-          <div class="col-md-6 mb-4">
-            <div class="card bg-secondary">
-              <img src="images/solution-3.jpg" alt="" class="card-img-top">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">SFA Software Solutions</h5>
-                <p class="card-text">
-                  Our SFA software solution empowers your sales team with the tools
-              they need to drive revenue growth. Streamline sales processes,
-              track performance, and enhance collaboration to close deals
-              faster.
-                </p>
-                <div class="badge bg-primary p-2 text-uppercase">
-                  Management
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-4">
-            <div class="card bg-secondary">
-              <img src="images/solution-4.jpg" alt="" class="card-img-top">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">WMS Software Solutions</h5>
-                <p class="card-text">
-                  Our WMS software solution optimizes your warehouse operations and
-              improves inventory management. Gain real-time visibility, automate
-              processes, and reduce costs to ensure efficient logistics.
-                </p>
-                <div class="badge bg-dark p-2 text-uppercase">
-                  Marketing
-                </div>
-              </div>
-            </div>
+        <div class="col-md-4 mb-4">
+          <!-- TikTok Video 3 -->
+          <div class="ratio ratio-9x16 p-3 rounded-2">
+            <blockquote
+              class="tiktok-embed"
+              cite="https://www.tiktok.com/@servicetelefoanegsm/video/7468297344589499670"
+              data-video-id="7468297344589499670"
+              style="max-width: 605px; min-width: 325px"
+            >
+              <section>
+                <a
+                  target="_blank"
+                  title="@servicetelefoanegsm"
+                  href="https://www.tiktok.com/@servicetelefoanegsm?refer=embed"
+                  >@servicetelefoanegsm</a
+                >
+                Service Gsm.Inlocuire sticla spate Apple iPhone.Prelucrarre cu
+                laser pentru rezultate finale impecabile!<a
+                  title="servicegsmbucuresti"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/servicegsmbucuresti?refer=embed"
+                  >#servicegsmbucuresti</a
+                >
+                <a
+                  title="servicetelefoane"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/servicetelefoane?refer=embed"
+                  >#servicetelefoane</a
+                >
+                <a
+                  title="servicegsm"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/servicegsm?refer=embed"
+                  >#servicegsm</a
+                >
+                <a
+                  title="tiktoklive"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/tiktoklive?refer=embed"
+                  >#TikTokLIVE</a
+                >
+                <a
+                  title="livehighlights"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/livehighlights?refer=embed"
+                  >#LIVEhighlights</a
+                >
+                <a
+                  title="live"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/live?refer=embed"
+                  >#LIVE</a
+                >
+                <a
+                  target="_blank"
+                  title="♬ sunet original - ServiceTelefoane.ro"
+                  href="https://www.tiktok.com/music/sunet-original-7468297328336685846?refer=embed"
+                  >♬ sunet original - ServiceTelefoane.ro</a
+                >
+              </section>
+            </blockquote>
+            <script async src="https://www.tiktok.com/embed.js"></script>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <!-- TikTok Video 4 -->
+          <div class="ratio ratio-9x16 p-3 rounded-2">
+            <blockquote
+              class="tiktok-embed"
+              cite="https://www.tiktok.com/@servicetelefoanegsm/video/7456078024719535392"
+              data-video-id="7456078024719535392"
+              style="max-width: 605px; min-width: 325px"
+            >
+              <section>
+                <a
+                  target="_blank"
+                  title="@servicetelefoanegsm"
+                  href="https://www.tiktok.com/@servicetelefoanegsm?refer=embed"
+                  >@servicetelefoanegsm</a
+                >
+                Shocking Water-Damaged Phone Repair! 💧🔧 You Won&#39;t Believe
+                This! Join us as we dive into the surprising journey of a
+                water-damaged phone! We uncover the mystery of a seemingly fine
+                display and explore unexpected discoveries hiding inside. Will
+                the repair be a success? Tune in to find out!
+                <a
+                  title="phonerepair"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/phonerepair?refer=embed"
+                  >#PhoneRepair</a
+                >
+                <a
+                  title="waterdamage"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/waterdamage?refer=embed"
+                  >#WaterDamage</a
+                >
+                <a
+                  title="techsurprises"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/techsurprises?refer=embed"
+                  >#TechSurprises</a
+                >
+                <a
+                  title="repairshop"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/repairshop?refer=embed"
+                  >#RepairShop</a
+                >
+                <a
+                  title="techtroubles"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/techtroubles?refer=embed"
+                  >#TechTroubles</a
+                >
+                <a
+                  title="gadgetfix"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/gadgetfix?refer=embed"
+                  >#GadgetFix</a
+                >
+                <a
+                  title="displayreplacement"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/displayreplacement?refer=embed"
+                  >#DisplayReplacement</a
+                >
+                <a
+                  title="techmystery"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/techmystery?refer=embed"
+                  >#TechMystery</a
+                >
+                <a
+                  title="insidetech"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/insidetech?refer=embed"
+                  >#InsideTech</a
+                >
+                <a
+                  title="phonetech"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/phonetech?refer=embed"
+                  >#PhoneTech</a
+                >
+                <a
+                  target="_blank"
+                  title="♬ sunet original - ServiceTelefoane.ro"
+                  href="https://www.tiktok.com/music/sunet-original-7456078060979948321?refer=embed"
+                  >♬ sunet original - ServiceTelefoane.ro</a
+                >
+              </section>
+            </blockquote>
+            <script async src="https://www.tiktok.com/embed.js"></script>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <!-- TikTok Video 5 -->
+          <div class="ratio ratio-9x16 p-3 rounded-2">
+            <blockquote
+              class="tiktok-embed"
+              cite="https://www.tiktok.com/@servicetelefoanegsm/video/7454553344405703969"
+              data-video-id="7454553344405703969"
+              style="max-width: 605px; min-width: 325px"
+            >
+              <section>
+                <a
+                  target="_blank"
+                  title="@servicetelefoanegsm"
+                  href="https://www.tiktok.com/@servicetelefoanegsm?refer=embed"
+                  >@servicetelefoanegsm</a
+                >
+                Review complet: Telefonul cu design premium și cameră triplă În
+                acest video, discutăm despre specificațiile impresionante ale
+                noului nostru telefon, care include procesor Exynos, cameră
+                principală performantă și bătaie de 5000 mAh. Află detalii
+                despre design și funcționalități unice, precum cititorul de
+                amprente!
+                <a
+                  title="telefonpremium"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/telefonpremium?refer=embed"
+                  >#TelefonPremium</a
+                >
+                <a
+                  title="camerătriplă"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/camer%C4%83tripl%C4%83?refer=embed"
+                  >#CamerăTriplă</a
+                >
+                <a
+                  title="procesorexynos"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/procesorexynos?refer=embed"
+                  >#ProcesorExynos</a
+                >
+                <a
+                  title="tehnologiemobilă"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/tehnologiemobil%C4%83?refer=embed"
+                  >#TehnologieMobilă</a
+                >
+                <a
+                  title="designelegant"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/designelegant?refer=embed"
+                  >#DesignElegant</a
+                >
+                <a
+                  title="baterie5000mah"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/baterie5000mah?refer=embed"
+                  >#Baterie5000mAh</a
+                >
+                <a
+                  title="recenzietech"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/recenzietech?refer=embed"
+                  >#RecenzieTech</a
+                >
+                <a
+                  title="gadgeturi"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/gadgeturi?refer=embed"
+                  >#Gadgeturi</a
+                >
+                <a
+                  title="smartphone"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/smartphone?refer=embed"
+                  >#Smartphone</a
+                >
+                <a
+                  title="inovație"
+                  target="_blank"
+                  href="https://www.tiktok.com/tag/inova%C8%9Bie?refer=embed"
+                  >#Inovație</a
+                >
+                <a
+                  target="_blank"
+                  title="♬ sunet original - ServiceTelefoane.ro"
+                  href="https://www.tiktok.com/music/sunet-original-7454553374843865888?refer=embed"
+                  >♬ sunet original - ServiceTelefoane.ro</a
+                >
+              </section>
+            </blockquote>
+            <script async src="https://www.tiktok.com/embed.js"></script>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <!-- TikTok Video 6 -->
+          <div class="ratio ratio-9x16 p-3 rounded-2">
+            <blockquote
+              class="tiktok-embed"
+              cite="https://www.tiktok.com/@servicetelefoanegsm/video/7430901089949568288"
+              data-video-id="7430901089949568288"
+              style="max-width: 605px; min-width: 325px"
+            >
+              <section>
+                <a
+                  target="_blank"
+                  title="@servicetelefoanegsm"
+                  href="https://www.tiktok.com/@servicetelefoanegsm?refer=embed"
+                  >@servicetelefoanegsm</a
+                >
+                <p>
+                  Camera S-XX Plus_ Calitate și Detalii de Excepție.Urmareste
+                  acest canal daca esti pasionat de telefoane.Recenzii si
+                  reparatii live.
+                </p>
+                <a
+                  target="_blank"
+                  title="♬ sunet original  - ServiceTelefoane.ro"
+                  href="https://www.tiktok.com/music/sunet-original-ServiceTelefoanero-7430901111233661729?refer=embed"
+                  >♬ sunet original - ServiceTelefoane.ro</a
+                >
+              </section>
+            </blockquote>
+            <script async src="https://www.tiktok.com/embed.js"></script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tiktok option 2 -->
+    <section class="container py-5 text-white">
+      <!-- Elfsight TikTok Feed | FixAzi -->
+      <h2 class="text-center text-white mb-4">Clipuri TikTok - optiunea 2</h2>
+      <script
+        src="https://static.elfsight.com/platform/platform.js"
+        async
+      ></script>
+      <div
+        class="elfsight-app-fb6b899e-a54a-4abc-b573-b8dc4eff61ee"
+        data-elfsight-app-lazy
+      ></div>
     </section>
 
     <!-- Details 1 -->
@@ -399,29 +785,42 @@
             <h2 class="fw-bold">Evaluation & Deployment</h2>
             <hr class="hr-heading" />
             <p>
-              We offer comprehensive evaluation and deployment services to ensure a smooth and successful implementation of our software solutions.
+              We offer comprehensive evaluation and deployment services to
+              ensure a smooth and successful implementation of our software
+              solutions.
             </p>
             <ul class="list-unstyled lh-lg">
               <li class="d-flex align-items-center">
-                <i class="fas fa-check text-primary mx-3"></i> 
+                <i class="fas fa-check text-primary mx-3"></i>
                 <div>
-                  <strong>Customized solutions: </strong>We tailor our solutions to align with your unique business needs
+                  <strong>Customized solutions: </strong>We tailor our solutions
+                  to align with your unique business needs
                 </div>
               </li>
               <li class="d-flex align-items-center">
                 <i class="fas fa-check text-primary mx-3"></i>
                 <div>
-                  <strong>Seamless Integration:</strong> Our team ensures smooth integration of the software into your existing infrastructure, minimizing disruptions
+                  <strong>Seamless Integration:</strong> Our team ensures smooth
+                  integration of the software into your existing infrastructure,
+                  minimizing disruptions
                 </div>
               </li>
             </ul>
           </div>
           <div class="col-lg-6">
-            <img src="images/details-1.jpg" alt="" class="img-fluid rounded-2">
+            <img
+              src="images/details-1.jpg"
+              alt=""
+              class="img-fluid rounded-2"
+            />
           </div>
         </div>
       </div>
-      <img src="images/vertical-decoration-left.svg" alt="" class="vertical-decoration position-absolute d-none d-md-block">
+      <img
+        src="images/vertical-decoration-left.svg"
+        alt=""
+        class="vertical-decoration position-absolute d-none d-md-block"
+      />
     </section>
 
     <!-- Details 2 -->
@@ -429,47 +828,65 @@
       <div class="container">
         <div class="row pt-5">
           <div class="col-lg-6">
-            <img src="images/details-2.jpg" alt="" class="img-fluid rounded-2">
+            <img
+              src="images/details-2.jpg"
+              alt=""
+              class="img-fluid rounded-2"
+            />
           </div>
           <div class="col-lg-6">
             <h2 class="fw-bold">Maintenance & Support</h2>
             <hr class="hr-heading" />
             <p>
-              We provide comprehensive maintenance and support services to ensure the smooth and uninterrupted operation of your software solutions.  <a href="#">Learn more about our support services.</a>
+              We provide comprehensive maintenance and support services to
+              ensure the smooth and uninterrupted operation of your software
+              solutions. <a href="#">Learn more about our support services.</a>
             </p>
             <ul class="list-unstyled lh-lg">
               <li class="d-flex align-items-center">
                 <i class="fas fa-check text-primary mx-3"></i>
                 <div>
-                  <strong>Proactive Maintenance:</strong> We proactively monitor and maintain your software solutions to prevent issues and optimize performance.
+                  <strong>Proactive Maintenance:</strong> We proactively monitor
+                  and maintain your software solutions to prevent issues and
+                  optimize performance.
                 </div>
               </li>
               <li class="d-flex align-items-center">
                 <i class="fas fa-check text-primary mx-3"></i>
                 <div>
-                  <strong>Timely Updates:</strong> We ensure your software is up to date with the latest features, security patches, and enhancements.
+                  <strong>Timely Updates:</strong> We ensure your software is up
+                  to date with the latest features, security patches, and
+                  enhancements.
                 </div>
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <img src="images/vertical-decoration-right.svg" alt="" class="vertical-decoration position-absolute d-none d-md-block">
+      <img
+        src="images/vertical-decoration-right.svg"
+        alt=""
+        class="vertical-decoration position-absolute d-none d-md-block"
+      />
     </section>
 
     <!-- Expertise -->
     <section id="expertise" class="expertise bg-secondary py-5 my-6">
       <div class="container">
         <div class="row mb-5">
-          <div class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center">
+          <div
+            class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center"
+          >
             <h5>
-              <span class="badge bg-primary rounded-0 text-uppercase">Expertise</span>
+              <span class="badge bg-primary rounded-0 text-uppercase"
+                >Expertise</span
+              >
             </h5>
             <h2 class="fw-bold">Expertise Strong Points</h2>
             <p>
               We take pride in our expertise. With years of experience and a
-              dedicated team, we deliver exceptional software solutions tailored to
-              your needs. Our strong points include:
+              dedicated team, we deliver exceptional software solutions tailored
+              to your needs. Our strong points include:
             </p>
           </div>
         </div>
@@ -577,8 +994,13 @@
         <div class="row">
           <div class="col-12 d-flex flex-column align-items-center">
             <div class="position-relative">
-              <img src="images/video-preview.jpg" alt="" class="img-fluid">
-              <a class="video-btn" data-bs-toggle="modal" data-bs-target="#videoModal" data-bs-src="https://www.youtube.com/embed/u72H_zZzkcw">
+              <img src="images/video-preview.jpg" alt="" class="img-fluid" />
+              <a
+                class="video-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#videoModal"
+                data-bs-src="https://www.youtube.com/embed/u72H_zZzkcw"
+              >
                 <span class="video-play-button">
                   <span></span>
                 </span>
@@ -590,8 +1012,8 @@
           <div class="col-lg-4">
             <h4 class="fw-bold">10 Years Of Experience</h4>
             <p>
-              With over 10 years of experience, we have gained valuable insights and
-          expertise to deliver high-quality software solutions
+              With over 10 years of experience, we have gained valuable insights
+              and expertise to deliver high-quality software solutions
             </p>
           </div>
           <div class="col-lg-4">
@@ -617,7 +1039,11 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="ratio ratio-16x9">
-                <iframe frameborder="0" class="embed-responsive-item" id="video"></iframe>
+                <iframe
+                  frameborder="0"
+                  class="embed-responsive-item"
+                  id="video"
+                ></iframe>
               </div>
             </div>
           </div>
@@ -629,13 +1055,15 @@
     <section id="pricing" class="pricing my-6">
       <div class="container">
         <div class="row mb-4">
-          <div class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center">
-            <h5><span class="badge bg-primary rounded-0 text-uppercase">
-              Pricing
-            </span></h5>
-            <h2 class="fw-bold">
-              Flexible Pricing Options
-            </h2>
+          <div
+            class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center"
+          >
+            <h5>
+              <span class="badge bg-primary rounded-0 text-uppercase">
+                Pricing
+              </span>
+            </h5>
+            <h2 class="fw-bold">Flexible Pricing Options</h2>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -647,17 +1075,21 @@
                 <h4 class="card-title text-primary text-uppercase fw-bold mb-5">
                   Standard
                 </h4>
-                <p>Our standard pricing plan offers a comprehensive set of features
-                  for your software needs</p>
-                  <ul class="list-unstyled lh-lg mt-5">
-                    <li class="text-uppercase fs-5 fw-bold">
-                      Subscribers List
-                    </li>
-                    <li class="text-uppercase fs-5 fw-bold">
-                      User Admin Control
-                    </li>
-                  </ul>
-                  <a href="#contact" class="btn btn-primary text-white mt-6 fw-bold">Inquire</a>
+                <p>
+                  Our standard pricing plan offers a comprehensive set of
+                  features for your software needs
+                </p>
+                <ul class="list-unstyled lh-lg mt-5">
+                  <li class="text-uppercase fs-5 fw-bold">Subscribers List</li>
+                  <li class="text-uppercase fs-5 fw-bold">
+                    User Admin Control
+                  </li>
+                </ul>
+                <a
+                  href="#contact"
+                  class="btn btn-primary text-white mt-6 fw-bold"
+                  >Inquire</a
+                >
               </div>
             </div>
           </div>
@@ -670,17 +1102,23 @@
                 <h4 class="card-title text-primary text-uppercase fw-bold mb-5">
                   Advanced
                 </h4>
-                <p> Unlock additional enhanced capabilities. Take your software
-                  solutions to the next level</p>
-                  <ul class="list-unstyled lh-lg mt-5">
-                    <li class="text-uppercase fs-5 fw-bold">
-                      Limited Storage Space
-                    </li>
-                    <li class="text-uppercase fs-5 fw-bold">
-                      Free Cloud Storage
-                    </li>
-                  </ul>
-                  <a href="#contact" class="btn btn-primary text-white mt-6 fw-bold">Inquire</a>
+                <p>
+                  Unlock additional enhanced capabilities. Take your software
+                  solutions to the next level
+                </p>
+                <ul class="list-unstyled lh-lg mt-5">
+                  <li class="text-uppercase fs-5 fw-bold">
+                    Limited Storage Space
+                  </li>
+                  <li class="text-uppercase fs-5 fw-bold">
+                    Free Cloud Storage
+                  </li>
+                </ul>
+                <a
+                  href="#contact"
+                  class="btn btn-primary text-white mt-6 fw-bold"
+                  >Inquire</a
+                >
               </div>
             </div>
           </div>
@@ -693,17 +1131,23 @@
                 <h4 class="card-title text-primary text-uppercase fw-bold mb-5">
                   Complete
                 </h4>
-                <p> Our complete pricing plan offers an all-inclusive package with
-                  advanced features</p>
-                  <ul class="list-unstyled lh-lg mt-5">
-                    <li class="text-uppercase fs-5 fw-bold">
-                      Deployment Protocol
-                    </li>
-                    <li class="text-uppercase fs-5 fw-bold">
-                      Premium Support Pack
-                    </li>
-                  </ul>
-                  <a href="#contact" class="btn btn-primary text-white mt-6 fw-bold">Inquire</a>
+                <p>
+                  Our complete pricing plan offers an all-inclusive package with
+                  advanced features
+                </p>
+                <ul class="list-unstyled lh-lg mt-5">
+                  <li class="text-uppercase fs-5 fw-bold">
+                    Deployment Protocol
+                  </li>
+                  <li class="text-uppercase fs-5 fw-bold">
+                    Premium Support Pack
+                  </li>
+                </ul>
+                <a
+                  href="#contact"
+                  class="btn btn-primary text-white mt-6 fw-bold"
+                  >Inquire</a
+                >
               </div>
             </div>
           </div>
@@ -715,14 +1159,20 @@
     <section id="projects" class="projects my-6">
       <div class="container">
         <div class="row mb-5">
-          <div class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center">
-            <h5><span class="badge bg-primary rounded-0 text-uppercase">
-              Projects
-            </span></h5>
+          <div
+            class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center"
+          >
+            <h5>
+              <span class="badge bg-primary rounded-0 text-uppercase">
+                Projects
+              </span>
+            </h5>
             <h2 class="fw-bold">Project's We Are Proud Of</h2>
-            <p>  We take pride in our successful projects and the value they bring to
-              our clients. With our expertise and dedication, we have delivered
-              exceptional results. Here are some highlights</p>
+            <p>
+              We take pride in our successful projects and the value they bring
+              to our clients. With our expertise and dedication, we have
+              delivered exceptional results. Here are some highlights
+            </p>
           </div>
         </div>
         <!-- Projects Row 1 -->
@@ -730,11 +1180,11 @@
           <div class="col-md-4 mb-4">
             <div class="card bg-secondary">
               <a data-bs-toggle="modal" data-bs-target="#modal1">
-                <img src="images/project-1.jpg" alt="" class="card-img-top">
+                <img src="images/project-1.jpg" alt="" class="card-img-top" />
                 <div class="card-body">
                   <p>
-                    <strong>Orkla Foods</strong> - Donec bibeum mollis liga sit amet
-                pulvinar sed viverra noris
+                    <strong>Orkla Foods</strong> - Donec bibeum mollis liga sit
+                    amet pulvinar sed viverra noris
                   </p>
                 </div>
               </a>
@@ -743,11 +1193,11 @@
           <div class="col-md-4 mb-4">
             <div class="card bg-secondary">
               <a data-bs-toggle="modal" data-bs-target="#modal2">
-                <img src="images/project-2.jpg" alt="" class="card-img-top">
+                <img src="images/project-2.jpg" alt="" class="card-img-top" />
                 <div class="card-body">
                   <p>
-                    <strong>First Bank</strong> - Donec bibeum mollis liga sit amet
-                    pulvinar sed viverra noris
+                    <strong>First Bank</strong> - Donec bibeum mollis liga sit
+                    amet pulvinar sed viverra noris
                   </p>
                 </div>
               </a>
@@ -756,11 +1206,11 @@
           <div class="col-md-4 mb-4">
             <div class="card bg-secondary">
               <a data-bs-toggle="modal" data-bs-target="#modal3">
-                <img src="images/project-3.jpg" alt="" class="card-img-top">
+                <img src="images/project-3.jpg" alt="" class="card-img-top" />
                 <div class="card-body">
                   <p>
-                    <strong>All Sweets</strong> - Donec bibeum mollis liga sit amet
-                pulvinar sed viverra noris
+                    <strong>All Sweets</strong> - Donec bibeum mollis liga sit
+                    amet pulvinar sed viverra noris
                   </p>
                 </div>
               </a>
@@ -773,11 +1223,11 @@
           <div class="col-md-4 mb-4">
             <div class="card bg-secondary">
               <a data-bs-toggle="modal" data-bs-target="#modal4">
-                <img src="images/project-4.jpg" alt="" class="card-img-top">
+                <img src="images/project-4.jpg" alt="" class="card-img-top" />
                 <div class="card-body">
                   <p>
                     <strong>Fast Courier</strong> - Donec bibeum mollis liga sit
-                amet pulvinar sed viverra noris
+                    amet pulvinar sed viverra noris
                   </p>
                 </div>
               </a>
@@ -786,11 +1236,11 @@
           <div class="col-md-4 mb-4">
             <div class="card bg-secondary">
               <a data-bs-toggle="modal" data-bs-target="#modal5">
-                <img src="images/project-5.jpg" alt="" class="card-img-top">
+                <img src="images/project-5.jpg" alt="" class="card-img-top" />
                 <div class="card-body">
                   <p>
-                    <strong>Lyra Market</strong> - Donec bibeum mollis liga sit amet
-                pulvinar sed viverra noris
+                    <strong>Lyra Market</strong> - Donec bibeum mollis liga sit
+                    amet pulvinar sed viverra noris
                   </p>
                 </div>
               </a>
@@ -799,11 +1249,11 @@
           <div class="col-md-4 mb-4">
             <div class="card bg-secondary">
               <a data-bs-toggle="modal" data-bs-target="#modal6">
-                <img src="images/project-6.jpg" alt="" class="card-img-top">
+                <img src="images/project-6.jpg" alt="" class="card-img-top" />
                 <div class="card-body">
                   <p>
-                    <strong>Monday Stores</strong> - Donec bibeum mollis liga sit
-                    amet pulvinar sed viverra
+                    <strong>Monday Stores</strong> - Donec bibeum mollis liga
+                    sit amet pulvinar sed viverra
                   </p>
                 </div>
               </a>
@@ -821,168 +1271,168 @@
           <div class="modal-content bg-secondary p-5">
             <div class="row">
               <div class="col-md-6">
-                <img src="images/project-1.jpg" alt="" class="img-fluid">
+                <img src="images/project-1.jpg" alt="" class="img-fluid" />
               </div>
               <div class="col-md-6">
                 <h3>Orkla Foods</h3>
                 <p>
-                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac commodo.
-                  Integer semper quam at rutrum interdum. Mauris eu diam ac urna
-                  laoreet mollis et
+                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac
+                  commodo. Integer semper quam at rutrum interdum. Mauris eu
+                  diam ac urna laoreet mollis et
                 </p>
                 <p>
-                  Praesent lacus tortor, facilisis non enim eu, luctus semper velit.
-                  Curabitur faucibus diam in lectus.
+                  Praesent lacus tortor, facilisis non enim eu, luctus semper
+                  velit. Curabitur faucibus diam in lectus.
                 </p>
-                <a href="#" class="btn btn-primary text-white">
-                  Details
-                </a>
-                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-primary text-white"> Details </a>
+                <button class="btn btn-light" data-bs-dismiss="modal">
+                  Close
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-       <!-- Modal 2 -->
-       <div id="modal2" class="modal fade">
+      <!-- Modal 2 -->
+      <div id="modal2" class="modal fade">
         <div class="modal-dialog modal-lg mt-7">
           <div class="modal-content bg-secondary p-5">
             <div class="row">
               <div class="col-md-6">
-                <img src="images/project-2.jpg" alt="" class="img-fluid">
+                <img src="images/project-2.jpg" alt="" class="img-fluid" />
               </div>
               <div class="col-md-6">
                 <h3>First Bank</h3>
                 <p>
-                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac commodo.
-                  Integer semper quam at rutrum interdum. Mauris eu diam ac urna
-                  laoreet mollis et
+                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac
+                  commodo. Integer semper quam at rutrum interdum. Mauris eu
+                  diam ac urna laoreet mollis et
                 </p>
                 <p>
-                  Praesent lacus tortor, facilisis non enim eu, luctus semper velit.
-                  Curabitur faucibus diam in lectus.
+                  Praesent lacus tortor, facilisis non enim eu, luctus semper
+                  velit. Curabitur faucibus diam in lectus.
                 </p>
-                <a href="#" class="btn btn-primary text-white">
-                  Details
-                </a>
-                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-primary text-white"> Details </a>
+                <button class="btn btn-light" data-bs-dismiss="modal">
+                  Close
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-       <!-- Modal 3 -->
-       <div id="modal3" class="modal fade">
+      <!-- Modal 3 -->
+      <div id="modal3" class="modal fade">
         <div class="modal-dialog modal-lg mt-7">
           <div class="modal-content bg-secondary p-5">
             <div class="row">
               <div class="col-md-6">
-                <img src="images/project-3.jpg" alt="" class="img-fluid">
+                <img src="images/project-3.jpg" alt="" class="img-fluid" />
               </div>
               <div class="col-md-6">
                 <h3>All Sweets</h3>
                 <p>
-                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac commodo.
-                  Integer semper quam at rutrum interdum. Mauris eu diam ac urna
-                  laoreet mollis et
+                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac
+                  commodo. Integer semper quam at rutrum interdum. Mauris eu
+                  diam ac urna laoreet mollis et
                 </p>
                 <p>
-                  Praesent lacus tortor, facilisis non enim eu, luctus semper velit.
-                  Curabitur faucibus diam in lectus.
+                  Praesent lacus tortor, facilisis non enim eu, luctus semper
+                  velit. Curabitur faucibus diam in lectus.
                 </p>
-                <a href="#" class="btn btn-primary text-white">
-                  Details
-                </a>
-                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-primary text-white"> Details </a>
+                <button class="btn btn-light" data-bs-dismiss="modal">
+                  Close
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-       <!-- Modal 4 -->
-       <div id="modal4" class="modal fade">
+      <!-- Modal 4 -->
+      <div id="modal4" class="modal fade">
         <div class="modal-dialog modal-lg mt-7">
           <div class="modal-content bg-secondary p-5">
             <div class="row">
               <div class="col-md-6">
-                <img src="images/project-4.jpg" alt="" class="img-fluid">
+                <img src="images/project-4.jpg" alt="" class="img-fluid" />
               </div>
               <div class="col-md-6">
                 <h3>Fast Courier</h3>
                 <p>
-                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac commodo.
-                  Integer semper quam at rutrum interdum. Mauris eu diam ac urna
-                  laoreet mollis et
+                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac
+                  commodo. Integer semper quam at rutrum interdum. Mauris eu
+                  diam ac urna laoreet mollis et
                 </p>
                 <p>
-                  Praesent lacus tortor, facilisis non enim eu, luctus semper velit.
-                  Curabitur faucibus diam in lectus.
+                  Praesent lacus tortor, facilisis non enim eu, luctus semper
+                  velit. Curabitur faucibus diam in lectus.
                 </p>
-                <a href="#" class="btn btn-primary text-white">
-                  Details
-                </a>
-                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-primary text-white"> Details </a>
+                <button class="btn btn-light" data-bs-dismiss="modal">
+                  Close
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-       <!-- Modal 5 -->
-       <div id="modal5" class="modal fade">
+      <!-- Modal 5 -->
+      <div id="modal5" class="modal fade">
         <div class="modal-dialog modal-lg mt-7">
           <div class="modal-content bg-secondary p-5">
             <div class="row">
               <div class="col-md-6">
-                <img src="images/project-5.jpg" alt="" class="img-fluid">
+                <img src="images/project-5.jpg" alt="" class="img-fluid" />
               </div>
               <div class="col-md-6">
                 <h3>Lyra Market</h3>
                 <p>
-                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac commodo.
-                  Integer semper quam at rutrum interdum. Mauris eu diam ac urna
-                  laoreet mollis et
+                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac
+                  commodo. Integer semper quam at rutrum interdum. Mauris eu
+                  diam ac urna laoreet mollis et
                 </p>
                 <p>
-                  Praesent lacus tortor, facilisis non enim eu, luctus semper velit.
-                  Curabitur faucibus diam in lectus.
+                  Praesent lacus tortor, facilisis non enim eu, luctus semper
+                  velit. Curabitur faucibus diam in lectus.
                 </p>
-                <a href="#" class="btn btn-primary text-white">
-                  Details
-                </a>
-                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-primary text-white"> Details </a>
+                <button class="btn btn-light" data-bs-dismiss="modal">
+                  Close
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-       <!-- Modal 6 -->
-       <div id="modal6" class="modal fade">
+      <!-- Modal 6 -->
+      <div id="modal6" class="modal fade">
         <div class="modal-dialog modal-lg mt-7">
           <div class="modal-content bg-secondary p-5">
             <div class="row">
               <div class="col-md-6">
-                <img src="images/project-6.jpg" alt="" class="img-fluid">
+                <img src="images/project-6.jpg" alt="" class="img-fluid" />
               </div>
               <div class="col-md-6">
                 <h3>Monday Stores</h3>
                 <p>
-                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac commodo.
-                  Integer semper quam at rutrum interdum. Mauris eu diam ac urna
-                  laoreet mollis et
+                  Aliquam at accumsan nibh. Praesent pretium ut tortor ac
+                  commodo. Integer semper quam at rutrum interdum. Mauris eu
+                  diam ac urna laoreet mollis et
                 </p>
                 <p>
-                  Praesent lacus tortor, facilisis non enim eu, luctus semper velit.
-                  Curabitur faucibus diam in lectus.
+                  Praesent lacus tortor, facilisis non enim eu, luctus semper
+                  velit. Curabitur faucibus diam in lectus.
                 </p>
-                <a href="#" class="btn btn-primary text-white">
-                  Details
-                </a>
-                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-primary text-white"> Details </a>
+                <button class="btn btn-light" data-bs-dismiss="modal">
+                  Close
+                </button>
               </div>
             </div>
           </div>
@@ -994,20 +1444,31 @@
     <section id="newsletter" class="newsletter my-6">
       <div class="container">
         <div class="row mb-4">
-          <div class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center">
+          <div
+            class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center"
+          >
             <h2 class="fw-bold">Subscribe And Follow</h2>
             <p>
-              Stay updated with our latest news and announcements. Subscribe to our
-          newsletter and follow us on social media for valuable insights and
-          exciting updates.
+              Stay updated with our latest news and announcements. Subscribe to
+              our newsletter and follow us on social media for valuable insights
+              and exciting updates.
             </p>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center">
+          <div
+            class="col-md-6 offset-md-3 d-flex flex-column align-items-center text-center"
+          >
             <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Enter Email Address" />
-              <button class="btn btn-primary text-white rounded-0" type="button">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Enter Email Address"
+              />
+              <button
+                class="btn btn-primary text-white rounded-0"
+                type="button"
+              >
                 Submit
               </button>
             </div>
@@ -1023,10 +1484,10 @@
           <div class="col-md-4 my-3">
             <h6>About Vera</h6>
             <p>
-              Vera is a dedicated software solutions company that aims to provide
-              exceptional services to its clients. We are committed to delivering
-              innovative and customized solutions that meet your specific business
-              needs.
+              Vera is a dedicated software solutions company that aims to
+              provide exceptional services to its clients. We are committed to
+              delivering innovative and customized solutions that meet your
+              specific business needs.
             </p>
           </div>
           <div class="col-md-4 my-3">
@@ -1042,7 +1503,8 @@
                 <a href="index.html#newsletter">Newsletter</a>
               </li>
               <li>
-                Menu: <a href="index.html">Home</a>, <a href="index.html#details">Details</a>,
+                Menu: <a href="index.html">Home</a>,
+                <a href="index.html#details">Details</a>,
                 <a href="index.html#solutions">Solutions</a>,
                 <a href="index.html#projects">Projects</a>
               </li>
@@ -1073,7 +1535,6 @@
         </div>
       </div>
     </footer>
-
 
     <script src="js/replaceme.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
