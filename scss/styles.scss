@@ -292,6 +292,19 @@ input[type="file"] {
 
 // Styling the side buttons end
 
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  width: 100%;
+}
+
+.nav-link:hover {
+  background-color: #fff;
+  color: #000;
+}
+
 // Media Queries start
 
 @media (max-width: 576px) {

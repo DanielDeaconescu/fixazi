@@ -265,6 +265,19 @@ input[type=file] {
   cursor: pointer;
 }
 
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  width: 100%;
+}
+
+.nav-link:hover {
+  background-color: #fff;
+  color: #000;
+}
+
 @media (max-width: 576px) {
   .navbar-custom {
     height: unset;
