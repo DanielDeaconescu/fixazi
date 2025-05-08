@@ -300,3 +300,10 @@ input[type="file"] {
     padding: 1rem 0;
   }
 }
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .navbar-custom {
+    height: unset;
+    padding: 1rem 0;
+  }
+}
