@@ -41,7 +41,6 @@
 
 .video-background .content {
   position: relative;
-  z-index: 1;
   color: white;
   text-align: center;
 }
@@ -100,6 +99,16 @@ input[type=file] {
 
 .navbar {
   transition: all 0.5s ease-in-out;
+}
+
+.navbar-custom {
+  padding: 0;
+  height: 80px;
+}
+
+.nav-link-custom:hover {
+  background-color: white;
+  color: #000 !important;
 }
 
 .details .vertical-decoration {
@@ -254,4 +263,11 @@ input[type=file] {
 
 .whatsapp-button-container {
   cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .navbar-custom {
+    height: unset;
+    padding: 1rem 0;
+  }
 }
