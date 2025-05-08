@@ -314,7 +314,49 @@ input[type="file"] {
   }
 
   .header {
-    max-height: 300px;
+    max-height: 320px;
+  }
+
+  .repair-services-container {
+    padding-top: 0 !important;
+  }
+
+  .header-title {
+    margin-top: 1rem !important;
+  }
+
+  .subtitle-custom {
+    margin-bottom: 0;
+  }
+
+  .expertise {
+    padding-top: 2rem !important;
+  }
+
+  .our-values-paragraph {
+    text-align: justify;
+    padding: 0 2rem;
+  }
+
+  .our-values-container {
+    margin-bottom: 1rem !important;
+  }
+
+  .card {
+    padding: 0 2rem;
+  }
+
+  .our-values-p {
+    text-align: center;
+  }
+
+  .call-to-action-section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .call-to-action-paragraph {
+    margin-bottom: 1rem !important;
   }
 }
 
