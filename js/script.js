@@ -11,27 +11,6 @@ if (checkReplace !== null) {
   });
 }
 
-// User Scroll For Navbar
-function userScroll() {
-  const navbar = document.querySelector(".navbar");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add("bg-dark");
-      navbar.classList.add("border-bottom");
-      navbar.classList.add("border-secondary");
-      navbar.classList.add("navbar-sticky");
-    } else {
-      navbar.classList.remove("bg-dark");
-      navbar.classList.remove("border-bottom");
-      navbar.classList.remove("border-secondary");
-      navbar.classList.remove("navbar-sticky");
-    }
-  });
-}
-
-document.addEventListener("DOMContentLoaded", userScroll);
-
 // Video Modal
 const videoBtn = document.querySelector(".video-btn");
 const videoModal = document.querySelector("#videoModal");
@@ -150,16 +129,40 @@ const whatsappButtonContainer = document.querySelector(
   ".whatsapp-button-container"
 );
 
-formButtonContainer.addEventListener("mouseenter", function () {
+const mediaQuery = window.matchMedia("(min-width: 576px)");
+
+function setupHoverEffects(enable) {
+  if (enable) {
+    formButtonContainer.addEventListener("mouseenter", showForm);
+    formButtonContainer.addEventListener("mouseleave", hideForm);
+    whatsappButtonContainer.addEventListener("mouseenter", showWhatsapp);
+    whatsappButtonContainer.addEventListener("mouseleave", hideWhatsapp);
+  } else {
+    formButtonContainer.removeEventListener("mouseenter", showForm);
+    formButtonContainer.removeEventListener("mouseleave", hideForm);
+    whatsappButtonContainer.removeEventListener("mouseenter", showWhatsapp);
+    whatsappButtonContainer.removeEventListener("mouseleave", hideWhatsapp);
+  }
+}
+
+function showForm() {
   document.querySelector(".side-buttons-form").classList.remove("d-none");
-});
+}
 
-formButtonContainer.addEventListener("mouseleave", function () {
+function hideForm() {
   document.querySelector(".side-buttons-form").classList.add("d-none");
-});
+}
 
-formButtonContainer.addEventListener("mouseenter", function () {
-  // document.querySelector(".side-buttons-whatsapp").classList.remove("d-none");
-});
+function showWhatsapp() {
+  document.querySelector(".side-buttons-whatsapp").classList.remove("d-none");
+}
 
-whatsappButtonContainer.addEventListener("hover", function () {});
+function hideWhatsapp() {
+  document.querySelector(".side-buttons-whatsapp").classList.add("d-none");
+}
+
+setupHoverEffects(mediaQuery.matches);
+
+mediaQuery.addEventListener("change", (e) => {
+  setupHoverEffects(e.matches);
+});

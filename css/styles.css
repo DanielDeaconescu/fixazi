@@ -222,6 +222,14 @@ input[type=file] {
   text-align: justify;
 }
 
+.form-button-container {
+  z-index: 1000;
+}
+
+.side-buttons-form {
+  z-index: 1000;
+}
+
 .side-buttons-container {
   display: flex;
   flex-direction: column;

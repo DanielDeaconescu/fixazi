@@ -246,11 +246,19 @@ input[type="file"] {
 
 // Styling the side buttons start
 
-// .side-buttons-form {
-// }
+.form-button-container {
+  z-index: 1000;
+}
 
-// .side-buttons-whatsapp {
-// }
+.side-buttons-form {
+  z-index: 1000;
+}
+
+.whatsapp-button-container {
+}
+
+.side-buttons-whatsapp {
+}
 
 .side-buttons-container {
   display: flex;
