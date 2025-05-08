@@ -283,6 +283,9 @@ input[type=file] {
     height: unset;
     padding: 1rem 0;
   }
+  .header {
+    max-height: 300px;
+  }
 }
 @media (min-width: 576px) and (max-width: 768px) {
   .navbar-custom {
