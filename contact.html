@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <!-- Lightbox CSS -->
+    <link rel="stylesheet" href="css/lightbox.min.css" />
+    <!-- favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./images/favicon-16x16.png"
+    />
+    <title>FIXAZI - Contact</title>
+  </head>
+  <body>
+    <!-- navigation -->
+    <nav
+      class="navbar navbar-expand-md bg-dark sticky-top fixed-top navbar-dark navbar-custom"
+    >
+      <div class="container h-100">
+        <a class="navbar-brand" href="#">
+          <img src="images/fixazi_logo_nobg.png" alt="" width="250" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse h-100" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto h-100">
+            <li class="nav-item d-flex align-items-center">
+              <a
+                class="nav-link nav-link-custom h-100 d-flex align-items-center"
+                aria-current="page"
+                href="index.html"
+                >Acasă</a
+              >
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a
+                class="nav-link nav-link-custom h-100 d-flex align-items-center"
+                href="services.html"
+                >Servicii</a
+              >
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a
+                class="nav-link nav-link-custom h-100 d-flex align-items-center"
+                href="contact.html"
+                >Contact</a
+              >
+            </li>
+          </ul>
+          <span class="nav-item d-flex align-items-center">
+            <span class="fa-stack">
+              <a href="https://facebook.com" target="_blank">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x text-white"></i>
+              </a>
+            </span>
+            <span class="fa-stack">
+              <a href="https://www.tiktok.com" target="_blank">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-tiktok fa-stack-1x text-white"></i>
+              </a>
+            </span>
+          </span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header position-relative video-background">
+      <div class="container">
+        <video autoplay muted loop playsinline>
+          <source src="video_header_background.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+        <div class="content">
+          <div
+            class="pt-5 d-flex flex-column align-items-start repair-services-container"
+          >
+            <h1 class="mt-5 d-flex flex-column header-title subtitle-custom">
+              Servicii de reparații
+              <span class="text-primary fw-bold">rapide și calitative</span>
+            </h1>
+            <p class="lead">Servicii de reparații</p>
+            <ul class="d-flex flex-column list-unstyled p-0 header-list-custom">
+              <li>
+                <i class="fa-solid fa-square-check me-2"></i>
+                Telefoane
+              </li>
+              <li>
+                <i class="fa-solid fa-square-check me-2"></i>
+                Tablete
+              </li>
+              <li>
+                <i class="fa-solid fa-square-check me-2"></i>
+                Laptop-uri
+              </li>
+            </ul>
+            <a
+              href="#"
+              class="btn btn-primary text-white"
+              data-bs-toggle="modal"
+              data-bs-target="#formModal"
+            >
+              <i class="fa-regular fa-message"></i>
+              Contact
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="row g-5">
+          <!-- Contact Form -->
+          <div class="col-lg-6">
+            <form
+              class="text-white"
+              id="repairForm"
+              action="/api/sendRepairRequest"
+              method="POST"
+              novalidate
+            >
+              <h4>Cerere de reparație</h4>
+              <div class="mb-3">
+                <label for="fullName" class="form-label">Nume complet</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fullName"
+                  placeholder="Ex: Andrei Popescu"
+                />
+                <div class="text-danger small mt-1" id="fullNameError"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="phoneNumber" class="form-label"
+                  >Număr de telefon</label
+                >
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phoneNumber"
+                  placeholder="Ex: 07xxxxxxxx"
+                />
+                <div class="text-danger small mt-1" id="phoneError"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="emailAddress" class="form-label"
+                  >Adresă de email</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="emailAddress"
+                  placeholder="Ex: exemplu@email.com"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="deviceType" class="form-label"
+                  >Tip dispozitiv</label
+                >
+                <select class="form-select" id="deviceType">
+                  <option selected disabled>Alege un dispozitiv</option>
+                  <option value="telefon">Telefon</option>
+                  <option value="tableta">Tabletă</option>
+                  <option value="laptop">Laptop</option>
+                  <option value="gps">GPS</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="brandModel" class="form-label"
+                  >Marcă și model</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="brandModel"
+                  placeholder="Ex: Samsung Galaxy S21"
+                />
+              </div>
+
+              <div class="custom-file-upload mb-3">
+                <label for="file-upload" class="custom-file-label"
+                  >Atașează o imagine (opțional)</label
+                >
+                <input id="file-upload" type="file" />
+              </div>
+
+              <div class="mb-3">
+                <label for="problemDescription" class="form-label"
+                  >Descrierea problemei</label
+                >
+                <textarea
+                  class="form-control"
+                  id="problemDescription"
+                  rows="3"
+                  placeholder="Scrie aici ce problemă are dispozitivul..."
+                ></textarea>
+              </div>
+
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="acceptContact"
+                  name="acceptContact"
+                />
+                <label class="form-check-label" for="acceptContact">
+                  Sunt de acord să fiu contactat(ă) cu privire la această
+                  cerere.
+                </label>
+              </div>
+
+              <div class="mb-3">
+                <label for="preferredContact" class="form-label"
+                  >Cum preferi să fii contactat(ă)?</label
+                >
+                <select
+                  class="form-select"
+                  id="preferredContact"
+                  name="preferredContact"
+                >
+                  <option value="Telefon">Telefon</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Email">Email</option>
+                  <option value="SMS">SMS</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">
+                Trimite cererea
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Info & Map -->
+          <div class="col-lg-6 text-white">
+            <h2 class="mb-4">Date de contact</h2>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2">
+                <a class="text-decoration-none" href="https://maps.app.goo.gl/DjjqwmbCwaBL1BBr5" target="_blank">
+                  <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                  Str. Strada 1 Decembrie 1918 8, Galați 800258
+                </a>
+                
+              </li>
+              <li class="mb-2">
+                <i class="fas fa-phone me-2 text-primary"></i>
+                <a href="tel:+40743352949" class="text-decoration-none">
+                  +40 743 352 949
+                </a>
+              </li>
+              <li class="mb-2">
+                <i class="fas fa-envelope me-2 text-primary"></i>
+                <a
+                  href="mailto:contact@fixazi.com"
+                  target="_blank"
+                  class="text-decoration-none">
+                  contact@fixazi.com
+                </a>
+              </li>
+            </ul>
+
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.2564775044516!2d28.0206405767239!3d45.44448753475302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc2d44ca8c3eec7%3A0x5f759f243a7885e5!2sFixAzi%20Service%20GSM!5e0!3m2!1sen!2sro!4v1746809538175!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-secondary text-white py-6 footer-custom">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-md-4 my-3 d-flex flex-column align-items-start about-section-footer"
+          >
+            <h5>
+              Despre
+              <img src="./images/fixazi_logo_nobg.png" width="250" alt="" />
+            </h5>
+            <p>
+              La FIXAZI, ne dedicăm reparației rapide și de calitate a
+              dispozitivelor tale preferate. Indiferent dacă este vorba de un
+              telefon, tabletă sau laptop, ne asigurăm că primești servicii
+              profesionale, transparente și adaptate nevoilor tale.
+            </p>
+          </div>
+
+          <div class="col-md-4 my-3 d-flex flex-column align-items-start">
+            <h5>Link-uri utile</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="privacy.html"> Politica de Cookies </a>
+              </li>
+              <li>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#formModal"
+                  >Cerere de reparație</a
+                >
+              </li>
+              <li class="footer-navigation d-flex gap-2">
+                  <div>Meniu de navigare:</div>
+                  <div>
+                    <a href="index.html">Acasă</a>,
+                    <a href="services.html">Servicii</a>,
+                    <a href="contact.html">Contact</a>.
+                  </div>  
+              </li>
+            </ul>
+          </div>
+          
+
+          <div class="col-md-4 my-3 d-flex flex-column align-items-start">
+            <div class="mb-4">
+              <h5>Rețele de socializare</h5>
+              <a href="#" class="text-decoration-none">
+                <i class="fab fa-facebook fa-3x text-light mx-2"></i>
+              </a>
+              <a href="#" class="text-decoration-none">
+                <i class="fab fa-instagram fa-3x text-light mx-2"></i>
+              </a>
+              <a href="#" class="text-decoration-none">
+                <i class="fab fa-tiktok fa-3x text-light mx-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
