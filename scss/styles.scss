@@ -232,7 +232,18 @@ input[type="file"] {
 // Our Values Styling start
 
 .our-values-p {
+  text-align: center;
+}
+
+.our-values-paragraph {
   text-align: justify;
+  max-width: 70%;
+}
+
+.our-values-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 // Our Values Styling end
@@ -292,10 +303,6 @@ input[type="file"] {
 
 // Styling the side buttons end
 
-.nav-item {
-  width: 100%;
-}
-
 .nav-link {
   width: 100%;
 }
@@ -346,10 +353,6 @@ input[type="file"] {
     padding: 0 2rem;
   }
 
-  .our-values-p {
-    text-align: center;
-  }
-
   .call-to-action-section {
     padding-top: 2rem !important;
     padding-bottom: 2rem !important;
@@ -371,6 +374,10 @@ input[type="file"] {
     padding-top: 2rem !important;
     padding-bottom: 2rem !important;
   }
+
+  .footer-navigation {
+    flex-direction: column;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
@@ -382,7 +389,7 @@ input[type="file"] {
 
 @media (min-width: 768px) and (max-width: 992px) {
   .header {
-    height: 420px;
+    height: 480px;
   }
 
   .repair-services-container {
