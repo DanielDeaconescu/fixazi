@@ -285,6 +285,10 @@ input[type=file] {
   color: #000;
 }
 
+.p-submitted {
+  width: 70%;
+}
+
 @media (max-width: 576px) {
   .navbar-custom {
     height: unset;
@@ -334,6 +338,9 @@ input[type=file] {
   }
   .footer-navigation {
     flex-direction: column;
+  }
+  .logo-submitted {
+    width: 350px;
   }
 }
 @media (min-width: 576px) and (max-width: 768px) {

@@ -312,6 +312,13 @@ input[type="file"] {
   color: #000;
 }
 
+// Styling submitted page start
+.p-submitted {
+  width: 70%;
+}
+
+// Styling submitted page end
+
 // Media Queries start
 
 @media (max-width: 576px) {
@@ -377,6 +384,11 @@ input[type="file"] {
 
   .footer-navigation {
     flex-direction: column;
+  }
+
+  // submitted page
+  .logo-submitted {
+    width: 350px;
   }
 }
 
