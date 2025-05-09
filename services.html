@@ -65,14 +65,14 @@
             <li class="nav-item d-flex align-items-center">
               <a
                 class="nav-link nav-link-custom h-100 d-flex align-items-center"
-                href="#solutions"
+                href="services.html"
                 >Servicii</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
               <a
                 class="nav-link nav-link-custom h-100 d-flex align-items-center"
-                href="#details"
+                href="contact.html"
                 >Contact</a
               >
             </li>
@@ -106,9 +106,9 @@
             <div class="content">
                 <h1 class="display-4 fw-bold mb-3">Serviciile Noastre</h1>
                 <p class="lead mb-4">
-                    Indiferent de problema dispozitivului tău, suntem pregătiți să o rezolvăm rapid și eficient. Alege serviciul potrivit, completează cererea de reparație sau sună-ne și de restul ne ocupăm noi!
+                    Oferim reparații rapide și de încredere pentru telefoane și tablete. Descoperă ce putem face pentru dispozitivul tău și consultă lista noastră cu prețuri estimative pentru cele mai frecvente probleme.
                 </p>
-                <a href="#lista-servicii" class="btn btn-primary btn-lg">Vezi lista completă</a>
+                <a href="#lista-servicii" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#repairPricesModal">Vezi prețuri estimative</a>
             </div>
           
         </div>
@@ -208,156 +208,228 @@
       </div>
     </section>
 
-    <!-- Form Modal -->
-    <div
-      class="modal fade"
-      id="formModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <img
-                src="./images/fixazi_logo.jpg"
-                width="200"
-                alt="logo fixazi reparatii telefoane"
-              />
+    
+
+    <!-- Aproximative prices -->
+
+    <!-- Aproximative prices Modal -->
+<div class="modal fade" id="repairPricesModal" tabindex="-1" aria-labelledby="repairPricesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="repairPricesModalLabel">
+                <img src="./images/fixazi_logo.jpg" width="200" alt="">
             </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form
-              id="repairForm"
-              action="/api/sendRepairRequest"
-              method="POST"
-              novalidate
-            >
-              <h4>Cerere de reparație</h4>
-              <div class="mb-3">
-                <label for="fullName" class="form-label">Nume complet</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="fullName"
-                  placeholder="Ex: Andrei Popescu"
-                />
-                <div class="text-danger small mt-1" id="fullNameError"></div>
-              </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+        </div>
+        <div class="modal-body">
+            <h4>Prețuri Estimative pentru Reparații</h4>
+        <p class="text-muted">
+            <small>
+                <i class="fa-solid fa-circle-info"></i>
+                Prețurile sunt estimative și pot varia în funcție de diagnostic și de specificul situației.
+            </small>
+        </p>
 
-              <div class="mb-3">
-                <label for="phoneNumber" class="form-label"
-                  >Număr de telefon</label
-                >
-                <input
-                  type="tel"
-                  class="form-control"
-                  id="phoneNumber"
-                  placeholder="Ex: 07xxxxxxxx"
-                />
-                <div class="text-danger small mt-1" id="phoneError"></div>
-              </div>
-
-              <div class="mb-3">
-                <label for="emailAddress" class="form-label"
-                  >Adresă de email</label
-                >
-                <input
-                  type="email"
-                  class="form-control"
-                  id="emailAddress"
-                  placeholder="Ex: exemplu@email.com"
-                />
-              </div>
-
-              <div class="mb-3">
-                <label for="deviceType" class="form-label"
-                  >Tip dispozitiv</label
-                >
-                <select class="form-select" id="deviceType">
-                  <option selected disabled>Alege un dispozitiv</option>
-                  <option value="telefon">Telefon</option>
-                  <option value="tableta">Tabletă</option>
-                  <option value="laptop">Laptop</option>
-                  <option value="gps">GPS</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label for="brandModel" class="form-label"
-                  >Marcă și model</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="brandModel"
-                  placeholder="Ex: Samsung Galaxy S21"
-                />
-              </div>
-
-              <div class="custom-file-upload mb-3">
-                <label for="file-upload" class="custom-file-label"
-                  >Atașează o imagine (opțional)</label
-                >
-                <input id="file-upload" type="file" />
-              </div>
-
-              <div class="mb-3">
-                <label for="problemDescription" class="form-label"
-                  >Descrierea problemei</label
-                >
-                <textarea
-                  class="form-control"
-                  id="problemDescription"
-                  rows="3"
-                  placeholder="Scrie aici ce problemă are dispozitivul..."
-                ></textarea>
-              </div>
-
-              <div class="form-check mb-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="acceptContact"
-                  name="acceptContact"
-                />
-                <label class="form-check-label" for="acceptContact">
-                  Sunt de acord să fiu contactat(ă) cu privire la această
-                  cerere.
-                </label>
-              </div>
-
-              <div class="mb-3">
-                <label for="preferredContact" class="form-label"
-                  >Cum preferi să fii contactat(ă)?</label
-                >
-                <select
-                  class="form-select"
-                  id="preferredContact"
-                  name="preferredContact"
-                >
-                  <option value="Telefon">Telefon</option>
-                  <option value="WhatsApp">WhatsApp</option>
-                  <option value="Email">Email</option>
-                  <option value="SMS">SMS</option>
-                </select>
-              </div>
-
-              <button type="submit" class="btn btn-primary w-100">
-                Trimite cererea
-              </button>
-            </form>
-          </div>
+          <!-- Cracked Screen -->
+          <h6 class="fw-bold">1. Ecran Crăpat</h6>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Model Dispozitiv</th>
+                <th>Preț Începând de la (RON)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>iPhone 16 Pro Max</td>
+                <td>800</td>
+              </tr>
+              <tr>
+                <td>Samsung Galaxy S25 Ultra</td>
+                <td>750</td>
+              </tr>
+              <tr>
+                <td>Google Pixel 9 Pro</td>
+                <td>700</td>
+              </tr>
+              <tr>
+                <td>iPad Pro 12.9"</td>
+                <td>900</td>
+              </tr>
+              <tr>
+                <td>Samsung Galaxy Tab S8</td>
+                <td>850</td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <!-- Battery Replacement -->
+          <h6 class="fw-bold">2. Înlocuire Baterie</h6>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Model Dispozitiv</th>
+                <th>Preț Începând de la (RON)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>iPhone 16 Pro Max</td>
+                <td>500</td>
+              </tr>
+              <tr>
+                <td>Samsung Galaxy S25 Ultra</td>
+                <td>450</td>
+              </tr>
+              <tr>
+                <td>Google Pixel 9 Pro</td>
+                <td>400</td>
+              </tr>
+              <tr>
+                <td>iPad Pro 12.9"</td>
+                <td>550</td>
+              </tr>
+              <tr>
+                <td>Samsung Galaxy Tab S8</td>
+                <td>500</td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <!-- Charging Port Repair -->
+          <h6 class="fw-bold">3. Reparație Port de Încărcare</h6>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Model Dispozitiv</th>
+                <th>Preț Începând de la (RON)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>iPhone 16 Pro Max</td>
+                <td>600</td>
+              </tr>
+              <tr>
+                <td>Samsung Galaxy S25 Ultra</td>
+                <td>550</td>
+              </tr>
+              <tr>
+                <td>Google Pixel 9 Pro</td>
+                <td>500</td>
+              </tr>
+              <tr>
+                <td>iPad Pro 12.9"</td>
+                <td>650</td>
+              </tr>
+              <tr>
+                <td>Samsung Galaxy Tab S8</td>
+                <td>600</td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <!-- Water Damage Repair -->
+          <h6 class="fw-bold">4. Reparație Daune Cauzate de Apă</h6>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Model Dispozitiv</th>
+                <th>Preț Începând de la (RON)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>iPhone 16 Pro Max</td>
+                <td>700</td>
+              </tr>
+              <tr>
+                <td>Samsung Galaxy S25 Ultra</td>
+                <td>650</td>
+              </tr>
+              <tr>
+                <td>Google Pixel 9 Pro</td>
+                <td>600</td>
+              </tr>
+              <tr>
+                <td>iPad Pro 12.9"</td>
+                <td>750</td>
+              </tr>
+              <tr>
+                <td>Samsung Galaxy Tab S8</td>
+                <td>700</td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <!-- Touchscreen Unresponsive -->
+          <h6 class="fw-bold">5. Ecran Tactil Neresponsiv</h6>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Model Dispozitiv</th>
+                <th>Preț Începând de la (RON)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>iPhone 16 Pro Max</td>
+                <td>650</td>
+              </tr>
+              <tr>
+                <td>Samsung Galaxy S25 Ultra</td>
+                <td>600</td>
+              </tr>
+              <tr>
+                <td>Google Pixel 9 Pro</td>
+                <td>550</td>
+              </tr>
+              <tr>
+                <td>iPad Pro 12.9"</td>
+                <td>700</td>
+              </tr>
+              <tr>
+                <td>Samsung Galaxy Tab S8</td>
+                <td>650</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Închide</button>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- call-to-action section -->
+  <section class="services-call-to-action bg-dark text-white text-center py-5">
+    <div class="container">
+      <h2 class="mb-3">Ai nevoie de o reparație rapidă și sigură?</h2>
+      <p class="mb-4 fs-5">Verifică prețurile estimative sau trimite direct o cerere de reparație. Suntem aici să te ajutăm!</p>
+  
+      <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mb-4">
+        <a href="#" class="btn btn-outline-light px-4" data-bs-toggle="modal" data-bs-target="#repairPricesModal">Prețuri Estimative</a>
+        <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#formModal">
+          Cerere de reparație
+        </button>
+      </div>
+  
+      <div class="d-flex justify-content-center gap-4">
+        <a href="https://facebook.com" target="_blank" class="text-white fs-4" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" class="text-white fs-4" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/40712345678" target="_blank" class="text-white fs-4" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+  
 
     <!-- Footer -->
     <footer class="footer bg-secondary text-white py-6 footer-custom">
@@ -419,6 +491,158 @@
           </div>
         </div>
       </footer>
+
+
+      <!-- Form Modal -->
+    <div
+    class="modal fade"
+    id="formModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <img
+              src="./images/fixazi_logo.jpg"
+              width="200"
+              alt="logo fixazi reparatii telefoane"
+            />
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            id="repairForm"
+            action="/api/sendRepairRequest"
+            method="POST"
+            novalidate
+          >
+            <h4>Cerere de reparație</h4>
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Nume complet</label>
+              <input
+                type="text"
+                class="form-control"
+                id="fullName"
+                placeholder="Ex: Andrei Popescu"
+              />
+              <div class="text-danger small mt-1" id="fullNameError"></div>
+            </div>
+
+            <div class="mb-3">
+              <label for="phoneNumber" class="form-label"
+                >Număr de telefon</label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                id="phoneNumber"
+                placeholder="Ex: 07xxxxxxxx"
+              />
+              <div class="text-danger small mt-1" id="phoneError"></div>
+            </div>
+
+            <div class="mb-3">
+              <label for="emailAddress" class="form-label"
+                >Adresă de email</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="emailAddress"
+                placeholder="Ex: exemplu@email.com"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="deviceType" class="form-label"
+                >Tip dispozitiv</label
+              >
+              <select class="form-select" id="deviceType">
+                <option selected disabled>Alege un dispozitiv</option>
+                <option value="telefon">Telefon</option>
+                <option value="tableta">Tabletă</option>
+                <option value="laptop">Laptop</option>
+                <option value="gps">GPS</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="brandModel" class="form-label"
+                >Marcă și model</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="brandModel"
+                placeholder="Ex: Samsung Galaxy S21"
+              />
+            </div>
+
+            <div class="custom-file-upload mb-3">
+              <label for="file-upload" class="custom-file-label"
+                >Atașează o imagine (opțional)</label
+              >
+              <input id="file-upload" type="file" />
+            </div>
+
+            <div class="mb-3">
+              <label for="problemDescription" class="form-label"
+                >Descrierea problemei</label
+              >
+              <textarea
+                class="form-control"
+                id="problemDescription"
+                rows="3"
+                placeholder="Scrie aici ce problemă are dispozitivul..."
+              ></textarea>
+            </div>
+
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="acceptContact"
+                name="acceptContact"
+              />
+              <label class="form-check-label" for="acceptContact">
+                Sunt de acord să fiu contactat(ă) cu privire la această
+                cerere.
+              </label>
+            </div>
+
+            <div class="mb-3">
+              <label for="preferredContact" class="form-label"
+                >Cum preferi să fii contactat(ă)?</label
+              >
+              <select
+                class="form-select"
+                id="preferredContact"
+                name="preferredContact"
+              >
+                <option value="Telefon">Telefon</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Email">Email</option>
+                <option value="SMS">SMS</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+              Trimite cererea
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
       <!-- Side buttons -->
     <div class="side-buttons-container d-flex gap-2">

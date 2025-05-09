@@ -289,6 +289,11 @@ input[type=file] {
   width: 70%;
 }
 
+.services-call-to-action {
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
 @media (max-width: 576px) {
   .navbar-custom {
     height: unset;

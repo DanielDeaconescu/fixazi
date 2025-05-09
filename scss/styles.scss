@@ -3,6 +3,8 @@
   --whatsapp-clr-logo: hsl(173, 86%, 20%);
 }
 
+// Styling index start
+
 .overlay {
   position: absolute;
   top: 0;
@@ -318,6 +320,14 @@ input[type="file"] {
 }
 
 // Styling submitted page end
+
+// Styling services start
+.services-call-to-action {
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+// Styling services end
 
 // Media Queries start
 
