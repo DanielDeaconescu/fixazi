@@ -41,86 +41,92 @@ if (videoModal !== null) {
 const repairModal = document.getElementById("formModal");
 const repairForm = document.getElementById("repairForm");
 
-repairModal.addEventListener("hidden.bs.modal", function () {
-  // Reset the form
-  repairForm.reset();
+if (repairForm) {
+  repairModal.addEventListener("hidden.bs.modal", function () {
+    // Reset the form
+    repairForm.reset();
 
-  // Clear error messages
-  document.getElementById("fullNameError").textContent = "";
-  document.getElementById("phoneError").textContent = "";
-});
+    // Clear error messages
+    document.getElementById("fullNameError").textContent = "";
+    document.getElementById("phoneError").textContent = "";
+  });
+}
 
 // form validation
 // form validation and submission
-document
-  .getElementById("repairForm")
-  .addEventListener("submit", async function (e) {
-    e.preventDefault(); // Stop default form submission
 
-    // Clear previous errors
-    document.getElementById("fullNameError").textContent = "";
-    document.getElementById("phoneError").textContent = "";
+if (document.getElementById("repairForm")) {
+  document
+    .getElementById("repairForm")
+    .addEventListener("submit", async function (e) {
+      e.preventDefault(); // Stop default form submission
 
-    let hasError = false;
+      // Clear previous errors
+      document.getElementById("fullNameError").textContent = "";
+      document.getElementById("phoneError").textContent = "";
 
-    const fullName = document.getElementById("fullName").value.trim();
-    const phone = document.getElementById("phoneNumber").value.trim();
+      let hasError = false;
 
-    if (fullName === "") {
-      document.getElementById("fullNameError").textContent =
-        "Numele complet este obligatoriu.";
-      hasError = true;
-    }
+      const fullName = document.getElementById("fullName").value.trim();
+      const phone = document.getElementById("phoneNumber").value.trim();
 
-    if (phone === "") {
-      document.getElementById("phoneError").textContent =
-        "Numărul de telefon este obligatoriu.";
-      hasError = true;
-    }
+      if (fullName === "") {
+        document.getElementById("fullNameError").textContent =
+          "Numele complet este obligatoriu.";
+        hasError = true;
+      }
 
-    if (!hasError) {
-      // Gather all form data
-      const formData = {
-        fullName,
-        phoneNumber: phone,
-        deviceType: document.getElementById("deviceType").value,
-        brandModel: document.getElementById("brandModel").value,
-        problemDescription: document.getElementById("problemDescription").value,
-        file: document.getElementById("file-upload").value, // just the filename string, not file content
-        acceptContact: document.getElementById("acceptContact").checked,
-        preferredContact: document.getElementById("preferredContact").value,
-      };
+      if (phone === "") {
+        document.getElementById("phoneError").textContent =
+          "Numărul de telefon este obligatoriu.";
+        hasError = true;
+      }
 
-      try {
-        const response = await fetch("/api/sendRepairRequest", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
+      if (!hasError) {
+        // Gather all form data
+        const formData = {
+          fullName,
+          phoneNumber: phone,
+          deviceType: document.getElementById("deviceType").value,
+          brandModel: document.getElementById("brandModel").value,
+          problemDescription:
+            document.getElementById("problemDescription").value,
+          file: document.getElementById("file-upload").value, // just the filename string, not file content
+          acceptContact: document.getElementById("acceptContact").checked,
+          preferredContact: document.getElementById("preferredContact").value,
+        };
 
-        const result = await response.json();
+        try {
+          const response = await fetch("/api/sendRepairRequest", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
 
-        if (response.ok) {
-          window.location.href = "submitted.html";
-          this.reset(); // reset form if successful
-        } else {
-          // Bootstrap 5 toast display
+          const result = await response.json();
+
+          if (response.ok) {
+            window.location.href = "submitted.html";
+            this.reset(); // reset form if successful
+          } else {
+            // Bootstrap 5 toast display
+            const errorToast = new bootstrap.Toast(
+              document.getElementById("errorToast")
+            );
+            errorToast.show();
+          }
+        } catch (error) {
+          console.error(error);
           const errorToast = new bootstrap.Toast(
             document.getElementById("errorToast")
           );
           errorToast.show();
         }
-      } catch (error) {
-        console.error(error);
-        const errorToast = new bootstrap.Toast(
-          document.getElementById("errorToast")
-        );
-        errorToast.show();
       }
-    }
-  });
+    });
+}
 
 // Side buttons functionality
 
