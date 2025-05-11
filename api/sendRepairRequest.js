@@ -89,7 +89,9 @@ export default async function handler(req, res) {
 
     try {
       await transporter.sendMail(mailOptions);
-      res.status(200).json({ message: "Email trimis cu succes!" });
+
+      res.writeHead(302, { Location: "/submitted.html" });
+      res.end();
     } catch (error) {
       console.error("Eroare la trimiterea emailului:", error);
       res.status(500).json({ message: "Trimiterea emailului a eșuat." });
