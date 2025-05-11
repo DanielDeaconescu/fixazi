@@ -70,7 +70,6 @@ repairModals.forEach((modal) => {
 
 // form validation
 // form validation and submission
-
 if (document.getElementById("repairForm")) {
   document
     .getElementById("repairForm")
