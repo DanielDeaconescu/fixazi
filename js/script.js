@@ -59,14 +59,12 @@ if (document.getElementById("repairForm")) {
   document
     .getElementById("repairForm")
     .addEventListener("submit", async function (e) {
-      e.preventDefault(); // Stop default form submission
+      e.preventDefault();
 
-      // Clear previous errors
       document.getElementById("fullNameError").textContent = "";
       document.getElementById("phoneError").textContent = "";
 
       let hasError = false;
-
       const fullName = document.getElementById("fullName").value.trim();
       const phone = document.getElementById("phoneNumber").value.trim();
 
@@ -82,36 +80,64 @@ if (document.getElementById("repairForm")) {
         hasError = true;
       }
 
+      // ✅ Only proceed if there are no validation errors
       if (!hasError) {
-        // Gather all form data
-        const formData = {
-          fullName,
-          phoneNumber: phone,
-          deviceType: document.getElementById("deviceType").value,
-          brandModel: document.getElementById("brandModel").value,
-          problemDescription:
-            document.getElementById("problemDescription").value,
-          file: document.getElementById("file-upload").value, // just the filename string, not file content
-          acceptContact: document.getElementById("acceptContact").checked,
-          preferredContact: document.getElementById("preferredContact").value,
-        };
+        const form = document.getElementById("repairForm");
+        const fileInput = document.getElementById("file-upload");
+        const file = fileInput.files[0];
+
+        // ✅ Validate file type
+        const allowedTypes = [
+          "image/jpeg",
+          "image/png",
+          "image/webp",
+          "image/jpg",
+          "image/gif",
+        ];
+        if (file && !allowedTypes.includes(file.type)) {
+          alert(
+            "Doar fișiere imagine sunt permise: JPEG, PNG, WEBP, JPG, GIF."
+          );
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append("fullName", fullName);
+        formData.append("phoneNumber", phone);
+        formData.append(
+          "deviceType",
+          document.getElementById("deviceType").value
+        );
+        formData.append(
+          "brandModel",
+          document.getElementById("brandModel").value
+        );
+        formData.append(
+          "problemDescription",
+          document.getElementById("problemDescription").value
+        );
+        formData.append(
+          "acceptContact",
+          document.getElementById("acceptContact").checked
+        );
+        formData.append(
+          "preferredContact",
+          document.getElementById("preferredContact").value
+        );
+        if (file) formData.append("file", file);
 
         try {
           const response = await fetch("/api/sendRepairRequest", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
+            body: formData, // 👈 no headers needed
           });
 
           const result = await response.json();
 
           if (response.ok) {
             window.location.href = "submitted.html";
-            this.reset(); // reset form if successful
+            form.reset();
           } else {
-            // Bootstrap 5 toast display
             const errorToast = new bootstrap.Toast(
               document.getElementById("errorToast")
             );

@@ -123,6 +123,7 @@
               id="repairForm"
               action="/api/sendRepairRequest"
               method="POST"
+              enctype="multipart/form-data"
               novalidate
             >
               <h4>Cerere de reparație</h4>
@@ -245,20 +246,20 @@
           <div class="col-lg-6 text-white">
             <h2 class="mb-4">Date de contact</h2>
             <ul class="list-unstyled mb-4">
-              <li class="mb-2">
+              <li class="mb-2 contact-data-item">
                 <a class="text-decoration-none" href="https://maps.app.goo.gl/DjjqwmbCwaBL1BBr5" target="_blank">
                   <i class="fas fa-map-marker-alt me-2 text-primary"></i>
                   Str. Strada 1 Decembrie 1918 8, Galați 800258
                 </a>
                 
               </li>
-              <li class="mb-2">
+              <li class="mb-2 contact-data-item">
                 <i class="fas fa-phone me-2 text-primary"></i>
                 <a href="tel:+40743352949" class="text-decoration-none">
                   +40 743 352 949
                 </a>
               </li>
-              <li class="mb-2">
+              <li class="mb-2 contact-data-item">
                 <i class="fas fa-envelope me-2 text-primary"></i>
                 <a
                   href="mailto:contact@fixazi.com"
@@ -276,6 +277,29 @@
         </div>
       </div>
     </section>
+
+    <!-- Call To Action Section -->
+    <section class="contact-call-to-action d-flex flex-column justify-content-center align-items-center">
+      <div class="d-flex flex-column align-items-center text-content mb-3">
+        <p class="text-white">Vrei să știi cât ar putea costa reparația?</p>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#repairPricesModal">
+          Vezi prețuri estimative
+        </button>
+      </div>
+      
+
+      <div class="d-flex justify-content-center gap-4">
+        <a href="https://facebook.com" target="_blank" class="text-white fs-4" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" class="text-white fs-4" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/40712345678" target="_blank" class="text-white fs-4" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+     </section>
 
     <!-- Footer -->
     <footer class="footer bg-secondary text-white py-6 footer-custom">
@@ -521,6 +545,197 @@
         </div>
       </div>
     </div>
+
+    <!-- Aproximative prices Modal -->
+<div class="modal fade" id="repairPricesModal" tabindex="-1" aria-labelledby="repairPricesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="repairPricesModalLabel">
+              <img src="./images/fixazi_logo.jpg" width="200" alt="">
+          </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+      </div>
+      <div class="modal-body">
+          <h4>Prețuri Estimative pentru Reparații</h4>
+      <p class="text-muted">
+          <small>
+              <i class="fa-solid fa-circle-info"></i>
+              Prețurile sunt estimative și pot varia în funcție de diagnostic și de specificul situației.
+          </small>
+      </p>
+
+        <!-- Cracked Screen -->
+        <h6 class="fw-bold">1. Ecran Crăpat</h6>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Model Dispozitiv</th>
+              <th>Preț Începând de la (RON)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>iPhone 16 Pro Max</td>
+              <td>800</td>
+            </tr>
+            <tr>
+              <td>Samsung Galaxy S25 Ultra</td>
+              <td>750</td>
+            </tr>
+            <tr>
+              <td>Google Pixel 9 Pro</td>
+              <td>700</td>
+            </tr>
+            <tr>
+              <td>iPad Pro 12.9"</td>
+              <td>900</td>
+            </tr>
+            <tr>
+              <td>Samsung Galaxy Tab S8</td>
+              <td>850</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Battery Replacement -->
+        <h6 class="fw-bold">2. Înlocuire Baterie</h6>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Model Dispozitiv</th>
+              <th>Preț Începând de la (RON)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>iPhone 16 Pro Max</td>
+              <td>500</td>
+            </tr>
+            <tr>
+              <td>Samsung Galaxy S25 Ultra</td>
+              <td>450</td>
+            </tr>
+            <tr>
+              <td>Google Pixel 9 Pro</td>
+              <td>400</td>
+            </tr>
+            <tr>
+              <td>iPad Pro 12.9"</td>
+              <td>550</td>
+            </tr>
+            <tr>
+              <td>Samsung Galaxy Tab S8</td>
+              <td>500</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Charging Port Repair -->
+        <h6 class="fw-bold">3. Reparație Port de Încărcare</h6>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Model Dispozitiv</th>
+              <th>Preț Începând de la (RON)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>iPhone 16 Pro Max</td>
+              <td>600</td>
+            </tr>
+            <tr>
+              <td>Samsung Galaxy S25 Ultra</td>
+              <td>550</td>
+            </tr>
+            <tr>
+              <td>Google Pixel 9 Pro</td>
+              <td>500</td>
+            </tr>
+            <tr>
+              <td>iPad Pro 12.9"</td>
+              <td>650</td>
+            </tr>
+            <tr>
+              <td>Samsung Galaxy Tab S8</td>
+              <td>600</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Water Damage Repair -->
+        <h6 class="fw-bold">4. Reparație Daune Cauzate de Apă</h6>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Model Dispozitiv</th>
+              <th>Preț Începând de la (RON)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>iPhone 16 Pro Max</td>
+              <td>700</td>
+            </tr>
+            <tr>
+              <td>Samsung Galaxy S25 Ultra</td>
+              <td>650</td>
+            </tr>
+            <tr>
+              <td>Google Pixel 9 Pro</td>
+              <td>600</td>
+            </tr>
+            <tr>
+              <td>iPad Pro 12.9"</td>
+              <td>750</td>
+            </tr>
+            <tr>
+              <td>Samsung Galaxy Tab S8</td>
+              <td>700</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Touchscreen Unresponsive -->
+        <h6 class="fw-bold">5. Ecran Tactil Neresponsiv</h6>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Model Dispozitiv</th>
+              <th>Preț Începând de la (RON)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>iPhone 16 Pro Max</td>
+              <td>650</td>
+            </tr>
+            <tr>
+              <td>Samsung Galaxy S25 Ultra</td>
+              <td>600</td>
+            </tr>
+            <tr>
+              <td>Google Pixel 9 Pro</td>
+              <td>550</td>
+            </tr>
+            <tr>
+              <td>iPad Pro 12.9"</td>
+              <td>700</td>
+            </tr>
+            <tr>
+              <td>Samsung Galaxy Tab S8</td>
+              <td>650</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Închide</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
     <script src="js/replaceme.min.js"></script>
