@@ -1,5 +1,4 @@
 import formidable from "formidable";
-import fs from "fs";
 import nodemailer from "nodemailer";
 
 export const config = {
@@ -16,15 +15,12 @@ export default async function handler(req, res) {
   const form = formidable({ multiples: false });
 
   form.parse(req, async (err, fields, files) => {
-    console.log("Fields:", fields);
-    console.log("Files:", files);
-
     if (err) {
       console.error("Form parsing error:", err);
       return res.status(500).json({ message: "Form parsing failed" });
     }
 
-    // Correct field names based on the frontend formData
+    // Access fields directly (no need for [0] in current formidable versions)
     const {
       fullName,
       phoneNumber,
@@ -35,14 +31,13 @@ export default async function handler(req, res) {
       preferredContact,
     } = fields;
 
-    const uploadedFile = files.file?.[0];
-
-    console.log("Uploaded file:", uploadedFile);
+    // Handle single file upload (note the change from files.file?.[0] to files.file)
+    const uploadedFile = files.file;
 
     let attachments = [];
     if (uploadedFile && uploadedFile.filepath) {
       attachments.push({
-        filename: uploadedFile.originalFilename,
+        filename: uploadedFile.originalFilename || "attachment",
         path: uploadedFile.filepath,
       });
     }
@@ -77,24 +72,28 @@ export default async function handler(req, res) {
       subject: subject,
       html: `
         <h2>Detalii cerere</h2>
-        <p><strong>Nume complet:</strong> ${fullName}</p>
-        <p><strong>Număr de telefon:</strong> ${phoneNumber}</p>
-        <p><strong>Tip dispozitiv:</strong> ${deviceType}</p>
-        <p><strong>Marcă/Model:</strong> ${brandModel}</p>
-        <p><strong>Descriere problemă:</strong> ${problemDescription}</p>
+        <p><strong>Nume complet:</strong> ${fullName || "Nespecificat"}</p>
+        <p><strong>Număr de telefon:</strong> ${
+          phoneNumber || "Nespecificat"
+        }</p>
+        <p><strong>Tip dispozitiv:</strong> ${deviceType || "Nespecificat"}</p>
+        <p><strong>Marcă/Model:</strong> ${brandModel || "Nespecificat"}</p>
+        <p><strong>Descriere problemă:</strong> ${
+          problemDescription || "Nespecificat"
+        }</p>
         <p><strong>Acceptă să fie contactat(ă):</strong> ${
           acceptContact === "true" ? "Da" : "Nu"
         }</p>
-        <p><strong>Metodă preferată de contact:</strong> ${preferredContact}</p>
+        <p><strong>Metodă preferată de contact:</strong> ${
+          preferredContact || "Telefon"
+        }</p>
       `,
-      attachments, // Attach the file(s)
+      attachments,
     };
 
     try {
       await transporter.sendMail(mailOptions);
-
-      res.writeHead(302, { Location: "/submitted.html" });
-      res.end();
+      res.status(200).json({ message: "Email sent successfully" });
     } catch (error) {
       console.error("Eroare la trimiterea emailului:", error);
       res.status(500).json({ message: "Trimiterea emailului a eșuat." });

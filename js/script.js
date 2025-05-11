@@ -99,7 +99,7 @@ if (document.getElementById("repairForm")) {
       // ✅ Only proceed if there are no validation errors
       if (!hasError) {
         const form = document.getElementById("repairForm");
-        const fileInput = document.getElementById("file-upload");
+        const fileInput = document.querySelector(".file-upload");
         const file = fileInput.files[0];
 
         // ✅ Validate file type
