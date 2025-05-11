@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       preferredContact,
     } = fields;
 
-    const uploadedFile = files.file;
+    const uploadedFile = files.file?.[0];
 
     console.log("Uploaded file:", uploadedFile);
 
