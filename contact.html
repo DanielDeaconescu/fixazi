@@ -256,9 +256,15 @@
               <li class="mb-2 contact-data-item">
                 <a class="text-decoration-none" href="https://maps.app.goo.gl/DjjqwmbCwaBL1BBr5" target="_blank">
                   <i class="fas fa-map-marker-alt me-2 text-primary"></i>
-                  Str. Strada 1 Decembrie 1918 8, Galați 800258
+
+                  <span id="address">
+                    Str. 1 Decembrie 1918 Nr. 8, Galați 800258
+                  </span>  
                 </a>
-                
+                <button class="copy-button ms-3 btn-sm btn btn-outline-primary">
+                  <i class="fa-solid fa-copy"></i>
+                  Copiază
+                </button>
               </li>
               <li class="mb-2 contact-data-item">
                 <i class="fas fa-phone me-2 text-primary"></i>
@@ -755,6 +761,18 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Închide</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast notification for the copy button -->
+<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3 mt-3 p-3">
+  <div id="copyToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+    <div class="d-flex">
+      <div class="toast-body">
+        Adresa a fost copiată în clipboard!
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
 </div>

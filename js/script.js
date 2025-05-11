@@ -261,3 +261,21 @@ document.addEventListener("click", function (e) {
       .setAttribute("aria-expanded", "false");
   }
 });
+
+// Copy the address to clipboard
+
+const copyButton = document.querySelector(".copy-button");
+copyButton.addEventListener("click", function () {
+  const address = document.getElementById("address").textContent;
+
+  navigator.clipboard
+    .writeText(address)
+    .then(() => {
+      const toastEl = document.getElementById("copyToast");
+      const toast = new bootstrap.Toast(toastEl);
+      toast.show();
+    })
+    .catch((err) => {
+      console.error("Eroare la copierea adresei!", err);
+    });
+});
