@@ -56,17 +56,19 @@ export default async function handler(req, res) {
       },
     });
 
-    const now = new Date();
-    const timestamp = now.toLocaleString("ro-RO", {
+    const currentDate = new Date();
+    const bucharestTime = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Bucharest",
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
-    });
+      hour12: false,
+    }).format(currentDate);
 
-    const subject = `Cerere reparație de la ${fullName} - ${timestamp}`;
+    const subject = `Cerere reparație de la ${fullName} - ${bucharestTime}`;
 
     const mailOptions = {
       from: `"Formular FIXAZI" <${process.env.EMAIL_USER}>`,
