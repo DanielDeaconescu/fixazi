@@ -118,8 +118,14 @@ if (document.getElementById("repairForm")) {
         }
 
         const formData = new FormData();
-        formData.append("fullName", fullName);
-        formData.append("phoneNumber", phone);
+        formData.append(
+          "fullName",
+          document.getElementById("fullName").value.trim()
+        );
+        formData.append(
+          "phoneNumber",
+          document.getElementById("phoneNumber").value.trim()
+        );
         formData.append(
           "deviceType",
           document.getElementById("deviceType").value
@@ -140,7 +146,15 @@ if (document.getElementById("repairForm")) {
           "preferredContact",
           document.getElementById("preferredContact").value
         );
-        if (file) formData.append("file", file);
+
+        if (file) {
+          formData.append("file", file);
+        }
+
+        console.log("FormData entries:");
+        for (let [key, value] of formData.entries()) {
+          console.log(key, value);
+        }
 
         try {
           const response = await fetch("/api/sendRepairRequest", {

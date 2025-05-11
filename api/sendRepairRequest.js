@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 export const config = {
   api: {
-    bodyParser: false, // Required for formidable to work
+    bodyParser: false,
   },
 };
 
@@ -12,36 +12,54 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
 
-  const form = formidable({ multiples: false });
+  try {
+    const form = formidable({});
 
-  form.parse(req, async (err, fields, files) => {
-    if (err) {
-      console.error("Form parsing error:", err);
-      return res.status(500).json({ message: "Form parsing failed" });
+    const [fields, files] = await new Promise((resolve, reject) => {
+      form.parse(req, (err, fields, files) => {
+        if (err) reject(err);
+        resolve([fields, files]);
+      });
+    });
+
+    console.log("Parsed fields:", JSON.stringify(fields, null, 2));
+    console.log("Parsed files:", JSON.stringify(files, null, 2));
+
+    // Ensure required fields exist
+    if (!fields) {
+      return res.status(400).json({ message: "No form data received" });
     }
 
-    // Access fields directly (no need for [0] in current formidable versions)
-    const {
-      fullName,
-      phoneNumber,
-      deviceType,
-      brandModel,
-      problemDescription,
-      acceptContact,
-      preferredContact,
-    } = fields;
+    // Extract all fields with fallbacks
+    const fullName = fields.fullName?.[0] || fields.fullName || "Nespecificat";
+    const phoneNumber =
+      fields.phoneNumber?.[0] || fields.phoneNumber || "Nespecificat";
+    const deviceType =
+      fields.deviceType?.[0] || fields.deviceType || "Nespecificat";
+    const brandModel =
+      fields.brandModel?.[0] || fields.brandModel || "Nespecificat";
+    const problemDescription =
+      fields.problemDescription?.[0] ||
+      fields.problemDescription ||
+      "Nespecificat";
+    const acceptContact =
+      fields.acceptContact?.[0] || fields.acceptContact || "false";
+    const preferredContact =
+      fields.preferredContact?.[0] || fields.preferredContact || "Telefon";
 
-    // Handle single file upload (note the change from files.file?.[0] to files.file)
-    const uploadedFile = files.file;
-
+    // Handle file upload
     let attachments = [];
+    const uploadedFile = files.file?.[0] || files.file;
+
     if (uploadedFile && uploadedFile.filepath) {
       attachments.push({
         filename: uploadedFile.originalFilename || "attachment",
         path: uploadedFile.filepath,
+        contentType: uploadedFile.mimetype || "application/octet-stream",
       });
     }
 
+    // Create transporter
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: Number(process.env.EMAIL_PORT),
@@ -52,18 +70,15 @@ export default async function handler(req, res) {
       },
     });
 
+    // Format date
     const currentDate = new Date();
-    const bucharestTime = new Intl.DateTimeFormat("en-GB", {
+    const bucharestTime = currentDate.toLocaleString("ro-RO", {
       timeZone: "Europe/Bucharest",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false,
-    }).format(currentDate);
+      dateStyle: "short",
+      timeStyle: "medium",
+    });
 
+    // Prepare email
     const subject = `Cerere reparație de la ${fullName} - ${bucharestTime}`;
 
     const mailOptions = {
@@ -72,31 +87,28 @@ export default async function handler(req, res) {
       subject: subject,
       html: `
         <h2>Detalii cerere</h2>
-        <p><strong>Nume complet:</strong> ${fullName || "Nespecificat"}</p>
-        <p><strong>Număr de telefon:</strong> ${
-          phoneNumber || "Nespecificat"
-        }</p>
-        <p><strong>Tip dispozitiv:</strong> ${deviceType || "Nespecificat"}</p>
-        <p><strong>Marcă/Model:</strong> ${brandModel || "Nespecificat"}</p>
-        <p><strong>Descriere problemă:</strong> ${
-          problemDescription || "Nespecificat"
-        }</p>
+        <p><strong>Nume complet:</strong> ${fullName}</p>
+        <p><strong>Număr de telefon:</strong> ${phoneNumber}</p>
+        <p><strong>Tip dispozitiv:</strong> ${deviceType}</p>
+        <p><strong>Marcă/Model:</strong> ${brandModel}</p>
+        <p><strong>Descriere problemă:</strong> ${problemDescription}</p>
         <p><strong>Acceptă să fie contactat(ă):</strong> ${
           acceptContact === "true" ? "Da" : "Nu"
         }</p>
-        <p><strong>Metodă preferată de contact:</strong> ${
-          preferredContact || "Telefon"
-        }</p>
+        <p><strong>Metodă preferată de contact:</strong> ${preferredContact}</p>
       `,
       attachments,
     };
 
-    try {
-      await transporter.sendMail(mailOptions);
-      res.status(200).json({ message: "Email sent successfully" });
-    } catch (error) {
-      console.error("Eroare la trimiterea emailului:", error);
-      res.status(500).json({ message: "Trimiterea emailului a eșuat." });
-    }
-  });
+    // Send email
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ success: true, message: "Email sent successfully" });
+  } catch (error) {
+    console.error("Error processing form:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error processing request",
+      error: error.message,
+    });
+  }
 }
