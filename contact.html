@@ -282,7 +282,7 @@
       <div class="container">
         <div class="row">
           <div
-            class="col-md-4 my-3 d-flex flex-column align-items-start about-section-footer"
+            class="col-lg-4 my-3 d-flex flex-column align-items-start about-section-footer"
           >
             <h5>
               Despre
@@ -296,7 +296,7 @@
             </p>
           </div>
 
-          <div class="col-md-4 my-3 d-flex flex-column align-items-start">
+          <div class="col-lg-4 my-3 d-flex flex-column align-items-start">
             <h5>Link-uri utile</h5>
             <ul class="list-unstyled">
               <li>
@@ -319,7 +319,7 @@
           </div>
           
 
-          <div class="col-md-4 my-3 d-flex flex-column align-items-start">
+          <div class="col-lg-4 my-3 d-flex flex-column align-items-start">
             <div class="mb-4">
               <h5>Rețele de socializare</h5>
               <a href="#" class="text-decoration-none">
@@ -337,5 +337,194 @@
         </div>
       </div>
     </footer>
+
+    <!-- Side buttons -->
+    <div class="side-buttons-container d-flex gap-2">
+      <div class="d-flex gap-2 bg-light rounded-1 p-2 form-button-container">
+        <div class="d-flex align-items-center d-none side-buttons-form">
+          Cerere de reparație
+        </div>
+        <a
+          class="d-flex justify-content-center text-decoration-none"
+          href="#"
+          data-bs-toggle="modal"
+          data-bs-target="#formModal"
+        >
+          <i class="fa-solid fa-square-pen fa-2x icon-form-custom"></i>
+        </a>
+      </div>
+      <div
+        class="d-flex gap-2 bg-light rounded-1 p-2 whatsapp-button-container"
+      >
+        <div class="d-flex align-items-center d-none side-buttons-whatsapp">
+          Scrie-ne pe WhatsApp
+        </div>
+        <a
+          class="d-flex justify-content-center text-decoration-none"
+          href="https://wa.me/+40750419349"
+          target="_blank"
+        >
+          <i
+            class="fa-brands fa-square-whatsapp fa-2x icon-whatsapp-custom"
+          ></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Form Modal -->
+    <div
+      class="modal fade"
+      id="formModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <img
+                src="./images/fixazi_logo.jpg"
+                width="200"
+                alt="logo fixazi reparatii telefoane"
+              />
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form
+              id="repairForm"
+              action="/api/sendRepairRequest"
+              method="POST"
+              novalidate
+            >
+              <h4>Cerere de reparație</h4>
+              <div class="mb-3">
+                <label for="fullName" class="form-label">Nume complet</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fullName"
+                  placeholder="Ex: Andrei Popescu"
+                />
+                <div class="text-danger small mt-1" id="fullNameError"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="phoneNumber" class="form-label"
+                  >Număr de telefon</label
+                >
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phoneNumber"
+                  placeholder="Ex: 07xxxxxxxx"
+                />
+                <div class="text-danger small mt-1" id="phoneError"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="emailAddress" class="form-label"
+                  >Adresă de email</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="emailAddress"
+                  placeholder="Ex: exemplu@email.com"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="deviceType" class="form-label"
+                  >Tip dispozitiv</label
+                >
+                <select class="form-select" id="deviceType">
+                  <option selected disabled>Alege un dispozitiv</option>
+                  <option value="telefon">Telefon</option>
+                  <option value="tableta">Tabletă</option>
+                  <option value="laptop">Laptop</option>
+                  <option value="gps">GPS</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="brandModel" class="form-label"
+                  >Marcă și model</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="brandModel"
+                  placeholder="Ex: Samsung Galaxy S21"
+                />
+              </div>
+
+              <div class="custom-file-upload mb-3">
+                <label for="file-upload" class="custom-file-label"
+                  >Atașează o imagine (opțional)</label
+                >
+                <input id="file-upload" type="file" />
+              </div>
+
+              <div class="mb-3">
+                <label for="problemDescription" class="form-label"
+                  >Descrierea problemei</label
+                >
+                <textarea
+                  class="form-control"
+                  id="problemDescription"
+                  rows="3"
+                  placeholder="Scrie aici ce problemă are dispozitivul..."
+                ></textarea>
+              </div>
+
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="acceptContact"
+                  name="acceptContact"
+                />
+                <label class="form-check-label" for="acceptContact">
+                  Sunt de acord să fiu contactat(ă) cu privire la această
+                  cerere.
+                </label>
+              </div>
+
+              <div class="mb-3">
+                <label for="preferredContact" class="form-label"
+                  >Cum preferi să fii contactat(ă)?</label
+                >
+                <select
+                  class="form-select"
+                  id="preferredContact"
+                  name="preferredContact"
+                >
+                  <option value="Telefon">Telefon</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Email">Email</option>
+                  <option value="SMS">SMS</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">
+                Trimite cererea
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="js/replaceme.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

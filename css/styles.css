@@ -289,6 +289,23 @@ input[type=file] {
   width: 70%;
 }
 
+.header-services {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.our-services-subsection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.our-services-subsection-p {
+  max-width: 70%;
+}
+
 .services-call-to-action {
   border-top: 2px solid white;
   border-bottom: 2px solid white;
@@ -296,6 +313,10 @@ input[type=file] {
 
 .contact-hero-section {
   background-color: var(--blue-clr-logo);
+}
+
+.our-services-p {
+  max-width: 70%;
 }
 
 .header-contact {

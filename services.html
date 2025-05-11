@@ -96,16 +96,16 @@
     </nav>
 
     <!-- hero section -->
-    <header class="text-white py-5 position-relative video-background">
+    <header class="header-services text-white py-5 position-relative video-background">
         <div class="container text-center">
             <video autoplay muted loop playsinline>
                 <source src="services_hero_section.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <div class="overlay"></div>
-            <div class="content">
+            <div class="d-flex flex-column justify-content-center align-items-center content">
                 <h1 class="display-4 fw-bold mb-3">Serviciile Noastre</h1>
-                <p class="lead mb-4">
+                <p class="our-services-p lead mb-4">
                     Oferim reparații rapide și de încredere pentru telefoane și tablete. Descoperă ce putem face pentru dispozitivul tău și consultă lista noastră cu prețuri estimative pentru cele mai frecvente probleme.
                 </p>
                 <a href="#lista-servicii" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#repairPricesModal">Vezi prețuri estimative</a>
@@ -115,12 +115,15 @@
     </header>
 
     <section class="container py-5">
-      <h2 class="text-center mb-4 text-white">Serviciile Noastre</h2>
-      <p class="text-center mb-5 text-white">
-        Oferim o gamă variată de servicii de reparații pentru dispozitivele
-        tale. Fie că este vorba de un telefon spart, o tabletă care nu mai
-        pornește sau un laptop lent, suntem aici să te ajutăm.
-      </p>
+      <div class="our-services-subsection">
+        <h2 class="text-center mb-4 text-white">Serviciile Noastre</h2>
+        <p class="text-center mb-5 text-white our-services-subsection-p">
+          Oferim o gamă variată de servicii de reparații pentru dispozitivele
+          tale. Fie că este vorba de un telefon spart, o tabletă care nu mai
+          pornește sau un laptop lent, suntem aici să te ajutăm.
+        </p>
+      </div>
+      
 
       <div class="row g-4">
         <!-- Service 1 -->
@@ -436,7 +439,7 @@
         <div class="container">
           <div class="row">
             <div
-              class="col-md-4 my-3 d-flex flex-column align-items-start about-section-footer"
+              class="col-lg-4 my-3 d-flex flex-column align-items-start about-section-footer"
             >
               <h5>
                 Despre
@@ -450,7 +453,7 @@
               </p>
             </div>
   
-            <div class="col-md-4 my-3 d-flex flex-column align-items-start">
+            <div class="col-lg-4 my-3 d-flex flex-column align-items-start">
               <h5>Link-uri utile</h5>
               <ul class="list-unstyled">
                 <li>
@@ -473,7 +476,7 @@
             </div>
             
   
-            <div class="col-md-4 my-3 d-flex flex-column align-items-start">
+            <div class="col-lg-4 my-3 d-flex flex-column align-items-start">
               <div class="mb-4">
                 <h5>Rețele de socializare</h5>
                 <a href="#" class="text-decoration-none">
