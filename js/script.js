@@ -38,19 +38,35 @@ if (videoModal !== null) {
 
 // reset form when modal is closed
 
-const repairModal = document.getElementById("formModal");
-const repairForm = document.getElementById("repairForm");
+const repairModals = document.querySelectorAll("#formModal");
 
-if (repairForm) {
-  repairModal.addEventListener("hidden.bs.modal", function () {
-    // Reset the form
-    repairForm.reset();
+repairModals.forEach((modal) => {
+  modal.addEventListener("hidden.bs.modal", function () {
+    const form = modal.querySelector(".repairForm");
 
-    // Clear error messages
-    document.getElementById("fullNameError").textContent = "";
-    document.getElementById("phoneError").textContent = "";
+    if (form) {
+      form.reset();
+
+      // Clear file input manually
+      const fileInput = form.querySelector(".file-upload");
+      if (fileInput) {
+        fileInput.value = "";
+      }
+
+      // Reset custom file name display
+      const fileNameSpan = form.querySelector(".file-name");
+      if (fileNameSpan) {
+        fileNameSpan.textContent = "Niciun fișier selectat";
+      }
+
+      // Clear error messages inside this modal form only
+      const fullNameError = form.querySelector(".fullNameError");
+      const phoneError = form.querySelector(".phoneError");
+      if (fullNameError) fullNameError.textContent = "";
+      if (phoneError) phoneError.textContent = "";
+    }
   });
-}
+});
 
 // form validation
 // form validation and submission
@@ -200,11 +216,20 @@ mediaQuery.addEventListener("change", (e) => {
 });
 
 // custom file upload functionality
-document.getElementById("file-upload").addEventListener("change", function () {
-  const fileNameSpan = document.getElementById("file-name");
-  if (this.files.length > 0) {
-    fileNameSpan.textContent = this.files[0].name;
-  } else {
-    fileNameSpan.textContent = "Niciun fișier selectat";
-  }
+document.querySelectorAll(".custom-file-upload").forEach((container) => {
+  const input = container.querySelector(".file-upload");
+  const label = container.querySelector(".custom-file-label");
+  const fileNameSpan = container.querySelector(".file-name");
+
+  // Clicking the label opens the file input
+  label.addEventListener("click", () => input.click());
+
+  // When file is selected, show its name
+  input.addEventListener("change", () => {
+    if (input.files.length > 0) {
+      fileNameSpan.textContent = input.files[0].name;
+    } else {
+      fileNameSpan.textContent = "Niciun fișier selectat";
+    }
+  });
 });

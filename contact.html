@@ -119,8 +119,7 @@
           <!-- Contact Form -->
           <div class="col-lg-6">
             <form
-              class="text-white"
-              id="repairForm"
+              class="text-white repairForm"
               action="/api/sendRepairRequest"
               method="POST"
               enctype="multipart/form-data"
@@ -135,7 +134,7 @@
                   id="fullName"
                   placeholder="Ex: Andrei Popescu"
                 />
-                <div class="text-danger small mt-1" id="fullNameError"></div>
+                <div class="text-danger small mt-1" class="fullNameError"></div>
               </div>
 
               <div class="mb-3">
@@ -148,7 +147,7 @@
                   id="phoneNumber"
                   placeholder="Ex: 07xxxxxxxx"
                 />
-                <div class="text-danger small mt-1" id="phoneError"></div>
+                <div class="text-danger small mt-1" class="phoneError"></div>
               </div>
 
               <div class="mb-3">
@@ -189,12 +188,13 @@
               </div>
 
               <div class="custom-file-upload mb-3">
-                <label for="file-upload" class="custom-file-label"
-                  >Atașează o imagine (opțional)</label
-                >
-                <input id="file-upload" name="file" type="file" />
-                <span id="file-name">Niciun fișier selectat</span>
+                <label class="custom-file-label">
+                  Atașează o imagine (opțional)
+                </label>
+                <input class="file-upload" name="file" type="file" />
+                <span class="file-name">Niciun fișier selectat</span>
               </div>
+              
 
               <div class="mb-3">
                 <label for="problemDescription" class="form-label"
@@ -423,8 +423,8 @@
           </div>
           <div class="modal-body">
             <form
-              class="text-white"
-              id="repairForm"
+              class="text-dark repairForm"
+              
               action="/api/sendRepairRequest"
               method="POST"
               enctype="multipart/form-data"
@@ -493,12 +493,13 @@
               </div>
 
               <div class="custom-file-upload mb-3">
-                <label for="file-upload" class="custom-file-label"
-                  >Atașează o imagine (opțional)</label
-                >
-                <input id="file-upload" name="file" type="file" />
-                <span id="file-name">Niciun fișier selectat</span>
+                <label class="custom-file-label">
+                  Atașează o imagine (opțional)
+                </label>
+                <input class="file-upload" name="file" type="file" />
+                <span class="file-name">Niciun fișier selectat</span>
               </div>
+              
 
               <div class="mb-3">
                 <label for="problemDescription" class="form-label"
