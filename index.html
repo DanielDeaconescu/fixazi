@@ -170,9 +170,11 @@
           </div>
           <div class="modal-body">
             <form
+              class="text-white"
               id="repairForm"
               action="/api/sendRepairRequest"
               method="POST"
+              enctype="multipart/form-data"
               novalidate
             >
               <h4>Cerere de reparație</h4>
@@ -241,7 +243,8 @@
                 <label for="file-upload" class="custom-file-label"
                   >Atașează o imagine (opțional)</label
                 >
-                <input id="file-upload" type="file" />
+                <input id="file-upload" name="file" type="file" />
+                <span id="file-name">Niciun fișier selectat</span>
               </div>
 
               <div class="mb-3">
