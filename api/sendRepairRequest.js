@@ -71,11 +71,8 @@ export default async function handler(req, res) {
           acceptContact === "true" ? "Da" : "Nu"
         }</p>
         <p><strong>Metodă preferată de contact:</strong> ${preferredContact}</p>
-        <p><strong>Fișier atașat:</strong> ${
-          uploadedFile ? uploadedFile.originalFilename : "Niciun fișier"
-        }</p>
       `,
-      attachments,
+      attachments, // Attach the file(s)
     };
 
     try {
