@@ -24,6 +24,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ message: "Form parsing failed" });
     }
 
+    // Correct field names based on the frontend formData
     const {
       fullName,
       phoneNumber,
