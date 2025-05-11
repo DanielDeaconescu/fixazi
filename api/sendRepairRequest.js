@@ -36,6 +36,8 @@ export default async function handler(req, res) {
 
     const uploadedFile = files.file;
 
+    console.log("Uploaded file:", uploadedFile);
+
     let attachments = [];
     if (uploadedFile && uploadedFile.filepath) {
       attachments.push({
