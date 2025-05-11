@@ -247,3 +247,17 @@ document.querySelectorAll(".custom-file-upload").forEach((container) => {
     }
   });
 });
+
+// clicking outside of the navigation closes the navigation
+document.addEventListener("click", function (e) {
+  const clicked = e.target;
+
+  const navBar = document.querySelector(".navbar-custom");
+  if (!navBar.contains(clicked)) {
+    document.querySelector(".navbar-collapse").classList.remove("show");
+    document.querySelector(".navbar-toggler").classList.add("collapsed");
+    document
+      .querySelector(".navbar-toggler")
+      .setAttribute("aria-expanded", "false");
+  }
+});
