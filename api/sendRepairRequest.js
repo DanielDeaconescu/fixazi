@@ -56,12 +56,24 @@ export default async function handler(req, res) {
       },
     });
 
+    const now = new Date();
+    const timestamp = now.toLocaleString("ro-RO", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+
+    const subject = `Cerere reparație de la ${fullName} - ${timestamp}`;
+
     const mailOptions = {
-      from: `"FIXAZI Form" <${process.env.EMAIL_USER}>`,
+      from: `"Formular FIXAZI" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO,
-      subject: "Cerere nouă de reparație de la FIXAZI",
+      subject: subject,
       html: `
-        <h2>Detalii client</h2>
+        <h2>Detalii cerere</h2>
         <p><strong>Nume complet:</strong> ${fullName}</p>
         <p><strong>Număr de telefon:</strong> ${phoneNumber}</p>
         <p><strong>Tip dispozitiv:</strong> ${deviceType}</p>
