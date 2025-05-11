@@ -333,6 +333,14 @@ input[type="file"] {
 
 // Styling services end
 
+// Styling contact start
+
+.header-contact {
+  height: 350px;
+}
+
+// Styling contact end
+
 // Media Queries start
 
 @media (max-width: 576px) {
@@ -363,7 +371,7 @@ input[type="file"] {
 
   .our-values-paragraph {
     text-align: justify;
-    padding: 0 2rem;
+    padding: 0 0.5rem;
   }
 
   .our-values-container {
@@ -420,5 +428,10 @@ input[type="file"] {
 
   .repair-services-container {
     padding-top: 1rem !important;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
   }
 }
