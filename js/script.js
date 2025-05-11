@@ -166,7 +166,6 @@ if (document.getElementById("repairForm")) {
           if (result.success) {
             // ✅ Check the success flag from backend
             form.reset();
-            window.location.href = "/submitted.html"; // Redirect AFTER confirming success
           } else {
             // Show error toast if success=false
             const errorToast = new bootstrap.Toast(
