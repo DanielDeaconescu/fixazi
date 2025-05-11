@@ -158,15 +158,17 @@ if (document.getElementById("repairForm")) {
         try {
           const response = await fetch("/api/sendRepairRequest", {
             method: "POST",
-            body: formData, // 👈 no headers needed
+            body: formData,
           });
 
-          const result = await response.json();
+          const result = await response.json(); // Parse JSON response
 
-          if (response.ok) {
-            window.location.href = "submitted.html";
+          if (result.success) {
+            // ✅ Check the success flag from backend
             form.reset();
+            window.location.href = "submitted.html"; // Redirect AFTER confirming success
           } else {
+            // Show error toast if success=false
             const errorToast = new bootstrap.Toast(
               document.getElementById("errorToast")
             );
