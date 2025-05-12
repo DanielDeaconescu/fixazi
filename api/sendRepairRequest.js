@@ -14,7 +14,8 @@ export default async function handler(req, res) {
 
   try {
     const form = formidable({
-      allowEmptyFiles: true, // This allows empty files
+      allowEmptyFiles: true, // Allow empty files
+      minFileSize: 0, // Allow files with size 0 bytes (cancel file selection)
     });
 
     const [fields, files] = await new Promise((resolve, reject) => {
