@@ -129,8 +129,9 @@ if (document.getElementById("repairForm")) {
       if (!hasError) {
         // Show the spinner and disable the button
         submitButton.disabled = true;
-        loadingSpinner.style.display = "inline-block"; // Show the spinner
-        submitButton.innerHTML = "Procesare..."; // Change the button text
+        loadingSpinner.style.display = "inline-block"; // Show spinner
+        const originalText = submitButton.textContent; // Save the original text
+        submitButton.textContent = "Procesare..."; // Change the button text
 
         const form = document.getElementById("repairForm");
         const formData = new FormData();
@@ -170,20 +171,18 @@ if (document.getElementById("repairForm")) {
             body: formData,
           });
 
-          const result = await response.json(); // Parse JSON response
+          const result = await response.json();
 
           if (result.success) {
             form.reset(); // Reset the form if successful
             window.location.href = "/submitted.html"; // Redirect after success
           } else {
-            // Show error toast if something goes wrong
             const errorToast = new bootstrap.Toast(
               document.getElementById("errorToast")
             );
             errorToast.show();
           }
         } catch (error) {
-          // Handle any network errors
           console.error(error);
           const errorToast = new bootstrap.Toast(
             document.getElementById("errorToast")
@@ -192,8 +191,8 @@ if (document.getElementById("repairForm")) {
         } finally {
           // Always re-enable the button and hide the spinner
           submitButton.disabled = false;
-          loadingSpinner.style.display = "none"; // Hide the spinner
-          submitButton.innerHTML = "Trimite cererea"; // Restore original text
+          loadingSpinner.style.display = "none"; // Hide spinner
+          submitButton.textContent = originalText; // Restore original text
         }
       }
     });
