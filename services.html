@@ -607,6 +607,7 @@
                 </label>
                 <input class="file-upload" name="file" type="file" />
                 <span class="file-name">Niciun fișier selectat</span>
+                <div id="fileError" class="text-danger"></div>
               </div>
               
 
@@ -653,9 +654,10 @@
               </div>
               
 
-              <button type="submit" class="btn btn-primary w-100">
-                Trimite cererea
-              </button>
+              <button id="submitBtn" type="submit" class="btn btn-primary">
+                <span id="loadingSpinner" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" style="display: none;"></span>
+                <span id="submitText">Trimite cererea</span>
+              </button>                       
             </form>
         </div>
       </div>
