@@ -315,3 +315,23 @@ if (copyButton) {
       });
   });
 }
+
+// Cookies pop-up functionality
+
+console.log(document.getElementById("cookieAcceptBtn"));
+
+document.addEventListener("DOMContentLoaded", function () {
+  const banner = document.getElementById("cookieBanner");
+  const acceptBtn = document.getElementById("cookieAcceptBtn");
+
+  // Show the banner only if cookies haven't been accepted
+  if (localStorage.getItem("cookiesAccepted") !== "true") {
+    banner.style.display = "flex";
+  }
+
+  // Handle "Ok" button click
+  acceptBtn.addEventListener("click", () => {
+    localStorage.setItem("cookiesAccepted", "true");
+    banner.style.display = "none";
+  });
+});
