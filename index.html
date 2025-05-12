@@ -843,16 +843,18 @@
       </div>
     </div>
 
-    <!-- Cookie Notice Banner -->
-<div id="cookieBanner" class="fixed-bottom bg-dark text-white p-3 d-flex justify-content-between align-items-center" style="z-index: 1050; height: 80px; display: none;">
-  <div>
-    Acest site nu folosește cookie-uri în prezent. Dacă se vor introduce, vă vom informa.
-  </div>
-  <div class="d-flex gap-2">
-    <button id="cookieAcceptBtn" class="btn btn-success btn-sm">Ok</button>
-    <a href="/cookies.html" class="btn btn-outline-light btn-sm">Află mai multe despre cookies</a>
-  </div>
-</div>
+    <!-- Cookies pop-up -->
+    <div id="cookie-banner" class="fixed-bottom bg-dark text-white py-3 px-4 d-none">
+      <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <p class="mb-2 mb-md-0">
+          Acest site nu folosește cookies în prezent. Dacă vom implementa cookies, vă vom informa.
+        </p>
+        <div class="d-flex gap-2">
+          <button id="accept-cookies" class="btn btn-primary btn-sm">Ok</button>
+          <a href="cookies.html" class="btn btn-outline-light btn-sm">Află mai multe despre cookies</a>
+        </div>
+      </div>
+    </div>
 
 
     <!-- Lightbox JS -->

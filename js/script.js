@@ -318,20 +318,18 @@ if (copyButton) {
 
 // Cookies pop-up functionality
 
-console.log(document.getElementById("cookieAcceptBtn"));
-
 document.addEventListener("DOMContentLoaded", function () {
-  const banner = document.getElementById("cookieBanner");
-  const acceptBtn = document.getElementById("cookieAcceptBtn");
+  const banner = document.getElementById("cookie-banner");
+  const acceptBtn = document.getElementById("accept-cookies");
 
-  // Show the banner only if cookies haven't been accepted
+  // Show banner only if cookies haven't been accepted
   if (localStorage.getItem("cookiesAccepted") !== "true") {
-    banner.style.display = "flex";
+    banner.classList.remove("d-none");
   }
 
-  // Handle "Ok" button click
-  acceptBtn.addEventListener("click", () => {
+  // Handle accept button
+  acceptBtn.addEventListener("click", function () {
     localStorage.setItem("cookiesAccepted", "true");
-    banner.style.display = "none";
+    banner.classList.add("d-none");
   });
 });
