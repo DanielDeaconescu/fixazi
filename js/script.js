@@ -83,6 +83,7 @@ repairModals.forEach((modal) => {
   });
 });
 
+// form validation and submission
 if (document.getElementById("repairForm")) {
   document
     .getElementById("repairForm")
@@ -91,15 +92,12 @@ if (document.getElementById("repairForm")) {
 
       // Get references to the button and spinner
       const submitButton = document.getElementById("submitBtn");
-      const buttonText = submitButton.querySelector(
-        "span:not(#loadingSpinner)"
-      ); // Get the text span
       const loadingSpinner = document.getElementById("loadingSpinner");
 
       // Clear previous error messages
       document.getElementById("fullNameError").textContent = "";
       document.getElementById("phoneError").textContent = "";
-      document.getElementById("fileError").textContent = "";
+      document.getElementById("fileError").textContent = ""; // Clear file error
 
       let hasError = false;
       const fullName = document.getElementById("fullName").value.trim();
@@ -127,13 +125,14 @@ if (document.getElementById("repairForm")) {
         hasError = true;
       }
 
-      // Only proceed if there are no validation errors
+      // ✅ Only proceed if there are no validation errors
       if (!hasError) {
         // Show the spinner and disable the button
         submitButton.disabled = true;
-        loadingSpinner.style.display = "inline-block";
-        if (buttonText) buttonText.textContent = "Procesare...";
+        loadingSpinner.style.display = "inline-block"; // Show the spinner
+        submitButton.innerHTML = "Procesare..."; // Change the button text
 
+        const form = document.getElementById("repairForm");
         const formData = new FormData();
         formData.append("fullName", fullName);
         formData.append("phoneNumber", phone);
@@ -171,21 +170,21 @@ if (document.getElementById("repairForm")) {
             body: formData,
           });
 
-          if (response.ok) {
-            // Reset form and redirect on success
-            document.getElementById("repairForm").reset();
-            window.location.href = "/submitted.html";
+          const result = await response.json(); // Parse JSON response
+
+          if (result.success) {
+            form.reset(); // Reset the form if successful
+            window.location.href = "/submitted.html"; // Redirect after success
           } else {
-            // Handle server-side errors
-            const errorData = await response.json();
-            console.error("Server error:", errorData);
+            // Show error toast if something goes wrong
             const errorToast = new bootstrap.Toast(
               document.getElementById("errorToast")
             );
             errorToast.show();
           }
         } catch (error) {
-          console.error("Network error:", error);
+          // Handle any network errors
+          console.error(error);
           const errorToast = new bootstrap.Toast(
             document.getElementById("errorToast")
           );
@@ -193,8 +192,8 @@ if (document.getElementById("repairForm")) {
         } finally {
           // Always re-enable the button and hide the spinner
           submitButton.disabled = false;
-          loadingSpinner.style.display = "none";
-          if (buttonText) buttonText.textContent = "Trimite cererea";
+          loadingSpinner.style.display = "none"; // Hide the spinner
+          submitButton.innerHTML = "Trimite cererea"; // Restore original text
         }
       }
     });
