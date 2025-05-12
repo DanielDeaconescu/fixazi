@@ -84,7 +84,6 @@ repairModals.forEach((modal) => {
 });
 
 // form validation and submission
-// form validation and submission
 if (document.getElementById("repairForm")) {
   document
     .getElementById("repairForm")
@@ -94,6 +93,8 @@ if (document.getElementById("repairForm")) {
       // Get references to the button and spinner
       const submitButton = document.getElementById("submitBtn");
       const loadingSpinner = document.getElementById("loadingSpinner");
+
+      console.log("Form submitted, showing spinner"); // Debug
 
       // Clear previous error messages
       document.getElementById("fullNameError").textContent = "";
@@ -131,6 +132,8 @@ if (document.getElementById("repairForm")) {
         // Show the spinner and disable the button
         submitButton.disabled = true;
         loadingSpinner.style.display = "inline-block"; // Show spinner
+        console.log("Spinner should be visible now"); // Debug
+
         const originalText = submitButton.textContent; // Save the original text
         submitButton.textContent = "Procesare..."; // Change the button text
 
@@ -194,6 +197,7 @@ if (document.getElementById("repairForm")) {
           submitButton.disabled = false;
           loadingSpinner.style.display = "none"; // Hide spinner
           submitButton.textContent = originalText; // Restore original text
+          console.log("Spinner hidden, button re-enabled"); // Debug
         }
       }
     });
