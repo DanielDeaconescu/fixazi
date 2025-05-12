@@ -44,8 +44,13 @@ export default async function handler(req, res) {
       "Nespecificat";
     const acceptContact =
       fields.acceptContact?.[0] || fields.acceptContact || "false";
-    const preferredContact =
-      fields.preferredContact?.[0] || fields.preferredContact || "Telefon";
+    let preferredContact = "Niciuna";
+    if (acceptContact === "true") {
+      preferredContact =
+        fields.preferredContact?.[0] ||
+        fields.preferredContact ||
+        "Nespecificat";
+    }
 
     // Handle file upload
     let attachments = [];
