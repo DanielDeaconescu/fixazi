@@ -84,7 +84,7 @@ repairModals.forEach((modal) => {
 });
 
 // form validation and submission
-if (document.getElementById("repairForm")) {
+if (document.querySelector(".repairForm")) {
   document
     .getElementById("repairForm")
     .addEventListener("submit", async function (e) {
