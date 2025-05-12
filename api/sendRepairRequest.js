@@ -45,6 +45,9 @@ export default async function handler(req, res) {
     const acceptContact =
       fields.acceptContact?.[0] || fields.acceptContact || "false";
     let preferredContact = "Niciuna";
+
+    console.log("acceptContact raw:", fields.acceptContact);
+
     if (acceptContact === "true") {
       preferredContact =
         fields.preferredContact?.[0] ||
