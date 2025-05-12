@@ -129,7 +129,7 @@ if (document.getElementById("repairForm")) {
       if (!hasError) {
         // Show the spinner and disable the button
         submitButton.disabled = true;
-        loadingSpinner.style.display = "inline-block";
+        loadingSpinner.style.display = "inline-block"; // Show the spinner
         submitButton.innerHTML = "Procesare..."; // Change the button text
 
         const form = document.getElementById("repairForm");
@@ -192,7 +192,7 @@ if (document.getElementById("repairForm")) {
         } finally {
           // Always re-enable the button and hide the spinner
           submitButton.disabled = false;
-          loadingSpinner.style.display = "none";
+          loadingSpinner.style.display = "none"; // Hide the spinner
           submitButton.innerHTML = "Trimite cererea"; // Restore original text
         }
       }
