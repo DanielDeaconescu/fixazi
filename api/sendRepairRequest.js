@@ -13,7 +13,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const form = formidable({});
+    const form = formidable({
+      allowEmptyFiles: true, // This allows empty files
+    });
 
     const [fields, files] = await new Promise((resolve, reject) => {
       form.parse(req, (err, fields, files) => {
@@ -58,6 +60,7 @@ export default async function handler(req, res) {
     let attachments = [];
     const uploadedFile = files.file?.[0] || files.file;
 
+    // Check if the file exists and its size is greater than 0
     if (uploadedFile && uploadedFile.filepath && uploadedFile.size > 0) {
       attachments.push({
         filename: uploadedFile.originalFilename || "attachment",
