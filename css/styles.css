@@ -383,6 +383,10 @@ input[type=file] {
   z-index: 100;
 }
 
+#cookie-banner {
+  background-color: hsl(189, 14%, 18%);
+}
+
 @media (max-width: 576px) {
   .navbar-custom {
     height: unset;
@@ -446,6 +450,18 @@ input[type=file] {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+  .cookie-banner-p {
+    font-size: 0.8rem;
+  }
+  #cookie-banner {
+    padding: 0.5rem !important;
+  }
+  #accept-cookies {
+    font-size: 0.8rem;
+  }
+  .more-about-cookies {
+    font-size: 0.8rem;
   }
 }
 @media (min-width: 576px) and (max-width: 768px) {
