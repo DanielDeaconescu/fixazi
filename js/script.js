@@ -333,3 +333,14 @@ document.addEventListener("DOMContentLoaded", function () {
     banner.classList.add("d-none");
   });
 });
+
+// Logic for the mobile action bar
+
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleBtn = document.getElementById("toggle-schedule");
+  const scheduleBox = document.getElementById("schedule-box");
+
+  toggleBtn.addEventListener("click", function () {
+    scheduleBox.classList.toggle("d-none");
+  });
+});

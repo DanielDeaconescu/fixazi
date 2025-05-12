@@ -856,6 +856,46 @@
       </div>
     </div>
 
+    <!-- Bottom nav bar - only visible on small screens -->
+<nav class="d-block d-sm-none fixed-bottom bg-light border-top shadow-sm">
+  <div class="container d-flex justify-content-around align-items-center py-2">
+    <!-- Call button -->
+    <a href="tel:+40743352949" class="btn btn-success d-flex flex-column align-items-center justify-content-center shadow-sm p-2 rounded">
+      <div>
+        <i class="fas fa-phone fa-lg mb-1"></i>
+      </div>
+      <div>
+        <small>Sună</small>
+      </div>
+    </a>
+
+    <!-- Schedule toggle button -->
+  <button id="toggle-schedule" class="btn btn-outline-primary d-flex flex-column justify-content-center align-items-center shadow-sm p-2 rounded">
+    <div>
+      <i class="fas fa-clock fa-lg mb-1"></i>
+    </div>
+    <div>
+      <small>Vezi Program</small>
+    </div>
+  </button>
+
+  </div>
+</nav>
+
+<!-- Collapsible schedule - hidden by default -->
+<div id="schedule-box" class="d-none bg-white border-top p-3 shadow-sm d-sm-none fixed-bottom" style="margin-bottom: 86px;">
+  <ul class="list-unstyled mb-0 small">
+    <li><strong>Luni:</strong> 09:00 – 17:00</li>
+    <li><strong>Marți:</strong> 09:00 – 17:00</li>
+    <li><strong>Miercuri:</strong> 09:00 – 17:00</li>
+    <li><strong>Joi:</strong> 09:00 – 17:00</li>
+    <li><strong>Vineri:</strong> 09:00 – 17:00</li>
+    <li><strong>Sâmbătă:</strong> Închis</li>
+    <li><strong>Duminică:</strong> Închis</li>
+  </ul>
+</div>
+
+
 
     <!-- Lightbox JS -->
     <script src="js/lightbox-plus-jquery.min.js" defer></script>
