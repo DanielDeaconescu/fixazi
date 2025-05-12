@@ -470,6 +470,21 @@ input[type="file"] {
   .logo-submitted {
     width: 350px;
   }
+
+  // contact page
+  .contact-data-item {
+    font-size: 0.8rem;
+  }
+
+  .copy-button {
+    font-size: 0.8rem;
+  }
+
+  .custom-file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
