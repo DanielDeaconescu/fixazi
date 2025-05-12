@@ -36,7 +36,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  z-index: 0;
+  z-index: -1;
 }
 
 .xl-text {
@@ -310,6 +310,7 @@ input[type="file"] {
   position: fixed;
   bottom: 35%;
   right: 20px;
+  z-index: 1000;
 }
 
 .icon-form-custom {
@@ -425,7 +426,7 @@ input[type="file"] {
 }
 
 .header-section .text-container {
-  z-index: 100;
+  z-index: 10;
 }
 
 // Styling cookies end
