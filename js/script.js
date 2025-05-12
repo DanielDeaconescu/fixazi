@@ -153,7 +153,7 @@ if (document.getElementById("repairForm")) {
         );
         formData.append(
           "acceptContact",
-          document.getElementById("acceptContact").checked
+          document.getElementById("acceptContact").checked ? "true" : "false"
         );
 
         if (document.getElementById("acceptContact").checked) {
