@@ -86,7 +86,7 @@ repairModals.forEach((modal) => {
 // form validation and submission
 if (document.querySelector(".repairForm")) {
   document
-    .querySelector("repairForm")
+    .querySelector(".repairForm")
     .addEventListener("submit", async function (e) {
       e.preventDefault(); // Prevent the default form submission
 
