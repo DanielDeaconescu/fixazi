@@ -113,7 +113,9 @@ export default async function handler(req, res) {
 
     // Send email
     await transporter.sendMail(mailOptions);
-    res.redirect(302, "/submitted.html");
+    res
+      .status(200)
+      .json({ success: true, message: "Form submitted successfully" });
   } catch (error) {
     console.error("Error processing form:", error);
     res.status(500).json({

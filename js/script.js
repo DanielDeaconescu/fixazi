@@ -84,11 +84,12 @@ repairModals.forEach((modal) => {
 });
 
 // form validation and submission
+// form validation and submission
 if (document.getElementById("repairForm")) {
   document
     .getElementById("repairForm")
     .addEventListener("submit", async function (e) {
-      e.preventDefault();
+      e.preventDefault(); // Prevent the default form submission
 
       // Get references to the button and spinner
       const submitButton = document.getElementById("submitBtn");
