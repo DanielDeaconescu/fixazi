@@ -137,7 +137,7 @@ if (document.querySelector(".repairForm")) {
         const submitText = document.getElementById("submitText");
         submitText.textContent = "Procesare...";
 
-        const form = document.querySelector("repairForm");
+        const form = document.querySelector(".repairForm");
         const formData = new FormData();
         formData.append("fullName", fullName);
         formData.append("phoneNumber", phone);
