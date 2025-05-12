@@ -42,17 +42,16 @@ export default async function handler(req, res) {
       fields.problemDescription?.[0] ||
       fields.problemDescription ||
       "Nespecificat";
-    const acceptContact =
-      fields.acceptContact?.[0] || fields.acceptContact || "false";
+    // Extract acceptContact field
+    const rawAcceptContact = Array.isArray(fields.acceptContact)
+      ? fields.acceptContact[0]
+      : fields.acceptContact;
+
+    const acceptContact = rawAcceptContact === "on"; // Checkbox value when checked is 'on'
+
     let preferredContact = "Niciuna";
-
-    console.log("acceptContact raw:", fields.acceptContact);
-
-    if (acceptContact === "true") {
-      preferredContact =
-        fields.preferredContact?.[0] ||
-        fields.preferredContact ||
-        "Nespecificat";
+    if (acceptContact) {
+      preferredContact = fields.preferredContact?.[0] || "Nespecificat";
     }
 
     // Handle file upload
