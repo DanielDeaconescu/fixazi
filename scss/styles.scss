@@ -19,6 +19,18 @@
   opacity: 1;
 }
 
+#submitBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#loadingSpinner {
+  margin-right: 8px;
+}
+
 // Styling the form end
 
 .overlay {
