@@ -356,6 +356,33 @@ input[type=file] {
   padding: 0.5rem;
 }
 
+.header-section {
+  background-image: url("../images/cookies-header.jpg");
+  padding: 3.5rem 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.text-container {
+  position: relative;
+}
+
+.header-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.header-section .text-container {
+  z-index: 100;
+}
+
 @media (max-width: 576px) {
   .navbar-custom {
     height: unset;
