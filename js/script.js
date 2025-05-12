@@ -134,10 +134,10 @@ if (document.querySelector(".repairForm")) {
         loadingSpinner.style.display = "inline-block"; // Show spinner
         console.log("Spinner should be visible now"); // Debug
 
-        const originalText = submitButton.textContent; // Save the original text
-        submitButton.textContent = "Procesare..."; // Change the button text
+        const submitText = document.getElementById("submitText");
+        submitText.textContent = "Procesare...";
 
-        const form = document.getElementById("repairForm");
+        const form = document.querySelector("repairForm");
         const formData = new FormData();
         formData.append("fullName", fullName);
         formData.append("phoneNumber", phone);
@@ -196,8 +196,7 @@ if (document.querySelector(".repairForm")) {
           // Always re-enable the button and hide the spinner
           submitButton.disabled = false;
           loadingSpinner.style.display = "none"; // Hide spinner
-          submitButton.textContent = originalText; // Restore original text
-          console.log("Spinner hidden, button re-enabled"); // Debug
+          submitText.textContent = "Trimite cererea"; // Restore original text
         }
       }
     });
