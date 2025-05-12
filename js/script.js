@@ -135,7 +135,7 @@ if (document.querySelector(".repairForm")) {
         console.log("Spinner should be visible now"); // Debug
 
         const submitText = document.getElementById("submitText");
-        submitText.textContent = "Procesare...";
+        submitText.textContent = "Se trimite...";
 
         const form = document.querySelector(".repairForm");
         const formData = new FormData();
