@@ -84,13 +84,17 @@ repairModals.forEach((modal) => {
 });
 
 // form validation and submission
-// form validation and submission
 if (document.getElementById("repairForm")) {
   document
     .getElementById("repairForm")
     .addEventListener("submit", async function (e) {
       e.preventDefault();
 
+      // Get references to the button and spinner
+      const submitButton = document.getElementById("submitBtn");
+      const loadingSpinner = document.getElementById("loadingSpinner");
+
+      // Clear previous error messages
       document.getElementById("fullNameError").textContent = "";
       document.getElementById("phoneError").textContent = "";
       document.getElementById("fileError").textContent = ""; // Clear file error
@@ -123,6 +127,11 @@ if (document.getElementById("repairForm")) {
 
       // ✅ Only proceed if there are no validation errors
       if (!hasError) {
+        // Show the spinner and disable the button
+        submitButton.disabled = true;
+        loadingSpinner.style.display = "inline-block";
+        submitButton.innerHTML = "Procesare..."; // Change the button text
+
         const form = document.getElementById("repairForm");
         const formData = new FormData();
         formData.append("fullName", fullName);
@@ -164,19 +173,27 @@ if (document.getElementById("repairForm")) {
           const result = await response.json(); // Parse JSON response
 
           if (result.success) {
-            form.reset();
+            form.reset(); // Reset the form if successful
+            window.location.href = "/submitted.html"; // Redirect after success
           } else {
+            // Show error toast if something goes wrong
             const errorToast = new bootstrap.Toast(
               document.getElementById("errorToast")
             );
             errorToast.show();
           }
         } catch (error) {
+          // Handle any network errors
           console.error(error);
           const errorToast = new bootstrap.Toast(
             document.getElementById("errorToast")
           );
           errorToast.show();
+        } finally {
+          // Always re-enable the button and hide the spinner
+          submitButton.disabled = false;
+          loadingSpinner.style.display = "none";
+          submitButton.innerHTML = "Trimite cererea"; // Restore original text
         }
       }
     });
