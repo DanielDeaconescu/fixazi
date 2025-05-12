@@ -54,11 +54,11 @@ export default async function handler(req, res) {
       preferredContact = fields.preferredContact?.[0] || "Nespecificat";
     }
 
-    // Handle file upload
+    // Handle file upload (check if file exists and has size > 0)
     let attachments = [];
     const uploadedFile = files.file?.[0] || files.file;
 
-    if (uploadedFile && uploadedFile.filepath) {
+    if (uploadedFile && uploadedFile.filepath && uploadedFile.size > 0) {
       attachments.push({
         filename: uploadedFile.originalFilename || "attachment",
         path: uploadedFile.filepath,
@@ -93,14 +93,14 @@ export default async function handler(req, res) {
       to: process.env.EMAIL_TO,
       subject: subject,
       html: `
-        <h2>Detalii cerere de reparație</h2>
+        <h2>Detalii cerere</h2>
         <p><strong>Nume complet:</strong> ${fullName}</p>
         <p><strong>Număr de telefon:</strong> ${phoneNumber}</p>
         <p><strong>Tip dispozitiv:</strong> ${deviceType}</p>
         <p><strong>Marcă/Model:</strong> ${brandModel}</p>
         <p><strong>Descriere problemă:</strong> ${problemDescription}</p>
         <p><strong>Acceptă să fie contactat(ă):</strong> ${
-          acceptContact ? "Da" : "Nu"
+          acceptContact === "true" ? "Da" : "Nu"
         }</p>
         <p><strong>Metodă preferată de contact:</strong> ${preferredContact}</p>
       `,
