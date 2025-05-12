@@ -100,7 +100,7 @@ export default async function handler(req, res) {
         <p><strong>Marcă/Model:</strong> ${brandModel}</p>
         <p><strong>Descriere problemă:</strong> ${problemDescription}</p>
         <p><strong>Acceptă să fie contactat(ă):</strong> ${
-          acceptContact === "true" ? "Da" : "Nu"
+          acceptContact ? "Da" : "Nu"
         }</p>
         <p><strong>Metodă preferată de contact:</strong> ${preferredContact}</p>
       `,
