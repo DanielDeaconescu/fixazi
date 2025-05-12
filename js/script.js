@@ -64,11 +64,25 @@ repairModals.forEach((modal) => {
       const phoneError = form.querySelector(".phoneError");
       if (fullNameError) fullNameError.textContent = "";
       if (phoneError) phoneError.textContent = "";
+
+      // Make the last field invisible again
+      const preferredContactGroup = form.querySelector(
+        "#preferredContactGroup"
+      );
+      if (preferredContactGroup) {
+        preferredContactGroup.classList.remove("expanded");
+        preferredContactGroup.classList.add("collapsed");
+      }
+
+      // Uncheck the accept contact box
+      const acceptContactCheckbox = form.querySelector("#acceptContact");
+      if (acceptContactCheckbox) {
+        acceptContactCheckbox.checked = false;
+      }
     }
   });
 });
 
-// form validation
 // form validation and submission
 if (document.getElementById("repairForm")) {
   document
@@ -141,10 +155,13 @@ if (document.getElementById("repairForm")) {
           "acceptContact",
           document.getElementById("acceptContact").checked
         );
-        formData.append(
-          "preferredContact",
-          document.getElementById("preferredContact").value
-        );
+
+        if (document.getElementById("acceptContact").checked) {
+          formData.append(
+            "preferredContact",
+            document.getElementById("preferredContact").value
+          );
+        }
 
         if (file) {
           formData.append("file", file);
@@ -183,6 +200,22 @@ if (document.getElementById("repairForm")) {
       }
     });
 }
+
+document
+  .getElementById("acceptContact")
+  .addEventListener("change", function () {
+    const preferredContactGroup = document.getElementById(
+      "preferredContactGroup"
+    );
+
+    if (this.checked) {
+      preferredContactGroup.classList.add("expanded");
+      preferredContactGroup.classList.remove("collapsed");
+    } else {
+      preferredContactGroup.classList.remove("expanded");
+      preferredContactGroup.classList.add("collapsed");
+    }
+  });
 
 // Side buttons functionality
 
@@ -265,17 +298,19 @@ document.addEventListener("click", function (e) {
 // Copy the address to clipboard
 
 const copyButton = document.querySelector(".copy-button");
-copyButton.addEventListener("click", function () {
-  const address = document.getElementById("address").textContent;
+if (copyButton) {
+  copyButton.addEventListener("click", function () {
+    const address = document.getElementById("address").textContent;
 
-  navigator.clipboard
-    .writeText(address)
-    .then(() => {
-      const toastEl = document.getElementById("copyToast");
-      const toast = new bootstrap.Toast(toastEl);
-      toast.show();
-    })
-    .catch((err) => {
-      console.error("Eroare la copierea adresei!", err);
-    });
-});
+    navigator.clipboard
+      .writeText(address)
+      .then(() => {
+        const toastEl = document.getElementById("copyToast");
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      })
+      .catch((err) => {
+        console.error("Eroare la copierea adresei!", err);
+      });
+  });
+}

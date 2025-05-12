@@ -5,6 +5,22 @@
 
 // Styling index start
 
+// Styling the form start
+
+.transition-collapse {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.transition-collapse.expanded {
+  max-height: 200px; /* enough height to fully show the content */
+  opacity: 1;
+}
+
+// Styling the form end
+
 .overlay {
   position: absolute;
   top: 0;

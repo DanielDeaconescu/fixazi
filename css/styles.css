@@ -3,6 +3,18 @@
   --whatsapp-clr-logo: hsl(173, 86%, 20%);
 }
 
+.transition-collapse {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.transition-collapse.expanded {
+  max-height: 200px; /* enough height to fully show the content */
+  opacity: 1;
+}
+
 .overlay {
   position: absolute;
   top: 0;
