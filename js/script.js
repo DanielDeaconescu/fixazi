@@ -155,15 +155,15 @@ if (document.querySelector(".repairForm")) {
         );
         formData.append(
           "acceptContact",
-          document.getElementById("acceptContact").checked
+          document.getElementById("acceptContact").checked ? "Da" : "Nu"
         );
 
-        if (document.getElementById("acceptContact").checked) {
-          formData.append(
-            "preferredContact",
-            document.getElementById("preferredContact").value
-          );
-        }
+        formData.append(
+          "preferredContact",
+          document.getElementById("acceptContact").checked
+            ? document.getElementById("preferredContact").value
+            : "Niciuna"
+        );
 
         if (file) {
           formData.append("file", file);

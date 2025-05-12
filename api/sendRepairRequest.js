@@ -50,7 +50,7 @@ export default async function handler(req, res) {
       ? fields.acceptContact[0]
       : fields.acceptContact;
 
-    const acceptContact = rawAcceptContact === "on"; // Checkbox value when checked is 'on'
+    const acceptContact = rawAcceptContact === "Da"; // Checkbox value when checked is 'on'
 
     let preferredContact = "Niciuna";
     if (acceptContact) {
