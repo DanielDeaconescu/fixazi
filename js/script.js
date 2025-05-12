@@ -84,6 +84,7 @@ repairModals.forEach((modal) => {
 });
 
 // form validation and submission
+// form validation and submission
 if (document.getElementById("repairForm")) {
   document
     .getElementById("repairForm")
@@ -92,6 +93,7 @@ if (document.getElementById("repairForm")) {
 
       document.getElementById("fullNameError").textContent = "";
       document.getElementById("phoneError").textContent = "";
+      document.getElementById("fileError").textContent = ""; // Clear file error
 
       let hasError = false;
       const fullName = document.getElementById("fullName").value.trim();
@@ -109,36 +111,22 @@ if (document.getElementById("repairForm")) {
         hasError = true;
       }
 
+      const fileInput = document.querySelector(".file-upload");
+      const file = fileInput.files[0];
+
+      // Validate file size
+      if (file && file.size === 0) {
+        document.getElementById("fileError").textContent =
+          "Fișierul selectat nu este valid. Vă rugăm să alegeți un fișier valid.";
+        hasError = true;
+      }
+
       // ✅ Only proceed if there are no validation errors
       if (!hasError) {
         const form = document.getElementById("repairForm");
-        const fileInput = document.querySelector(".file-upload");
-        const file = fileInput.files[0];
-
-        // ✅ Validate file type
-        const allowedTypes = [
-          "image/jpeg",
-          "image/png",
-          "image/webp",
-          "image/jpg",
-          "image/gif",
-        ];
-        if (file && !allowedTypes.includes(file.type)) {
-          alert(
-            "Doar fișiere imagine sunt permise: JPEG, PNG, WEBP, JPG, GIF."
-          );
-          return;
-        }
-
         const formData = new FormData();
-        formData.append(
-          "fullName",
-          document.getElementById("fullName").value.trim()
-        );
-        formData.append(
-          "phoneNumber",
-          document.getElementById("phoneNumber").value.trim()
-        );
+        formData.append("fullName", fullName);
+        formData.append("phoneNumber", phone);
         formData.append(
           "deviceType",
           document.getElementById("deviceType").value
@@ -153,7 +141,7 @@ if (document.getElementById("repairForm")) {
         );
         formData.append(
           "acceptContact",
-          document.getElementById("acceptContact").checked ? "true" : "false"
+          document.getElementById("acceptContact").checked
         );
 
         if (document.getElementById("acceptContact").checked) {
@@ -167,11 +155,6 @@ if (document.getElementById("repairForm")) {
           formData.append("file", file);
         }
 
-        console.log("FormData entries:");
-        for (let [key, value] of formData.entries()) {
-          console.log(key, value);
-        }
-
         try {
           const response = await fetch("/api/sendRepairRequest", {
             method: "POST",
@@ -181,10 +164,8 @@ if (document.getElementById("repairForm")) {
           const result = await response.json(); // Parse JSON response
 
           if (result.success) {
-            // ✅ Check the success flag from backend
             form.reset();
           } else {
-            // Show error toast if success=false
             const errorToast = new bootstrap.Toast(
               document.getElementById("errorToast")
             );

@@ -93,7 +93,7 @@ export default async function handler(req, res) {
       to: process.env.EMAIL_TO,
       subject: subject,
       html: `
-        <h2>Detalii cerere</h2>
+        <h2>Detalii cerere de reparație</h2>
         <p><strong>Nume complet:</strong> ${fullName}</p>
         <p><strong>Număr de telefon:</strong> ${phoneNumber}</p>
         <p><strong>Tip dispozitiv:</strong> ${deviceType}</p>
