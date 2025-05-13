@@ -22,8 +22,11 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Get client IP address
     const ip =
-      req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
+      req.headers["cf-connecting-ip"] ||
+      req.headers["x-forwarded-for"]?.split(",")[0]?.trim() ||
+      req.socket.remoteAddress;
 
     const { db, client } = await connectToDatabase();
     const submissionsCollection = db.collection("submissions");
@@ -39,7 +42,6 @@ export default async function handler(req, res) {
 
     if (submissionCount >= 2) {
       client.close();
-      // Redirect to a custom HTML page
       return res.status(200).json({ success: false, reason: "limit-reached" });
     }
 
@@ -52,6 +54,41 @@ export default async function handler(req, res) {
       });
     });
 
+    // Turnstile verification
+    const turnstileToken =
+      fields["cf-turnstile-response"]?.[0] || fields["cf-turnstile-response"];
+
+    if (!turnstileToken) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing Turnstile token",
+      });
+    }
+
+    const verifyURL =
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
+    const response = await fetch(verifyURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret: process.env.TURNSTILE_SECRET_KEY,
+        response: turnstileToken,
+        remoteip: ip, // optional
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!data.success) {
+      return res.status(403).json({
+        success: false,
+        error: data["error-codes"],
+        message: "Turnstile verification failed",
+      });
+    }
+
+    // Extract form fields
     const fullName = fields.fullName?.[0] || fields.fullName || "Nespecificat";
     const phoneNumber =
       fields.phoneNumber?.[0] || fields.phoneNumber || "Nespecificat";
@@ -72,6 +109,7 @@ export default async function handler(req, res) {
       preferredContact = fields.preferredContact?.[0] || "Nespecificat";
     }
 
+    // Attachments
     let attachments = [];
     const uploadedFile = files.file?.[0] || files.file;
     if (uploadedFile && uploadedFile.filepath && uploadedFile.size > 0) {
@@ -82,6 +120,7 @@ export default async function handler(req, res) {
       });
     }
 
+    // Send email
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: Number(process.env.EMAIL_PORT),
@@ -120,10 +159,9 @@ export default async function handler(req, res) {
       attachments,
     };
 
-    // Send email
     await transporter.sendMail(mailOptions);
 
-    // Save this submission in the database
+    // Store submission
     await submissionsCollection.insertOne({
       ip,
       timestamp: new Date(),

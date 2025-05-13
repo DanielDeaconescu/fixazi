@@ -165,6 +165,11 @@ if (document.querySelector(".repairForm")) {
             : "Niciuna"
         );
 
+        formData.append(
+          "cf-turnstile-response",
+          document.querySelector('input[name="cf-turnstile-response"]').value
+        );
+
         if (file) {
           formData.append("file", file);
         }
