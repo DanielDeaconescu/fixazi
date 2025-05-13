@@ -405,7 +405,17 @@ input[type=file] {
     padding: 1rem 0;
   }
   .header {
-    max-height: 320px;
+    max-height: 350px;
+  }
+  .index-header-buttons {
+    flex-direction: column;
+    gap: 0.5rem !important;
+  }
+  .index-header-contact {
+    font-size: 0.8rem;
+  }
+  .index-header-prices {
+    font-size: 0.8rem;
   }
   .repair-services-container {
     padding-top: 0 !important;
