@@ -11,6 +11,9 @@
       rel="stylesheet"
     />
 
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
     <!-- PapaParse -->
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
@@ -586,8 +589,8 @@
                   <option value="SMS">SMS</option>
                 </select>
               </div>
-              
-
+              <!-- Turnstile token -->
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAABdALOY-DswhxzbS"></div>
               <button id="submitBtn" type="submit" class="btn btn-primary">
                 <span id="loadingSpinner" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" style="display: none;"></span>
                 <span id="submitText">Trimite cererea</span>
