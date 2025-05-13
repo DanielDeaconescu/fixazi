@@ -37,12 +37,10 @@ export default async function handler(req, res) {
       timestamp: { $gte: oneDayAgo },
     });
 
-    if (submissionCount >= 3) {
+    if (submissionCount >= 2) {
       client.close();
       // Redirect to a custom HTML page
-      res.writeHead(302, { Location: "/limit-reached.html" });
-      res.end();
-      return;
+      return res.status(200).json({ success: false, reason: "limit-reached" });
     }
 
     // Parse form data
