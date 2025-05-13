@@ -60,8 +60,8 @@ repairModals.forEach((modal) => {
       }
 
       // Clear error messages inside this modal form only
-      const fullNameError = form.querySelector(".fullNameError");
-      const phoneError = form.querySelector(".phoneError");
+      const fullNameError = form.querySelector("#fullNameError");
+      const phoneError = form.querySelector("#phoneError");
       if (fullNameError) fullNameError.textContent = "";
       if (phoneError) phoneError.textContent = "";
 
