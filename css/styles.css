@@ -361,6 +361,10 @@ input[type=file] {
   background-color: white;
 }
 
+.contact-google-reviews-section {
+  border-top: 2px solid white;
+}
+
 #repair-prices-container table td,
 #repair-prices-container table th {
   width: 50%;
