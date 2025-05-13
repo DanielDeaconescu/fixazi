@@ -33,6 +33,14 @@
       sizes="16x16"
       href="./images/favicon-16x16.png"
     />
+
+    <script>
+      if (sessionStorage.getItem("limitReached") !== "true") {
+        window.location.href = "/";
+      } else {
+        sessionStorage.removeItem("limitReached"); // optional, to allow access only once
+      }
+    </script>
   </head>
   <body
     class="d-flex align-items-center justify-content-center min-vh-100 bg-light"

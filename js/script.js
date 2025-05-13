@@ -180,7 +180,9 @@ if (document.querySelector(".repairForm")) {
           if (result.success) {
             form.reset(); // Reset the form if successful
             window.location.href = "/submitted.html"; // Redirect after success
+            sessionStorage.setItem("formSubmitted", "true");
           } else if (result.reason === "limit-reached") {
+            sessionStorage.setItem("limitReached", "true");
             window.location.href = "/limit-reached.html";
           } else {
             const errorToast = new bootstrap.Toast(
