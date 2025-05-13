@@ -344,3 +344,78 @@ document.addEventListener("DOMContentLoaded", function () {
     scheduleBox.classList.toggle("d-none");
   });
 });
+
+// read from the spreadsheet
+const SHEET_CSV_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQMz33fovxyG1OWTyZdiSZ3Jk_VEb2_Dsaqgudr6VatdPZGmH31oMYQussk0B7FU5RmTdjWSOSxwPVl/pub?output=csv";
+
+fetch(SHEET_CSV_URL)
+  .then((response) => response.text())
+  .then((csvText) => {
+    const data = Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: true,
+    }).data;
+    displayRepairPrices(data);
+  });
+
+function displayRepairPrices(data) {
+  const grouped = {};
+
+  // Group by 'Reparație' > 'Tip Dispozitiv'
+  data.forEach((row) => {
+    const repair = row["Reparație"];
+    const deviceType = row["Tip Dispozitiv"];
+    const model = row["Model"];
+    const price = row["Preț"];
+
+    if (!grouped[repair]) grouped[repair] = {};
+    if (!grouped[repair][deviceType]) grouped[repair][deviceType] = [];
+
+    grouped[repair][deviceType].push({ model, price });
+  });
+
+  const container = document.getElementById("repair-prices-container");
+  container.innerHTML = "";
+
+  Object.entries(grouped).forEach(([repairType, deviceGroups]) => {
+    const repairTitle = document.createElement("h5");
+    repairTitle.textContent = repairType;
+    repairTitle.classList.add("mt-4", "fw-bold");
+    container.appendChild(repairTitle);
+
+    Object.entries(deviceGroups).forEach(([deviceType, models]) => {
+      const deviceTitle = document.createElement("h6");
+      deviceTitle.textContent = deviceType;
+      deviceTitle.classList.add("mt-3");
+      container.appendChild(deviceTitle);
+
+      // Sort models by price (optional)
+      models.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+
+      const table = document.createElement("table");
+      table.className =
+        "table table-sm table-bordered table-striped align-middle";
+      table.style.tableLayout = "fixed";
+      table.style.width = "100%";
+      const thead = document.createElement("thead");
+      thead.innerHTML = `
+          <tr>
+            <th>Model</th>
+            <th>Preț (RON)</th>
+          </tr>
+        `;
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      models.forEach(({ model, price }) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${model}</td><td>${price}</td>`;
+        tbody.appendChild(row);
+      });
+
+      table.appendChild(tbody);
+      container.appendChild(table);
+    });
+  });
+}

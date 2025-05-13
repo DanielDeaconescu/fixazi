@@ -404,6 +404,16 @@ input[type="file"] {
 
 // Styling contact end
 
+// Styling the repair prices table start
+
+#repair-prices-container table td,
+#repair-prices-container table th {
+  width: 50%;
+  word-wrap: break-word;
+}
+
+// Styling the repair prices table end
+
 // Styling cookies start
 
 .header-section {

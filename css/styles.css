@@ -361,6 +361,12 @@ input[type=file] {
   background-color: white;
 }
 
+#repair-prices-container table td,
+#repair-prices-container table th {
+  width: 50%;
+  word-wrap: break-word;
+}
+
 .header-section {
   background-image: url("../images/cookies-header.jpg");
   padding: 3.5rem 0;
