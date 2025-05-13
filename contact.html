@@ -116,140 +116,78 @@
     <section class="py-5">
       <div class="container">
         <div class="row">
-          <!-- Contact Form -->
+          <!-- FAQ Section -->
           <div class="col-lg-6">
-            <form
-              class="text-white repairForm"
-              
-              action="/api/sendRepairRequest"
-              method="POST"
-              enctype="multipart/form-data"
-              novalidate
-            >
-              <h4>Cerere de reparație</h4>
-              <div class="mb-3">
-                <label for="fullName" class="form-label">Nume complet</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="fullName"
-                  name="fullName"
-                  placeholder="Ex: Andrei Popescu"
-                />
-                <div class="text-danger small mt-1" id="fullNameError"></div>
+            <section class="container my-5">
+              <h2 class="mb-4 text-center text-white">Întrebări frecvente</h2>
+              <div class="accordion text-white" id="faqAccordion">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqOneHeading">
+                    <button class="accordion-button text-white bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">
+                      Ce tipuri de dispozitive reparați?
+                    </button>
+                  </h2>
+                  <div id="faqOne" class="accordion-collapse collapse show" aria-labelledby="faqOneHeading" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-white">
+                      Reparăm telefoane mobile, tablete, laptopuri și alte dispozitive electronice de uz personal. Dacă ai un alt dispozitiv, contactează-ne și îți vom spune dacă îl putem repara.
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqTwoHeading">
+                    <button class="accordion-button text-white bg-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
+                      Cât durează o reparație?
+                    </button>
+                  </h2>
+                  <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-white">
+                      Durata variază în funcție de complexitatea problemei. Unele reparații se pot face în aceeași zi, altele pot dura 2-3 zile lucrătoare.
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqThreeHeading">
+                    <button class="accordion-button text-white bg-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">
+                      Trebuie să fac o programare?
+                    </button>
+                  </h2>
+                  <div id="faqThree" class="accordion-collapse collapse" aria-labelledby="faqThreeHeading" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-white">
+                      Nu este obligatorie, dar recomandăm programarea pentru a reduce timpul de așteptare și a ne asigura că avem piesele necesare disponibile.
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqFourHeading">
+                    <button class="accordion-button text-white bg-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-expanded="false" aria-controls="faqFour">
+                      Oferiți garanție pentru reparații?
+                    </button>
+                  </h2>
+                  <div id="faqFour" class="accordion-collapse collapse" aria-labelledby="faqFourHeading" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-white">
+                      Da, toate reparațiile vin cu o garanție între 30 și 90 de zile, în funcție de tipul de intervenție. Vom specifica acest lucru în bonul de reparație.
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faqFiveHeading">
+                    <button class="accordion-button text-white bg-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive" aria-expanded="false" aria-controls="faqFive">
+                      Pot trimite dispozitivul prin curier?
+                    </button>
+                  </h2>
+                  <div id="faqFive" class="accordion-collapse collapse" aria-labelledby="faqFiveHeading" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-white">
+                      Da, acceptăm reparații prin curier. Contactează-ne înainte pentru detalii despre procedură, ambalare și etichetare corectă.
+                    </div>
+                  </div>
+                </div>
               </div>
-
-              <div class="mb-3">
-                <label for="phoneNumber" class="form-label"
-                  >Număr de telefon</label
-                >
-                <input
-                  type="tel"
-                  class="form-control"
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  placeholder="Ex: 07xxxxxxxx"
-                />
-                <div class="text-danger small mt-1" id="phoneError"></div>
-              </div>
-
-              <div class="mb-3">
-                <label for="emailAddress" class="form-label"
-                  >Adresă de email</label
-                >
-                <input
-                  type="email"
-                  class="form-control"
-                  id="emailAddress"
-                  name="emailAddress"
-                  placeholder="Ex: exemplu@email.com"
-                />
-              </div>
-
-              <div class="mb-3">
-                <label for="deviceType" class="form-label"
-                  >Tip dispozitiv</label
-                >
-                <select class="form-select" id="deviceType" name="deviceType">
-                  <option selected disabled>Alege un dispozitiv</option>
-                  <option value="telefon">Telefon</option>
-                  <option value="tableta">Tabletă</option>
-                  <option value="laptop">Laptop</option>
-                  <option value="gps">GPS</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label for="brandModel" class="form-label"
-                  >Marcă și model</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="brandModel"
-                  name="brandModel"
-                  placeholder="Ex: Samsung Galaxy S21"
-                />
-              </div>
-
-              <div class="custom-file-upload mb-3">
-                <label class="custom-file-label">
-                  Atașează o imagine (opțional)
-                </label>
-                <input class="file-upload" name="file" type="file" />
-                <span class="file-name">Niciun fișier selectat</span>
-                <div id="fileError" class="text-danger"></div>
-              </div>
-              
-
-              <div class="mb-3">
-                <label for="problemDescription" class="form-label"
-                  >Descrierea problemei</label
-                >
-                <textarea
-                  class="form-control"
-                  id="problemDescription"
-                  name="problemDescription"
-                  rows="3"
-                  placeholder="Scrie aici ce problemă are dispozitivul..."
-                ></textarea>
-              </div>
-
-              <div class="form-check mb-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="acceptContact"
-                  name="acceptContact"
-                />
-                <label class="form-check-label" for="acceptContact">
-                  Sunt de acord să fiu contactat(ă) cu privire la această
-                  cerere.
-                </label>
-              </div>
-
-              <div class="mb-3 transition-collapse collapsed" id="preferredContactGroup">
-                <label for="preferredContact" class="form-label">
-                  Cum preferi să fii contactat(ă)?
-                </label>
-                <select
-                  class="form-select"
-                  id="preferredContact"
-                  name="preferredContact"
-                >
-                  <option value="Telefon">Telefon</option>
-                  <option value="WhatsApp">WhatsApp</option>
-                  <option value="Email">Email</option>
-                  <option value="SMS">SMS</option>
-                </select>
-              </div>
-              
-
-              <button id="submitBtn" type="submit" class="btn btn-primary">
-                <span id="loadingSpinner" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" style="display: none;"></span>
-                <span id="submitText">Trimite cererea</span>
-              </button>                       
-            </form>
+            </section>
+            
           </div>
 
           <!-- Contact Info & Map -->

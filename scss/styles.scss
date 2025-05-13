@@ -398,6 +398,10 @@ input[type="file"] {
   padding: 0.5rem;
 }
 
+.accordion-button::after {
+  background-color: white;
+}
+
 // Styling contact end
 
 // Styling cookies start

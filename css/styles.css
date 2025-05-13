@@ -357,6 +357,10 @@ input[type=file] {
   padding: 0.5rem;
 }
 
+.accordion-button::after {
+  background-color: white;
+}
+
 .header-section {
   background-image: url("../images/cookies-header.jpg");
   padding: 3.5rem 0;
