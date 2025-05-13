@@ -403,6 +403,17 @@ input[type=file] {
   z-index: 1080;
 }
 
+.created-by {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.created-by-p {
+  margin: 0;
+}
+
 @media (max-width: 576px) {
   .navbar-custom {
     height: unset;
