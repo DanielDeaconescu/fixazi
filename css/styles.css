@@ -365,6 +365,10 @@ input[type=file] {
   border-top: 2px solid white;
 }
 
+.accordion-body {
+  text-align: justify;
+}
+
 .repair-request-p {
   text-align: justify;
 }
