@@ -500,11 +500,17 @@ input[type=file] {
   .more-about-cookies {
     font-size: 0.8rem;
   }
+  #faqAccordion {
+    margin-bottom: 1.5rem;
+  }
 }
 @media (min-width: 576px) and (max-width: 768px) {
   .navbar-custom {
     height: unset;
     padding: 1rem 0;
+  }
+  #faqAccordion {
+    margin-bottom: 1.5rem;
   }
 }
 @media (min-width: 768px) and (max-width: 992px) {
@@ -517,5 +523,8 @@ input[type=file] {
   .footer {
     display: flex;
     flex-direction: column;
+  }
+  #faqAccordion {
+    margin-bottom: 1.5rem;
   }
 }
