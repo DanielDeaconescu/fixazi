@@ -348,9 +348,16 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const toggleBtn = document.getElementById("toggle-schedule");
   const scheduleBox = document.getElementById("schedule-box");
+  const scheduleButtonText = document.querySelector(".schedule-button-text");
 
   toggleBtn.addEventListener("click", function () {
-    scheduleBox.classList.toggle("d-none");
+    if (scheduleBox.classList.contains("d-none")) {
+      scheduleBox.classList.remove("d-none");
+      scheduleButtonText.textContent = "Închide";
+    } else {
+      scheduleBox.classList.add("d-none");
+      scheduleButtonText.textContent = "Vezi Program";
+    }
   });
 });
 
