@@ -234,43 +234,45 @@ const whatsappButtonContainer = document.querySelector(
   ".whatsapp-button-container"
 );
 
-const mediaQuery = window.matchMedia("(min-width: 576px)");
+if (formButtonContainer && whatsappButtonContainer) {
+  const mediaQuery = window.matchMedia("(min-width: 576px)");
 
-function setupHoverEffects(enable) {
-  if (enable) {
-    formButtonContainer.addEventListener("mouseenter", showForm);
-    formButtonContainer.addEventListener("mouseleave", hideForm);
-    whatsappButtonContainer.addEventListener("mouseenter", showWhatsapp);
-    whatsappButtonContainer.addEventListener("mouseleave", hideWhatsapp);
-  } else {
-    formButtonContainer.removeEventListener("mouseenter", showForm);
-    formButtonContainer.removeEventListener("mouseleave", hideForm);
-    whatsappButtonContainer.removeEventListener("mouseenter", showWhatsapp);
-    whatsappButtonContainer.removeEventListener("mouseleave", hideWhatsapp);
+  function setupHoverEffects(enable) {
+    if (enable) {
+      formButtonContainer.addEventListener("mouseenter", showForm);
+      formButtonContainer.addEventListener("mouseleave", hideForm);
+      whatsappButtonContainer.addEventListener("mouseenter", showWhatsapp);
+      whatsappButtonContainer.addEventListener("mouseleave", hideWhatsapp);
+    } else {
+      formButtonContainer.removeEventListener("mouseenter", showForm);
+      formButtonContainer.removeEventListener("mouseleave", hideForm);
+      whatsappButtonContainer.removeEventListener("mouseenter", showWhatsapp);
+      whatsappButtonContainer.removeEventListener("mouseleave", hideWhatsapp);
+    }
   }
+
+  function showForm() {
+    document.querySelector(".side-buttons-form").classList.remove("d-none");
+  }
+
+  function hideForm() {
+    document.querySelector(".side-buttons-form").classList.add("d-none");
+  }
+
+  function showWhatsapp() {
+    document.querySelector(".side-buttons-whatsapp").classList.remove("d-none");
+  }
+
+  function hideWhatsapp() {
+    document.querySelector(".side-buttons-whatsapp").classList.add("d-none");
+  }
+
+  setupHoverEffects(mediaQuery.matches);
+
+  mediaQuery.addEventListener("change", (e) => {
+    setupHoverEffects(e.matches);
+  });
 }
-
-function showForm() {
-  document.querySelector(".side-buttons-form").classList.remove("d-none");
-}
-
-function hideForm() {
-  document.querySelector(".side-buttons-form").classList.add("d-none");
-}
-
-function showWhatsapp() {
-  document.querySelector(".side-buttons-whatsapp").classList.remove("d-none");
-}
-
-function hideWhatsapp() {
-  document.querySelector(".side-buttons-whatsapp").classList.add("d-none");
-}
-
-setupHoverEffects(mediaQuery.matches);
-
-mediaQuery.addEventListener("change", (e) => {
-  setupHoverEffects(e.matches);
-});
 
 // custom file upload functionality
 document.querySelectorAll(".custom-file-upload").forEach((container) => {
