@@ -40,7 +40,7 @@ export default async function handler(req, res) {
       timestamp: { $gte: oneDayAgo },
     });
 
-    if (submissionCount > 2) {
+    if (submissionCount >= 3) {
       client.close();
       return res.status(200).json({ success: false, reason: "limit-reached" });
     }
