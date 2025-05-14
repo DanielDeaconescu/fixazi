@@ -592,6 +592,15 @@ input[type="file"] {
   #faqAccordion {
     margin-bottom: 1.5rem;
   }
+
+  // repairRequest page
+  .repair-request-p {
+    font-size: 0.9rem;
+  }
+
+  .repair-request-logo {
+    width: 300px;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {

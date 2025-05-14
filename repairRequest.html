@@ -11,6 +11,9 @@
       rel="stylesheet"
     />
 
+    <!-- PapaParse -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
     <!-- Cloudflare Turnstile -->
     <script
       src="https://challenges.cloudflare.com/turnstile/v0/api.js"
@@ -47,11 +50,15 @@
     <div class="container py-5">
       <div class="row justify-content-center">
         <div class="col-md-6">
-          <img
-            src="./images/fixazi_logo_nobg.png"
-            width="400"
-            alt="fixazi logo"
-          />
+          <div class="d-flex justify-content-start mb-1">
+            <img
+              class="img-fluid repair-request-logo"
+              src="./images/fixazi_logo_nobg.png"
+              width="400"
+              alt="fixazi logo"
+            />
+          </div>
+
           <p class="lead mb-4 text-white repair-request-p">
             Bun venit! Dacă ai ajuns aici înseamnă că ai nevoie de ajutor cu un
             dispozitiv defect. Completează formularul de mai jos sau sună-ne
@@ -200,28 +207,55 @@
       </div>
     </div>
 
-    <!-- Bottom nav bar / Mobile action bar -->
+    <!-- Bottom nav bar / Mobile action bar-->
     <nav class="d-block d-sm-none fixed-bottom bg-light border-top shadow-sm">
       <div
         class="container d-flex justify-content-around align-items-center py-2"
       >
+        <!-- Call button -->
         <a
           href="tel:+40743352949"
           class="btn btn-success d-flex flex-column align-items-center justify-content-center shadow-sm p-2 rounded"
         >
-          <i class="fas fa-phone fa-lg mb-1"></i>
-          <small>Sună</small>
+          <div>
+            <i class="fas fa-phone fa-lg mb-1"></i>
+          </div>
+          <div>
+            <small>Sună</small>
+          </div>
         </a>
 
+        <!-- Schedule toggle button -->
         <button
           id="toggle-schedule"
           class="btn btn-primary d-flex flex-column justify-content-center align-items-center shadow-sm p-2 rounded"
         >
-          <i class="fas fa-clock fa-lg mb-1"></i>
-          <small>Vezi Program</small>
+          <div>
+            <i class="fas fa-clock fa-lg mb-1"></i>
+          </div>
+          <div>
+            <small class="schedule-button-text">Vezi Program</small>
+          </div>
         </button>
       </div>
     </nav>
+
+    <!-- Collapsible schedule - hidden by default -->
+    <div
+      id="schedule-box"
+      class="d-none bg-white border-top p-3 shadow-sm d-sm-none fixed-bottom"
+      style="margin-bottom: 86px"
+    >
+      <ul class="list-unstyled mb-0 small">
+        <li><strong>Luni:</strong> 09:00 – 18:00</li>
+        <li><strong>Marți:</strong> 09:00 – 18:00</li>
+        <li><strong>Miercuri:</strong> 09:00 – 18:00</li>
+        <li><strong>Joi:</strong> 09:00 – 18:00</li>
+        <li><strong>Vineri:</strong> 09:00 – 18:00</li>
+        <li><strong>Sâmbătă:</strong> 09:00 - 14:00</li>
+        <li><strong>Duminică:</strong> Închis</li>
+      </ul>
+    </div>
 
     <!-- Cookies pop-up -->
     <div id="cookie-banner" class="fixed-bottom text-white py-3 px-4 d-none">

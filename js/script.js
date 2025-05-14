@@ -298,12 +298,14 @@ document.addEventListener("click", function (e) {
   const clicked = e.target;
 
   const navBar = document.querySelector(".navbar-custom");
-  if (!navBar.contains(clicked)) {
-    document.querySelector(".navbar-collapse").classList.remove("show");
-    document.querySelector(".navbar-toggler").classList.add("collapsed");
-    document
-      .querySelector(".navbar-toggler")
-      .setAttribute("aria-expanded", "false");
+  if (navBar) {
+    if (!navBar.contains(clicked)) {
+      document.querySelector(".navbar-collapse").classList.remove("show");
+      document.querySelector(".navbar-toggler").classList.add("collapsed");
+      document
+        .querySelector(".navbar-toggler")
+        .setAttribute("aria-expanded", "false");
+    }
   }
 });
 
@@ -394,46 +396,48 @@ function displayRepairPrices(data) {
   });
 
   const container = document.getElementById("repair-prices-container");
-  container.innerHTML = "";
+  if (container) {
+    container.innerHTML = "";
 
-  Object.entries(grouped).forEach(([repairType, deviceGroups]) => {
-    const repairTitle = document.createElement("h5");
-    repairTitle.textContent = repairType;
-    repairTitle.classList.add("mt-4", "fw-bold");
-    container.appendChild(repairTitle);
+    Object.entries(grouped).forEach(([repairType, deviceGroups]) => {
+      const repairTitle = document.createElement("h5");
+      repairTitle.textContent = repairType;
+      repairTitle.classList.add("mt-4", "fw-bold");
+      container.appendChild(repairTitle);
 
-    Object.entries(deviceGroups).forEach(([deviceType, models]) => {
-      const deviceTitle = document.createElement("h6");
-      deviceTitle.textContent = deviceType;
-      deviceTitle.classList.add("mt-3");
-      container.appendChild(deviceTitle);
+      Object.entries(deviceGroups).forEach(([deviceType, models]) => {
+        const deviceTitle = document.createElement("h6");
+        deviceTitle.textContent = deviceType;
+        deviceTitle.classList.add("mt-3");
+        container.appendChild(deviceTitle);
 
-      // Sort models by price (optional)
-      models.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        // Sort models by price (optional)
+        models.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
 
-      const table = document.createElement("table");
-      table.className =
-        "table table-sm table-bordered table-striped align-middle";
-      table.style.tableLayout = "fixed";
-      table.style.width = "100%";
-      const thead = document.createElement("thead");
-      thead.innerHTML = `
+        const table = document.createElement("table");
+        table.className =
+          "table table-sm table-bordered table-striped align-middle";
+        table.style.tableLayout = "fixed";
+        table.style.width = "100%";
+        const thead = document.createElement("thead");
+        thead.innerHTML = `
           <tr>
             <th>Model</th>
             <th>Preț (RON)</th>
           </tr>
         `;
-      table.appendChild(thead);
+        table.appendChild(thead);
 
-      const tbody = document.createElement("tbody");
-      models.forEach(({ model, price }) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `<td>${model}</td><td>${price}</td>`;
-        tbody.appendChild(row);
+        const tbody = document.createElement("tbody");
+        models.forEach(({ model, price }) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `<td>${model}</td><td>${price}</td>`;
+          tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+        container.appendChild(table);
       });
-
-      table.appendChild(tbody);
-      container.appendChild(table);
     });
-  });
+  }
 }
